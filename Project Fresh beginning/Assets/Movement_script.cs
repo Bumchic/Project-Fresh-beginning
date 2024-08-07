@@ -7,6 +7,7 @@ public class Movement_script : MonoBehaviour
     public Rigidbody2D Body;
     public float speed;
     public float drag;
+    bool grounded;
     void Start()
     {
         
@@ -28,8 +29,11 @@ public class Movement_script : MonoBehaviour
         }
     }
 
+  
+
     void FixedUpdate()
     {
+
         Body.velocity = Body.velocity * drag;
     }
 }
