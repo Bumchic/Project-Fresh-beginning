@@ -8,6 +8,12 @@ public class Movement_script : MonoBehaviour
     public float speed;
     public float drag;
     bool grounded;
+    public BoxCollider2D FloorCheck;
+    public LayerMask FloorCheckMask;
+    void Groundcheck()
+    {
+      //  grounded = Physics2D.OverlapAreaAll(FloorCheck.)
+    }
     void Start()
     {
         
@@ -29,11 +35,14 @@ public class Movement_script : MonoBehaviour
         }
     }
 
-  
+   
 
     void FixedUpdate()
     {
-
+        if (grounded)
+        {
+            
+        }
         Body.velocity = Body.velocity * drag;
     }
 }
