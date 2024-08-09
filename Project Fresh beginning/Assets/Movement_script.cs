@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class Movement_script : MonoBehaviour
 {
     public Rigidbody2D Body;
     public float speed;
     public float JumpPower;
-    [Range(0.1f, 1f)] public float friction;
+    [Range(0.1f, 1f)]
+    public float friction;
     public bool grounded;
     public BoxCollider2D FloorCheck;
     public LayerMask FloorCheckMask;
@@ -39,7 +39,7 @@ public class Movement_script : MonoBehaviour
         if (Mathf.Abs(xinput) > 0)
         {
             float Increment = xinput * accelaration;
-            float RealSpeed = Mathf.Sign(xinput + Increment, -speed, speed);
+            float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment,-speed,speed);
             Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
             float direction = Mathf.Sign(xinput);
             transform.localScale = new Vector2(direction, 1);
