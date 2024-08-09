@@ -600,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631241938}
   - component: {fileID: 631241939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +654,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.42, y: -0.31253818}
+  m_Offset: {x: 0.42, y: -0.31918743}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -665,7 +665,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20999998, y: 0.4450764}
+  m_Size: {x: 0.20999998, y: 0.45837492}
   m_EdgeRadius: 0
 --- !u!1 &857822146
 GameObject:
@@ -731,7 +731,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029841214, y: -0.31240976}
+  m_Offset: {x: -0.029841214, y: -0.31026995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -742,7 +742,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21009904, y: 0.013697863}
+  m_Size: {x: 0.21009904, y: 0.02263102}
   m_EdgeRadius: 0
 --- !u!1 &861977742
 GameObject:
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 1124764587}
   - component: {fileID: 1124764586}
   - component: {fileID: 1124764590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4f8aece83e1a576439cdb4a8319764f3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -885,7 +885,7 @@ Transform:
   m_GameObject: {fileID: 1124764585}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4497811, y: -0.23080608, z: 0.0071387887}
+  m_LocalPosition: {x: 0.4497811, y: -0.361, z: 0.0071387887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -906,8 +906,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Body: {fileID: 1124764586}
-  speed: 5
-  drag: 0.8
+  speed: 1
+  JumpPower: 3
+  friction: 0.879
   grounded: 0
   FloorCheck: {fileID: 857822148}
   FloorCheckMask:
