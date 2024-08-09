@@ -907,8 +907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Body: {fileID: 1124764586}
-  speed: 1
-  JumpPower: 7
+  speed: 2
+  JumpPower: 3
   friction: 0.879
   grounded: 0
   FloorCheck: {fileID: 857822148}
