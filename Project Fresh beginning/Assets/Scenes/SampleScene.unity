@@ -677,7 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 857822147}
   - component: {fileID: 857822148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloorCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.029841214, y: -0.31240976}
@@ -907,8 +907,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Body: {fileID: 1124764586}
   speed: 5
-  drag: 1
-  FloorCheck: {fileID: 0}
+  drag: 0.8
+  grounded: 0
+  FloorCheck: {fileID: 857822148}
   FloorCheckMask:
     serializedVersion: 2
     m_Bits: 128

@@ -6,43 +6,59 @@ public class Movement_script : MonoBehaviour
 {
     public Rigidbody2D Body;
     public float speed;
-    public float drag;
-    bool grounded;
+    [Range(0.1f, 1f)]
+    public float friction;
+    public bool grounded;
     public BoxCollider2D FloorCheck;
     public LayerMask FloorCheckMask;
+    float xinput;
+    float yinput;
+
     void Groundcheck()
     {
-      //  grounded = Physics2D.OverlapAreaAll(FloorCheck.)
+        grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
+    }
+    void GetInput()
+    {
+        xinput = Input.GetAxis("Horizontal");
+        yinput  = Input.GetAxis("Vertical");
+    }
+
+    void MovementInput()
+    {
+        if (Mathf.Abs(xinput) > 0)
+        {
+            Body.velocity = new Vector2(xinput * speed, Body.velocity.y);
+        }
+        if (Mathf.Abs(yinput) > 0 && grounded)
+        {
+            Body.velocity = new Vector2(Body.velocity.x, yinput * speed);
+        }
+    }
+    void ApplyGroundFriction()
+    {
+        if (grounded && xinput == 0 && yinput == 0)
+        {
+            Body.velocity = Body.velocity * friction;
+        }
     }
     void Start()
     {
         
     }
-
   
     void Update() 
     {
-        float xinput = Input.GetAxis("Horizontal");
-        float yinput = Input.GetAxis("Vertical");
-
-        if(Mathf.Abs(xinput)>0)
-        {
-            Body.velocity = new Vector2(xinput * speed, Body.velocity.y);
-        }
-        if (Mathf.Abs(xinput) > 0)
-        {
-            Body.velocity = new Vector2(Body.velocity.x, yinput * speed );
-        }
+        GetInput();
+        MovementInput();
     }
 
    
 
     void FixedUpdate()
     {
-        if (grounded)
-        {
-            
-        }
-        Body.velocity = Body.velocity * drag;
+        Groundcheck();
+        ApplyGroundFriction();
+       
     }
 }
