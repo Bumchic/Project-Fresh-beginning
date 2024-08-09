@@ -29,7 +29,7 @@ public class Movement_script : MonoBehaviour
    
     void ApplyGroundFriction()
     {
-        if (grounded && xinput == 0 && yinput == 0)
+        if (grounded && xinput == 0 && Body.velocity.y <= 0)
         {
             Body.velocity = Body.velocity * friction;
         }
@@ -41,15 +41,19 @@ public class Movement_script : MonoBehaviour
             float Increment = xinput * accelaration;
             float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment,-speed,speed);
             Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
-            float direction = Mathf.Sign(xinput);
-            transform.localScale = new Vector2(direction, 1);
+            FaceDirection();
         }
+    }
+    void FaceDirection()
+    {
+        float direction = Mathf.Sign(xinput);
+        transform.localScale = new Vector2(direction, 1);
     }
     void JumpMovement()
     {
-         if (Mathf.Abs(yinput) > 0 && grounded)
+         if (Input.GetButtonDown("Jump") && grounded)
         {
-            Body.velocity = new Vector2(Body.velocity.x, yinput* JumpPower);
+            Body.velocity = new Vector2(Body.velocity.x, JumpPower);
         }
     }
     void Start()
