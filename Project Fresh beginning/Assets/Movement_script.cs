@@ -15,6 +15,8 @@ public class Movement_script : MonoBehaviour
     float xinput;
     float yinput;
     public float accelaration;
+    public float SprintAccelaration;
+    public int JumpCounter;
 
     void Groundcheck()
     {
@@ -34,26 +36,55 @@ public class Movement_script : MonoBehaviour
             Body.velocity = Body.velocity * friction;
         }
     }
+    void Sprint()
+    {
+        float Increment = xinput * (accelaration + SprintAccelaration);
+        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -speed, speed);
+        Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
+        FaceDirection();
+    }
+    void Jog()
+    {
+        float Increment = xinput * accelaration;
+        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -speed, speed);
+        Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
+        FaceDirection();
+    }
     void MovementInput()
     {
-        if (Mathf.Abs(xinput) > 0)
-        {
-            float Increment = xinput * accelaration;
-            float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment,-speed,speed);
-            Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
-            FaceDirection();
-        }
+        //if(Mathf.Abs(xinput) > 0)
+        //if (Mathf.Abs(xinput) > 0 && Input.GetButtonDown(KeyCode.LeftShift);
+        //{
+        //    Sprint();
+        //}   else (Mathf.Abs(xinput) > 0)
+        //{
+        //    Jog();
+        //}
     }
     void FaceDirection()
     {
         float direction = Mathf.Sign(xinput);
-        transform.localScale = new Vector2(direction, 1);
+        transform.localScale = new Vector3(direction, 1, 1);
     }
-    void JumpMovement()
+    bool JumpButton()
     {
-         if (Input.GetButtonDown("Jump") && grounded)
-        {
+        return Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
+    }
+    void Jump()
+    {
             Body.velocity = new Vector2(Body.velocity.x, JumpPower);
+    }
+
+    void JumpMovement()
+    { 
+        if (grounded)
+        {
+            JumpCounter = 1;
+        }
+        if ((JumpButton()) && JumpCounter > 0)
+        {
+            Jump();
+            JumpCounter--;
         }
     }
     void Start()
@@ -65,12 +96,11 @@ public class Movement_script : MonoBehaviour
     {
         GetInput();
         JumpMovement();
-        
+        MovementInput();
     }
 
     void FixedUpdate()
-    {
-        MovementInput();
+    {      
         Groundcheck();
         ApplyGroundFriction();
     }
