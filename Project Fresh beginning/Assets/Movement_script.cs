@@ -46,15 +46,15 @@ public class Movement_script : MonoBehaviour
         Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
         FaceDirection();
     }
+    
     void SprintModifier()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && grounded)
         {
            
             SprintAccelaration = SprintAccModifier;
             SprintSpeed = SprintSpeedModifier;
-        }
-        else
+        } else if(grounded)
         {
      
             SprintAccelaration = 0;
