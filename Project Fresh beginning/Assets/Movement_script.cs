@@ -15,7 +15,10 @@ public class Movement_script : MonoBehaviour
     float xinput;
     float yinput;
     public float accelaration;
-    public float SprintAccelaration;
+    public float SprintAccModifier;
+    public float SprintSpeedModifier;
+    float SprintAccelaration;
+    float SprintSpeed;
     public int JumpCounter;
 
     void Groundcheck()
@@ -39,27 +42,32 @@ public class Movement_script : MonoBehaviour
     void Sprint()
     {
         float Increment = xinput * (accelaration + SprintAccelaration);
-        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -speed, speed);
+        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(speed+SprintSpeed), speed + SprintSpeed);
         Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
         FaceDirection();
     }
-    void Jog()
+    void SprintModifier()
     {
-        float Increment = xinput * accelaration;
-        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -speed, speed);
-        Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
-        FaceDirection();
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+           
+            SprintAccelaration = SprintAccModifier;
+            SprintSpeed = SprintSpeedModifier;
+        }
+        else
+        {
+     
+            SprintAccelaration = 0;
+            SprintSpeed = 0;
+        }
     }
     void MovementInput()
     {
-        //if(Mathf.Abs(xinput) > 0)
-        //if (Mathf.Abs(xinput) > 0 && Input.GetButtonDown(KeyCode.LeftShift);
-        //{
-        //    Sprint();
-        //}   else (Mathf.Abs(xinput) > 0)
-        //{
-        //    Jog();
-        //}
+        SprintModifier();
+        if (Mathf.Abs(xinput) > 0)
+        {
+            Sprint();
+        }  
     }
     void FaceDirection()
     {
