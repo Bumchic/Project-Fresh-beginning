@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Movement_script : MonoBehaviour
@@ -20,6 +21,7 @@ public class Movement_script : MonoBehaviour
     float SprintAccelaration;
     float SprintSpeed;
     public int JumpCounter;
+    public BoxCollider2D BodyHitbox;
 
     void Groundcheck()
     {
@@ -63,6 +65,7 @@ public class Movement_script : MonoBehaviour
     }
     void MovementInput()
     {
+        Crouch();
         SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
@@ -93,6 +96,14 @@ public class Movement_script : MonoBehaviour
         {
             Jump();
             JumpCounter--;
+        }
+    }
+    void Crouch()
+    {
+        if(grounded && Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("crouch");
+            BodyHitbox.size = new Vector2(BodyHitbox.size.x, BodyHitbox.size.y / 2);
         }
     }
     void Start()
