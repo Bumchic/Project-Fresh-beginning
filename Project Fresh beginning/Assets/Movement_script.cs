@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using System.Drawing;
 using UnityEngine;
 
@@ -22,7 +21,9 @@ public class Movement_script : MonoBehaviour
     float SprintSpeed;
     public int JumpCounter;
     public BoxCollider2D BodyHitbox;
-
+    float StandHeight;
+    float CrouchHeight;
+    bool CrouchState;
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
@@ -65,7 +66,7 @@ public class Movement_script : MonoBehaviour
     }
     void MovementInput()
     {
-        Crouch();
+        CrouchMovement();
         SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
@@ -98,17 +99,38 @@ public class Movement_script : MonoBehaviour
             JumpCounter--;
         }
     }
-    void Crouch()
+    void Crouch(bool CrouchState)
     {
-        if(grounded && Input.GetKeyDown(KeyCode.DownArrow))
+        BodyHitbox.size = new Vector2(BodyHitbox.size.x, CrouchHeight);
+    }
+    void Stand(bool CrouchState)
+    {
+      
+
+        if(CrouchState == true)
         {
-            Debug.Log("crouch");
-            BodyHitbox.size = new Vector2(BodyHitbox.size.x, BodyHitbox.size.y / 2);
+            BodyHitbox.size = new Vector2(BodyHitbox.size.x, StandHeight);
+            CrouchState = false;
         }
+        
+    }
+    void CrouchMovement()
+    {    
+        if (Input.GetKey(KeyCode.DownArrow)|| Input.GetKey(KeyCode.S))
+        {
+            CrouchState = true;
+            Crouch(CrouchState);
+        } else
+        {
+            Stand(CrouchState);
+        }
+        
     }
     void Start()
-    {
-        
+    {     
+        CrouchHeight = BodyHitbox.size.y / 2;
+        StandHeight = CrouchHeight * 2;
+        CrouchState = false;
     }
   
     void Update() 
