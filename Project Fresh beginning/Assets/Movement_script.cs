@@ -20,10 +20,14 @@ public class Movement_script : MonoBehaviour
     float SprintAccelaration;
     float SprintSpeed;
     public int JumpCounter;
-    public BoxCollider2D BodyHitbox;
-    float StandHeight;
-    float CrouchHeight;
-    bool CrouchState;
+    public BoxCollider2D BodyHitBox;
+    public float CrouchHeightPercentage = 0.5f;
+    public bool CrouchState;
+    Vector2 CrouchColliderSize;
+    Vector2 StandColliderSize;
+    Vector2 CrouchColliderOffSet;
+    Vector2 StandColliderOffSet;
+
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
@@ -66,7 +70,7 @@ public class Movement_script : MonoBehaviour
     }
     void MovementInput()
     {
-        CrouchMovement();
+ 
         SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
@@ -99,38 +103,41 @@ public class Movement_script : MonoBehaviour
             JumpCounter--;
         }
     }
-    void Crouch(bool CrouchState)
-    {
-        BodyHitbox.size = new Vector2(BodyHitbox.size.x, CrouchHeight);
-    }
-    void Stand(bool CrouchState)
-    {
-      
 
-        if(CrouchState == true)
-        {
-            BodyHitbox.size = new Vector2(BodyHitbox.size.x, StandHeight);
-            CrouchState = false;
-        }
-        
+    bool CrouchButtonPressed()
+    {
+        return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+    }
+    void Crouch()
+    {
+        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.3710684f);
+        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4061485f);
+        CrouchState = true;
+    }
+    void Stand()
+    {
+        BodyHitBox.size = StandColliderSize;
+        BodyHitBox.offset = StandColliderOffSet;
+        CrouchState = false;      
     }
     void CrouchMovement()
     {    
-        if (Input.GetKey(KeyCode.DownArrow)|| Input.GetKey(KeyCode.S))
+        if (CrouchButtonPressed())
         {
-            CrouchState = true;
-            Crouch(CrouchState);
-        } else
+            Crouch();
+        } else if(!CrouchButtonPressed())
         {
-            Stand(CrouchState);
+            Stand();
         }
         
     }
     void Start()
-    {     
-        CrouchHeight = BodyHitbox.size.y / 2;
-        StandHeight = CrouchHeight * 2;
+    {
         CrouchState = false;
+        StandColliderSize = BodyHitBox.size;
+        StandColliderOffSet = BodyHitBox.offset;
+
+
     }
   
     void Update() 
@@ -138,6 +145,7 @@ public class Movement_script : MonoBehaviour
         GetInput();
         JumpMovement();
         MovementInput();
+        CrouchMovement();
     }
 
     void FixedUpdate()
