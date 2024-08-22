@@ -21,16 +21,19 @@ public class Movement_script : MonoBehaviour
     float SprintSpeed;
     public int JumpCounter;
     public BoxCollider2D BodyHitBox;
-    public float CrouchHeightPercentage = 0.5f;
     public bool CrouchState;
     Vector2 CrouchColliderSize;
     Vector2 StandColliderSize;
     Vector2 CrouchColliderOffSet;
     Vector2 StandColliderOffSet;
-
+    public BoxCollider2D ColliderHitBoxCheck;
+    public bool HeadCollision;
+    public LayerMask HeadCollisionMask;
+    public GameObject Test;
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
+
     }
     void GetInput()
     {
@@ -38,7 +41,8 @@ public class Movement_script : MonoBehaviour
         yinput = Input.GetAxis("Vertical");
     }
 
-   
+ 
+
     void ApplyGroundFriction()
     {
         if (grounded && xinput == 0 && Body.velocity.y <= 0)
@@ -46,7 +50,7 @@ public class Movement_script : MonoBehaviour
             Body.velocity = Body.velocity * friction;
         }
     }
-    void Sprint()
+    void Move()
     {
         float Increment = xinput * (accelaration + SprintAccelaration);
         float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(speed+SprintSpeed), speed + SprintSpeed);
@@ -56,7 +60,7 @@ public class Movement_script : MonoBehaviour
     
     void SprintModifier()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && grounded)
+        if (Input.GetKey(KeyCode.LeftShift) && grounded && !CrouchState)
         {
            
             SprintAccelaration = SprintAccModifier;
@@ -74,7 +78,7 @@ public class Movement_script : MonoBehaviour
         SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
-            Sprint();
+            Move();
         }  
     }
     void FaceDirection()
@@ -122,14 +126,23 @@ public class Movement_script : MonoBehaviour
     }
     void CrouchMovement()
     {    
+              HeadCollisionCheck();
         if (CrouchButtonPressed())
         {
             Crouch();
-        } else if(!CrouchButtonPressed())
+        } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
-        }
-        
+        }       
+    }
+    void HeadCollisionCheck()
+    {
+        HeadCollision = Physics2D.OverlapAreaAll(ColliderHitBoxCheck.bounds.min, ColliderHitBoxCheck.bounds.max, HeadCollisionMask).Length > 0;
+    }
+
+    void AirDrag()
+    {
+
     }
     void Start()
     {
@@ -152,5 +165,6 @@ public class Movement_script : MonoBehaviour
     {      
         Groundcheck();
         ApplyGroundFriction();
+
     }
 }
