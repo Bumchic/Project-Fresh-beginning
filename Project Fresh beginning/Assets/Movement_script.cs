@@ -29,7 +29,6 @@ public class Movement_script : MonoBehaviour
     public BoxCollider2D ColliderHitBoxCheck;
     public bool HeadCollision;
     public LayerMask HeadCollisionMask;
-    public GameObject Physic;
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
