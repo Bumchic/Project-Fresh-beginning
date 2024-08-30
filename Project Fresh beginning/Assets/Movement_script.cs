@@ -32,6 +32,7 @@ public class Movement_script : MonoBehaviour
     public LayerMask HeadCollisionMask;
     public float CrouchSpeed;
     private float StandSpeed;
+    public BoxCollider2D ClimbWallCheck;
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
