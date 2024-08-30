@@ -1,11 +1,12 @@
 
+using Autodesk.Fbx;
 using System.Drawing;
 using UnityEngine;
 
 public class Movement_script : MonoBehaviour
 {
     public Rigidbody2D Body;
-    public float speed;
+    public float Speed;
     public float JumpPower;
     [Range(0.1f, 1f)]
     public float friction;
@@ -21,7 +22,7 @@ public class Movement_script : MonoBehaviour
     private float SprintSpeed;
     public int JumpCounter;
     public BoxCollider2D BodyHitBox;
-    public bool CrouchState;
+    private bool CrouchState;
     private float CrouchColliderSize;
     private Vector2 StandColliderSize;
     private float CrouchColliderOffSet;
@@ -29,6 +30,8 @@ public class Movement_script : MonoBehaviour
     public BoxCollider2D ColliderHitBoxCheck;
     public bool HeadCollision;
     public LayerMask HeadCollisionMask;
+    public float CrouchSpeed;
+    private float StandSpeed;
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
@@ -51,7 +54,7 @@ public class Movement_script : MonoBehaviour
     void Move()
     {
         float Increment = xinput * (accelaration + SprintAccelaration);
-        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(speed+SprintSpeed), speed + SprintSpeed);
+        float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(Speed+SprintSpeed), Speed  + SprintSpeed);
         Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
         FaceDirection();
     }
@@ -95,11 +98,11 @@ public class Movement_script : MonoBehaviour
 
     void JumpMovement()
     { 
-        if (grounded)
+        if (grounded && CrouchState == false)
         {
             JumpCounter = 1;
         }
-        if ((JumpButton()) && JumpCounter > 0)
+        if ((JumpButton()) && JumpCounter > 0 && CrouchState == false)
         {
             Jump();
             JumpCounter--;
@@ -114,18 +117,20 @@ public class Movement_script : MonoBehaviour
     {
         BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.3710684f);
         BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4061485f);
+        Speed = CrouchSpeed;
         CrouchState = true;
     }
     void Stand()
     {
         BodyHitBox.size = StandColliderSize;
         BodyHitBox.offset = StandColliderOffSet;
+        Speed = StandSpeed;
         CrouchState = false;      
     }
     void CrouchMovement()
     {    
-              HeadCollisionCheck();
-        if (CrouchButtonPressed())
+        HeadCollisionCheck();
+        if (CrouchButtonPressed() && grounded)
         {
             Crouch();
         } else if(!CrouchButtonPressed() && !HeadCollision)
@@ -147,7 +152,7 @@ public class Movement_script : MonoBehaviour
         CrouchState = false;
         StandColliderSize = BodyHitBox.size;
         StandColliderOffSet = BodyHitBox.offset;
-
+        StandSpeed = Speed;
 
     }
   
