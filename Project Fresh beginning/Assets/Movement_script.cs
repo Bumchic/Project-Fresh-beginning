@@ -33,6 +33,8 @@ public class Movement_script : MonoBehaviour
     public float CrouchSpeed;
     private float StandSpeed;
     public BoxCollider2D ClimbWallCheck;
+    public LayerMask ClimbWallMask;
+
     void Groundcheck()
     {
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
@@ -143,18 +145,12 @@ public class Movement_script : MonoBehaviour
     {
         HeadCollision = Physics2D.OverlapAreaAll(ColliderHitBoxCheck.bounds.min, ColliderHitBoxCheck.bounds.max, HeadCollisionMask).Length > 0;
     }
-
-    void AirDrag()
-    {
-
-    }
     void Start()
     {
         CrouchState = false;
         StandColliderSize = BodyHitBox.size;
         StandColliderOffSet = BodyHitBox.offset;
         StandSpeed = Speed;
-
     }
   
     void Update() 
