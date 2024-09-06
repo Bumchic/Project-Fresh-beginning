@@ -89,7 +89,7 @@ public class Movement_script : MonoBehaviour
     }
     bool JumpButton()
     {
-        return Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
+        return Input.GetKeyDown(KeyCode.W);
     }
     void Jump()
     {
@@ -115,8 +115,8 @@ public class Movement_script : MonoBehaviour
     }
     void Crouch()
     {
-        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.3710684f);
-        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4061485f);
+        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4391046f);
+        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x,-0.4075275f);
         Speed = CrouchSpeed;
         CrouchState = true;
     }
@@ -150,9 +150,9 @@ public class Movement_script : MonoBehaviour
     void ClimbingMovement()
     {
         ClimbingCheck();
-        if(!grounded && Climbing && Input.GetKey(KeyCode.W))
+        if(!grounded && Climbing && Input.GetKeyDown(KeyCode.Space))
         {
-            Body.position = new Vector2(Body.position.x, Body.position.y + 1);
+           
         }
     }
 
