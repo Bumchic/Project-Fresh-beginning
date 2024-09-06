@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Body: {fileID: 1124764586}
-  Speed: 0
+  Speed: 10
   JumpPower: 4.14
   friction: 0.879
   grounded: 1
@@ -1673,16 +1673,13 @@ MonoBehaviour:
   SprintSpeedModifier: 3
   JumpCounter: 1
   BodyHitBox: {fileID: 631241939}
+  CrouchState: 0
   ColliderHitBoxCheck: {fileID: 1553159217}
   HeadCollision: 0
   HeadCollisionMask:
     serializedVersion: 2
     m_Bits: 128
   CrouchSpeed: 0
-  ClimbWallCheck: {fileID: 0}
-  ClimbWallMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1482289085
 GameObject:
   m_ObjectHideFlags: 0
