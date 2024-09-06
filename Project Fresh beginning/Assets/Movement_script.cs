@@ -29,10 +29,11 @@ public class Movement_script : MonoBehaviour
     public BoxCollider2D ColliderHitBoxCheck;
     public bool HeadCollision;
     public LayerMask HeadCollisionMask;
-
     public float CrouchSpeed;
     private float StandSpeed;
-
+    public BoxCollider2D ClimbBoxCheck;
+    public bool Climbing;
+    public LayerMask ClimbingMask;
 
     void Groundcheck()
     {
@@ -43,9 +44,6 @@ public class Movement_script : MonoBehaviour
         xinput = Input.GetAxis("Horizontal");
         yinput = Input.GetAxis("Vertical");
     }
-
- 
-
     void ApplyGroundFriction()
     {
         if (grounded && xinput == 0 && Body.velocity.y <= 0)
@@ -129,7 +127,7 @@ public class Movement_script : MonoBehaviour
     }
     void CrouchMovement()
     {    
-              HeadCollisionCheck();
+          HeadCollisionCheck();
         if (CrouchButtonPressed())
         {
             Crouch();
@@ -142,11 +140,21 @@ public class Movement_script : MonoBehaviour
     {
         HeadCollision = Physics2D.OverlapAreaAll(ColliderHitBoxCheck.bounds.min, ColliderHitBoxCheck.bounds.max, HeadCollisionMask).Length > 0;
     }
-
-    void AirDrag()
+    void ClimbingCheck()
     {
-
+        Climbing = Physics2D.OverlapAreaAll(ClimbBoxCheck.bounds.min, ClimbBoxCheck.bounds.max, ClimbingMask).Length > 0;
     }
+
+    void ClimbingMovement()
+    {
+        ClimbingCheck();
+        if(!grounded && Climbing && Input.GetKey(KeyCode.W))
+        {
+            
+        }
+    }
+
+   
     void Start()
     {
         CrouchState = false;
@@ -161,6 +169,7 @@ public class Movement_script : MonoBehaviour
         JumpMovement();
         MovementInput();
         CrouchMovement();
+        ClimbingMovement();
     }
 
     void FixedUpdate()
