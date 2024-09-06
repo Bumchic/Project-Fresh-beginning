@@ -117,24 +117,26 @@ public class Movement_script : MonoBehaviour
     {
         BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.3710684f);
         BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4061485f);
+        Speed = CrouchSpeed;
         CrouchState = true;
     }
     void Stand()
     {
         BodyHitBox.size = StandColliderSize;
         BodyHitBox.offset = StandColliderOffSet;
+        Speed = StandSpeed;
         CrouchState = false;      
     }
     void CrouchMovement()
     {    
           HeadCollisionCheck();
-        if (CrouchButtonPressed())
+        if (CrouchButtonPressed() && grounded)
         {
             Crouch();
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
-        }       
+        }
     }
     void HeadCollisionCheck()
     {
@@ -150,7 +152,7 @@ public class Movement_script : MonoBehaviour
         ClimbingCheck();
         if(!grounded && Climbing && Input.GetKey(KeyCode.W))
         {
-            
+            Body.position = new Vector2(Body.position.x, Body.position.y + 1);
         }
     }
 
