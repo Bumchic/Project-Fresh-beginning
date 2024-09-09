@@ -18,7 +18,7 @@ public class Reset_Position : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-          movement_script.Body.position = new Vector2(-2.152681f, -1.289194f);
+            movement_script.Body.position = new Vector2(-2.152681f, -1.289194f);
         }
     }
 }

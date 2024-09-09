@@ -1,4 +1,5 @@
 
+using System;
 using System.Drawing;
 using UnityEngine;
 
@@ -85,7 +86,7 @@ public class Movement_script : MonoBehaviour
     void FaceDirection()
     {
         float direction = Mathf.Sign(xinput);
-        transform.localScale = new Vector3(direction, 1, 1);
+        transform.localScale = new Vector3(direction * Body.transform.localScale.x, Body.transform.localScale.y, Body.transform.localScale.z);
     }
     bool JumpButton()
     {
@@ -172,6 +173,7 @@ public class Movement_script : MonoBehaviour
         MovementInput();
         CrouchMovement();
         ClimbingMovement();
+        Debug.Log(xinput);
     }
 
     void FixedUpdate()
