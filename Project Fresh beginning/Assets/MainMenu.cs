@@ -10,6 +10,6 @@ public class MainMenu : MonoBehaviour
     }
     public void ExitGame()
     {
-        Application.Quit(); 
+        Application.Quit("Demo FightSceen"); 
     }
 }
