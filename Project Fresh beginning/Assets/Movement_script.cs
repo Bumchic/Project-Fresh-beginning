@@ -35,6 +35,7 @@ public class Movement_script : MonoBehaviour
     public BoxCollider2D ClimbBoxCheck;
     public bool Climbing;
     public LayerMask ClimbingMask;
+    public float BodyTransformX;
 
     void Groundcheck()
     {
@@ -86,7 +87,7 @@ public class Movement_script : MonoBehaviour
     void FaceDirection()
     {
         float direction = Mathf.Sign(xinput);
-        transform.localScale = new Vector3(direction * Body.transform.localScale.x, Body.transform.localScale.y, Body.transform.localScale.z);
+        transform.localScale = new Vector3(direction * BodyTransformX, Body.transform.localScale.y, Body.transform.localScale.z);
     }
     bool JumpButton()
     {
@@ -116,8 +117,8 @@ public class Movement_script : MonoBehaviour
     }
     void Crouch()
     {
-        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4391046f);
-        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x,-0.4075275f);
+        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4938018f);
+        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4820718f);
         Speed = CrouchSpeed;
         CrouchState = true;
     }
@@ -164,6 +165,7 @@ public class Movement_script : MonoBehaviour
         StandColliderSize = BodyHitBox.size;
         StandColliderOffSet = BodyHitBox.offset;
         StandSpeed = Speed;
+        BodyTransformX = Body.transform.localScale.x;
     }
   
     void Update() 
@@ -173,7 +175,6 @@ public class Movement_script : MonoBehaviour
         MovementInput();
         CrouchMovement();
         ClimbingMovement();
-        Debug.Log(xinput);
     }
 
     void FixedUpdate()
