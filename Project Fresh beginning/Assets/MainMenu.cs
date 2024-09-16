@@ -6,10 +6,10 @@ public class MainMenu : MonoBehaviour
 {
     public void LoadGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Demo FightSceen");
     }
     public void ExitGame()
     {
-        Application.Quit();
+        Application.Quit(); 
     }
 }
