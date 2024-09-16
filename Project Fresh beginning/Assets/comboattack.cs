@@ -16,7 +16,7 @@ public class ComboAttack : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         combo = 1;
-        combotiming = 0.5f;
+        combotiming = 0.9f;
         combtempo = combotiming;
         combonumber = 3;
     }
