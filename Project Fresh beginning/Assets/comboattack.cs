@@ -16,7 +16,7 @@ public class ComboAttack : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         combo = 1;
-        combotiming = 0.9f;
+        combotiming = 0.5f;
         combtempo = combotiming;
         combonumber = 3;
     }
@@ -39,7 +39,7 @@ public class ComboAttack : MonoBehaviour
             combtempo = combotiming;
         }
         // Tiếp tục combo khi thời gian còn lại trong khoảng cho phép
-        else if (Input.GetKeyDown(KeyCode.J) && combtempo > 0 && combtempo < 0.3f)
+        else if (Input.GetKeyDown(KeyCode.J) && combtempo > 0 && combtempo < 0.5f)
         {
             attacking = true;
             combo++;
