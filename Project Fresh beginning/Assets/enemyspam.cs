@@ -1,43 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class enemyspam : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawmrate = 1f;
-    [SerializeField] private GameObject[] enemy;
-    [SerializeField] private bool canspawm = true;
-    public Transform mainchar;
-    [SerializeField]
-    private float spawnDistance = 5f;
-
+    [SerializeField] private float spawnRate = 1f;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private bool canSpawn = true;
+    public Transform mainCharacter;
+    [SerializeField] private List<Tilemap> tilemaps;
 
     private void Start()
     {
-        StartCoroutine(spawmer());
+        StartCoroutine(SpawnEnemies());
     }
-   
-    private IEnumerator spawmer()
+
+    private IEnumerator SpawnEnemies()
     {
-        WaitForSeconds wait = new WaitForSeconds(spawmrate);
-        Vector3 viewportMin = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-        Vector3 viewportMax = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+        WaitForSeconds wait = new WaitForSeconds(spawnRate);
 
-
-        // Generate random viewport coordinates
-        float randomX = Random.Range(viewportMin.x, viewportMax.x);
-        float randomY = Random.Range(viewportMin.y, viewportMax.y);
-
-        // Convert viewport coordinates to world space
-        Vector3 spawnPosition = new Vector3(mainchar.position.x + 5, mainchar.position.y, mainchar.position.z);
-
-        while (canspawm)
+        while (canSpawn)
         {
             yield return wait;
-            int rand = Random.Range(0, 2);
-            GameObject enemytospawm = enemy[rand];
-            Instantiate(enemytospawm, spawnPosition, Quaternion.identity);
+
+            Tilemap selectedTilemap = tilemaps[Random.Range(0, tilemaps.Count)];
+            Vector3Int randomTilePosition = GetRandomTilePosition(selectedTilemap);
+            Vector3 spawnPosition = selectedTilemap.GetCellCenterWorld(randomTilePosition);
+
+            int rand = Random.Range(0, enemyPrefabs.Length);
+            GameObject enemy = enemyPrefabs[rand];
+            Instantiate(enemy, spawnPosition, Quaternion.identity);
         }
     }
-    
+
+    private Vector3Int GetRandomTilePosition(Tilemap tilemap)
+    {
+        // Get the bounds of the selected tilemap
+        BoundsInt bounds = tilemap.cellBounds;
+
+        // Loop through the bounds to find a valid tile
+        for (int attempts = 0; attempts < 10; attempts++) // Try multiple times to find a valid tile
+        {
+            int randomX = Random.Range(bounds.x, bounds.xMax);
+            int randomY = Random.Range(bounds.y, bounds.yMax);
+            Vector3Int tilePosition = new Vector3Int(randomX, randomY, 0);
+
+            // Check if the tile has a tile
+            if (tilemap.HasTile(tilePosition))
+            {
+                // Spawn just above the tile
+                Vector3Int spawnPosition = new Vector3Int(randomX, randomY + 1, 0); // Adjust Y to spawn on top
+                return spawnPosition;
+            }
+        }
+
+        return Vector3Int.zero; // Return zero if no valid position found
+    }
+
 }
