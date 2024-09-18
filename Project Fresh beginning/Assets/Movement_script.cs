@@ -36,6 +36,7 @@ public class Movement_script : MonoBehaviour
     public bool Climbing;
     public LayerMask ClimbingMask;
     public float BodyTransformX;
+    public Animator Animator;
 
     void Groundcheck()
     {
@@ -58,6 +59,7 @@ public class Movement_script : MonoBehaviour
         float Increment = xinput * (accelaration + SprintAccelaration);
         float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(Speed+SprintSpeed), Speed + SprintSpeed);
         Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
+        
         FaceDirection();
     }
     
@@ -81,8 +83,10 @@ public class Movement_script : MonoBehaviour
         SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
+            Animator.SetBool("IsRunning", true);
             Move();
-        }  
+        }
+        Animator.SetBool("IsRunning", false);
     }
     void FaceDirection()
     {
@@ -121,6 +125,7 @@ public class Movement_script : MonoBehaviour
         BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4820718f);
         Speed = CrouchSpeed;
         CrouchState = true;
+        
     }
     void Stand()
     {
@@ -135,9 +140,11 @@ public class Movement_script : MonoBehaviour
         if (CrouchButtonPressed() && grounded)
         {
             Crouch();
+            Animator.SetBool("IsCrouching", true);
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
+            Animator.SetBool("IsCrouching", false);
         }
     }
     void HeadCollisionCheck()
