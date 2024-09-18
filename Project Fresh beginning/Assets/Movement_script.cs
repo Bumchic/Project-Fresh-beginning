@@ -85,8 +85,11 @@ public class Movement_script : MonoBehaviour
         {
             Animator.SetBool("IsRunning", true);
             Move();
+        }else
+        {
+            Animator.SetBool("IsRunning", false);
         }
-        Animator.SetBool("IsRunning", false);
+        
     }
     void FaceDirection()
     {
