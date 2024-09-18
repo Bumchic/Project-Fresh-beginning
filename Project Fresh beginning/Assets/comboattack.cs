@@ -11,6 +11,8 @@ public class ComboAttack : MonoBehaviour
     public bool attacking;
     public float combotiming;
     public float combtempo;
+    public float comboTransitionDelay;
+    private float comboTransitionTimer; 
 
     void Start()
     {
@@ -19,32 +21,36 @@ public class ComboAttack : MonoBehaviour
         combotiming = 0.5f;
         combtempo = combotiming;
         combonumber = 3;
+        comboTransitionDelay = 0.2f; // Set a default value for transition delay
+        comboTransitionTimer = 0f; // Initialize the timer
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleComboAttack(); // Gọi hàm combo trong Update
+        HandleComboAttack(); // Call combo handling function in Update
     }
 
-    public void HandleComboAttack() // Đổi tên hàm combo thành HandleComboAttack
+    public void HandleComboAttack() // Method to handle combo attack logic
     {
         combtempo -= Time.deltaTime;
+        comboTransitionTimer -= Time.deltaTime; // Decrease transition timer
 
-        // Bắt đầu combo khi nhấn phím "J" và combtempo < 0
-        if (Input.GetKeyDown(KeyCode.J) && combtempo < 0)
+        // Start combo when pressing "J" and combtempo < 0
+        if (Input.GetKeyDown(KeyCode.J) && combtempo < 0 && comboTransitionTimer <= 0)
         {
             attacking = true;
             ani.SetTrigger("Attack" + combo);
             combtempo = combotiming;
+            comboTransitionTimer = comboTransitionDelay; // Reset the transition timer
         }
-        // Tiếp tục combo khi thời gian còn lại trong khoảng cho phép
-        else if (Input.GetKeyDown(KeyCode.J) && combtempo > 0 && combtempo < 0.5f)
+        // Continue combo if within the allowed time frame
+        else if (Input.GetKeyDown(KeyCode.J) && combtempo > 0 && combtempo < 0.3f && comboTransitionTimer <= 0)
         {
             attacking = true;
             combo++;
 
-            // Reset combo nếu vượt quá số lượng combo cho phép
+            // Reset combo if exceeding allowed combo number
             if (combo > combonumber)
             {
                 combo = 1;
@@ -52,8 +58,9 @@ public class ComboAttack : MonoBehaviour
 
             ani.SetTrigger("Attack" + combo);
             combtempo = combotiming;
+            comboTransitionTimer = comboTransitionDelay; // Reset the transition timer
         }
-        // Nếu không bấm phím trong thời gian cho phép, tắt trạng thái tấn công và reset combo
+        // Reset attack and combo if input is not detected within allowed time
         else if (combtempo < 0 && !Input.GetKeyDown(KeyCode.J))
         {
             attacking = false;
