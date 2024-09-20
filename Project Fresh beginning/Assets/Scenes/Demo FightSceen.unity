@@ -1498,6 +1498,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1227388507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227388497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208bcab465ebb5940b2799b2df80e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combo: 0
+  combonumber: 0
+  attacking: 0
+  combotiming: 0
+  combtempo: 0
+  comboTransitionDelay: 0
 --- !u!1 &1482289085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,6 +2620,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1956785197206068551, guid: 902e052e4c7aa3e45b5a3fc4dd5f3407, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1227388502}
+    - targetCorrespondingSourceObject: {fileID: 1956785197206068551, guid: 902e052e4c7aa3e45b5a3fc4dd5f3407, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1227388507}
   m_SourcePrefab: {fileID: 100100000, guid: 902e052e4c7aa3e45b5a3fc4dd5f3407, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
