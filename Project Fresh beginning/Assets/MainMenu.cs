@@ -7,8 +7,18 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Demo FightSceen");
     }
+
+   // public void LoadGame()
+   //{
+    //    SceneManager.LoadScene("level");
+   // }
+
+    public void BackMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void ExitGame()
     {
-        Application.Quit("Demo FightSceen"); 
+        Application.Quit(); 
     }
 }
