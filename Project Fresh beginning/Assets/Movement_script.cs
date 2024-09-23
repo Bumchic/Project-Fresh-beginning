@@ -36,6 +36,7 @@ public class Movement_script : MonoBehaviour
     public bool Climbing;
     public LayerMask ClimbingMask;
     public float BodyTransformX;
+    public Animator Animator;
 
     void Groundcheck()
     {
@@ -58,6 +59,7 @@ public class Movement_script : MonoBehaviour
         float Increment = xinput * (accelaration + SprintAccelaration);
         float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(Speed+SprintSpeed), Speed + SprintSpeed);
         Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
+        
         FaceDirection();
     }
     
@@ -78,11 +80,16 @@ public class Movement_script : MonoBehaviour
     void MovementInput()
     {
  
-        SprintModifier();
+        //SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
+            Animator.SetBool("IsRunning", true);
             Move();
-        }  
+        }else
+        {
+            Animator.SetBool("IsRunning", false);
+        }
+        
     }
     void FaceDirection()
     {
@@ -97,20 +104,21 @@ public class Movement_script : MonoBehaviour
     {
             Body.velocity = new Vector2(Body.velocity.x, JumpPower);
     }
-
     void JumpMovement()
     { 
-        if (grounded)
+      /*  if (grounded)
         {
-            JumpCounter = 1;
-        }
-        if ((JumpButton()) && JumpCounter > 0)
+            JumpCounter = 1; //This is the code for double jump :/
+        }*/
+        if ((JumpButton()) && grounded)
         {
             Jump();
-            JumpCounter--;
-        }
-    }
 
+            //JumpCounter--;
+        }
+        Animator.SetFloat("IsInAir", Body.velocity.y);
+    }
+    
     bool CrouchButtonPressed()
     {
         return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
@@ -121,6 +129,7 @@ public class Movement_script : MonoBehaviour
         BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4820718f);
         Speed = CrouchSpeed;
         CrouchState = true;
+        
     }
     void Stand()
     {
@@ -135,9 +144,11 @@ public class Movement_script : MonoBehaviour
         if (CrouchButtonPressed() && grounded)
         {
             Crouch();
+            Animator.SetBool("IsCrouching", true);
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
+            Animator.SetBool("IsCrouching", false);
         }
     }
     void HeadCollisionCheck()
