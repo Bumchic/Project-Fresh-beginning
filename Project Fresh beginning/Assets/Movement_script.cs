@@ -116,7 +116,7 @@ public class Movement_script : MonoBehaviour
 
             //JumpCounter--;
         }
-        Animator.SetFloat("IsInAir", Body.velocity.y);
+   //     Animator.SetFloat("IsInAir", Body.velocity.y);
     }
     
     bool CrouchButtonPressed()
