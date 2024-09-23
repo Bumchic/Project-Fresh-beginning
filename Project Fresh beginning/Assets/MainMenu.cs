@@ -1,13 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public void LoadGame()
+    //public void LoadGame()
+    //{
+    //    SceneManager.LoadScene("Demo FightSceen");
+    //}
+    public void BackMenu()
     {
-        SceneManager.LoadScene("Demo FightSceen");
+        SceneManager.LoadScene("MainMenu");
     }
+    public void LoadGame()
+   {
+        SceneManager.LoadScene("level");
+   }
+
+    //public void BackMenu()
+    //{
+    //    SceneManager.LoadScene("MainMenu");
+    //}
     public void ExitGame()
     {
         Application.Quit(); 

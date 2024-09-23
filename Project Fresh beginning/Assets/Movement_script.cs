@@ -79,7 +79,7 @@ public class Movement_script : MonoBehaviour
     }
     void MovementInput()
     {
- 
+        
         //SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
@@ -116,7 +116,7 @@ public class Movement_script : MonoBehaviour
 
             //JumpCounter--;
         }
-        Animator.SetFloat("IsInAir", Body.velocity.y);
+   //     Animator.SetFloat("IsInAir", Body.velocity.y);
     }
     
     bool CrouchButtonPressed()
@@ -192,6 +192,5 @@ public class Movement_script : MonoBehaviour
     {      
         Groundcheck();
         ApplyGroundFriction();
-
     }
 }
