@@ -1,4 +1,5 @@
 
+using System;
 using System.Drawing;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ public class Movement_script : MonoBehaviour
     public BoxCollider2D ClimbBoxCheck;
     public bool Climbing;
     public LayerMask ClimbingMask;
+    public float BodyTransformX;
 
     void Groundcheck()
     {
@@ -85,11 +87,11 @@ public class Movement_script : MonoBehaviour
     void FaceDirection()
     {
         float direction = Mathf.Sign(xinput);
-        transform.localScale = new Vector3(direction, 1, 1);
+        transform.localScale = new Vector3(direction * BodyTransformX, Body.transform.localScale.y, Body.transform.localScale.z);
     }
     bool JumpButton()
     {
-        return Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
+        return Input.GetKeyDown(KeyCode.W);
     }
     void Jump()
     {
@@ -115,26 +117,28 @@ public class Movement_script : MonoBehaviour
     }
     void Crouch()
     {
-        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.3710684f);
-        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4061485f);
+        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4938018f);
+        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4820718f);
+        Speed = CrouchSpeed;
         CrouchState = true;
     }
     void Stand()
     {
         BodyHitBox.size = StandColliderSize;
         BodyHitBox.offset = StandColliderOffSet;
+        Speed = StandSpeed;
         CrouchState = false;      
     }
     void CrouchMovement()
     {    
           HeadCollisionCheck();
-        if (CrouchButtonPressed())
+        if (CrouchButtonPressed() && grounded)
         {
             Crouch();
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
-        }       
+        }
     }
     void HeadCollisionCheck()
     {
@@ -148,9 +152,9 @@ public class Movement_script : MonoBehaviour
     void ClimbingMovement()
     {
         ClimbingCheck();
-        if(!grounded && Climbing && Input.GetKey(KeyCode.W))
+        if(!grounded && Climbing && Input.GetKeyDown(KeyCode.Space))
         {
-            
+           
         }
     }
 
@@ -161,6 +165,7 @@ public class Movement_script : MonoBehaviour
         StandColliderSize = BodyHitBox.size;
         StandColliderOffSet = BodyHitBox.offset;
         StandSpeed = Speed;
+        BodyTransformX = Body.transform.localScale.x;
     }
   
     void Update() 
