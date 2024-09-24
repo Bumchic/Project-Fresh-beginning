@@ -1,47 +1,69 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class PlayerStat : MonoBehaviour
 {
- 
-    void Start()
+    [SerializeField] int maxHealth;
+    int curentHealth;
+
+    public HealthBar healthBar;
+    public UnityEvent OnDeath;
+
+    private void OnEnable()
     {
-        
+        OnDeath.AddListener(Death);
     }
 
-
-    void Update()
+    private void OnDisable()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            PlayerTakeDamage(10);
-            Debug.Log(GameManager.gameManager.PlayerHealth.currentHealth);
-        }
+        OnDeath.RemoveListener(Death);
+    }
 
+    private void Start()
+    {
+        curentHealth = maxHealth;
+        healthBar.UpdateBar(curentHealth, maxHealth);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        curentHealth -= damage;
+
+        if (curentHealth < 0)
+        {
+            curentHealth = 0;
+            OnDeath.Invoke();
+        }
+        healthBar.UpdateBar(curentHealth, maxHealth);
+    }
+
+    public void Heal(int healAmount)
+    {
+        curentHealth += healAmount;
+
+        if (curentHealth > maxHealth)
+        {
+            curentHealth = maxHealth;
+        }
+        healthBar.UpdateBar(curentHealth, maxHealth);
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha9))
-            {
-            PlayerHeal(10);
-            Debug.Log(GameManager.gameManager.PlayerHealth.currentHealth);
-        }
-
-        gameOver();
-    }
-    private void gameOver()
-    {
-        if (GameManager.gameManager.PlayerHealth.currentHealth <= 0)
         {
-            GameOver.LoadMainMenu();
+            TakeDamage(10); // Nhấn 9 để nhận sát thương
         }
-    }
-    private void PlayerTakeDamage(int DamageAmount)
-    {
-        GameManager.gameManager.PlayerHealth.TakeDamage(DamageAmount);       
-    }
 
-    private void PlayerHeal(int HealAmount)
-    {
-        GameManager.gameManager.PlayerHealth.Heal(HealAmount);
-
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Heal(10); // Nhấn 0 để hồi máu
+        }
     }
 }

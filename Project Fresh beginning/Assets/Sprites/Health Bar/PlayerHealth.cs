@@ -1,46 +1,41 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int maxHealth;
-    int currentHealth;
+    int curentHealth;
 
     public HealthBar healthBar;
-
     public UnityEvent OnDeath;
-
     private void OnEnable()
     {
         OnDeath.AddListener(Death);
     }
-
     private void OnDisable()
     {
         OnDeath.RemoveListener(Death);
     }
-
     private void Start()
     {
-        currentHealth = maxHealth;
+        curentHealth = maxHealth;
 
-        healthBar.UdateBar(currentHealth, maxHealth);
+        healthBar.UpdateBar(curentHealth, maxHealth);
     }
+
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        curentHealth -= damage;
 
-        if (currentHealth < 0)
+        if (curentHealth < 0)
         {
-            currentHealth = 0;
+            curentHealth = 0;
             OnDeath.Invoke();
         }
-        healthBar.UdateBar(currentHealth, maxHealth);
+        healthBar.UpdateBar(curentHealth, maxHealth);
     }
-
     public void Death()
     {
         Destroy(gameObject);
@@ -51,5 +46,6 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(20);
         }
+
     }
 }
