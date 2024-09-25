@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 285b6e2e2cb880f4c9fbff1e417da8b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc5206828d83af343a7d795db9cfd39a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1907,7 +1907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3c2a3b41e84124b934d219c5288cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverObject: {fileID: 702802368}
 --- !u!4 &1054705961
 Transform:
   m_ObjectHideFlags: 0
@@ -2043,11 +2042,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbffd4cce63714993a922a661ce96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthBar: {fileID: 0}
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!95 &1124764594 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3389908422373421897, guid: 902e052e4c7aa3e45b5a3fc4dd5f3407, type: 3}
+  m_PrefabInstance: {fileID: 1491703611736436220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1131558098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 68f98c9965e011040aef9e920ea948d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25b8f0db2415b6346a2792b4db4944ac, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3161,6 +3160,10 @@ PrefabInstance:
       propertyPath: healthBarPrefab
       value: 
       objectReference: {fileID: 321608214}
+    - target: {fileID: 6107091961168360499, guid: 902e052e4c7aa3e45b5a3fc4dd5f3407, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 1124764594}
     - target: {fileID: 6458887342488330601, guid: 902e052e4c7aa3e45b5a3fc4dd5f3407, type: 3}
       propertyPath: m_Size.x
       value: 0.3831638
