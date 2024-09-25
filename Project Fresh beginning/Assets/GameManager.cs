@@ -5,24 +5,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameManager;
+    
+    public static GameManager gameManager { get; private set; }
 
-    public Health_System PlayerHealth;
 
-    private void Awake()
+    public Health_System PlayerHealth = new Health_System(100, 100);
+    void Awake()
     {
-        if (gameManager == null)
+        if(gameManager != null && gameManager != this)
         {
-            gameManager = this;
-            DontDestroyOnLoad(gameObject); // Keep the GameManager alive between scenes
+            Destroy(this);
         }
         else
         {
-            Destroy(gameObject);
+        gameManager = this; 
         }
-
-        // Initialize PlayerHealth with 100 max health, for example
-        PlayerHealth = new Health_System(100);
-    }
+    }   
 }
-
