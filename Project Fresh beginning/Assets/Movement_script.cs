@@ -79,7 +79,7 @@ public class Movement_script : MonoBehaviour
     }
     void MovementInput()
     {
- 
+        
         //SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
@@ -192,6 +192,5 @@ public class Movement_script : MonoBehaviour
     {      
         Groundcheck();
         ApplyGroundFriction();
-
     }
 }
