@@ -2602,7 +2602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4919239589527015189, guid: 6b6a85f3fda514848beb71f372fcfebf, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: HomeButton
       objectReference: {fileID: 0}
     - target: {fileID: 5436556707628403353, guid: 6b6a85f3fda514848beb71f372fcfebf, type: 3}
       propertyPath: m_Camera
