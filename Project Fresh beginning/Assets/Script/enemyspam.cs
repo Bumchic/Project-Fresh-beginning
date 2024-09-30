@@ -1,81 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 1f;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private bool canSpawn = true;
-    public Transform mainCharacter;
-    [SerializeField] private List<Tilemap> tilemaps;
 
-    private List<Vector3> spawnedPositions = new List<Vector3>();
     private Camera mainCamera;
+    private float lastSpawnX = 0f; // Last spawn position in the x-axis
+    private float spawnDistance = 30f; // Distance to spawn a new enemy
 
     private void Start()
     {
-        mainCamera = Camera.main; // Cache the main camera
-        StartCoroutine(SpawnEnemies());
+        mainCamera = Camera.main;
+        lastSpawnX = mainCamera.transform.position.x + spawnDistance; // Initialize with the camera's starting position + spawn distance
     }
 
-    private IEnumerator SpawnEnemies()
+    private void Update()
     {
-        WaitForSeconds wait = new WaitForSeconds(spawnRate);
-
-        while (canSpawn)
+        if (canSpawn)
         {
-            yield return wait;
+            float cameraX = mainCamera.transform.position.x;
 
-            Tilemap selectedTilemap = tilemaps[Random.Range(0, tilemaps.Count)];
-            Vector3 spawnPosition = GetRandomSpawnPositionOnTiles(selectedTilemap);
-
-            if (spawnPosition != Vector3.zero) // Check if a valid position was found
+            // Check if the camera has moved beyond the last spawn position
+            if (cameraX >= lastSpawnX)
             {
-                int rand = Random.Range(0, enemyPrefabs.Length);
-                GameObject enemy = enemyPrefabs[rand];
-                Instantiate(enemy, spawnPosition, Quaternion.identity);
-                spawnedPositions.Add(spawnPosition);
-                Debug.Log($"Spawned enemy at {spawnPosition}");
-            }
-            else
-            {
-                Debug.LogWarning("No valid spawn position found.");
+                SpawnEnemy();
+                lastSpawnX += spawnDistance; // Update the last spawn position for the next enemy
             }
         }
     }
 
-    private Vector3 GetRandomSpawnPositionOnTiles(Tilemap tilemap)
+    private void SpawnEnemy()
     {
-        // Get bounds of the tilemap
-        BoundsInt bounds = tilemap.cellBounds;
+        int rand = Random.Range(0, enemyPrefabs.Length);
+        GameObject enemyToSpawn = enemyPrefabs[rand];
 
-        // Generate random positions
-        for (int attempts = 0; attempts < 10; attempts++)
-        {
-            int randomX = Random.Range(bounds.x, bounds.xMax);
-            int randomY = Random.Range(bounds.y, bounds.yMax);
-            Vector3Int tilePosition = new Vector3Int(randomX, randomY, 0);
-
-            // Check if there's a tile at the selected position
-            if (tilemap.HasTile(tilePosition))
-            {
-                // Calculate the spawn position just above the tile
-                Vector3 spawnPoint = tilemap.GetCellCenterWorld(tilePosition) + new Vector3(0, 1, 0); // Adjust Y to spawn on top
-
-                // Check if this position has already been used
-                if (!spawnedPositions.Contains(spawnPoint))
-                {
-                    return spawnPoint; // Return the valid spawn position
-                }
-            }
-            else
-            {
-                Debug.Log($"Tile at {tilePosition} is empty.");
-            }
-        }
-
-        return Vector3.zero; // Return zero if no valid position found
+        // Set the spawn position to the right of the camera
+        Vector3 spawnPosition = new Vector3(lastSpawnX+5f, 0f, 0f);
+        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
     }
 }
