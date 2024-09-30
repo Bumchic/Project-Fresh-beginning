@@ -27,7 +27,7 @@ public class Movement_script : MonoBehaviour
     private Vector2 StandColliderSize;
     private float CrouchColliderOffSet;
     private Vector2 StandColliderOffSet;
-    public BoxCollider2D ColliderHitBoxCheck;
+    public BoxCollider2D ColliderStandUpCheck;
     public bool HeadCollision;
     public LayerMask HeadCollisionMask;
     public float CrouchSpeed;
@@ -36,7 +36,6 @@ public class Movement_script : MonoBehaviour
     public bool Climbing;
     public LayerMask ClimbingMask;
     public float BodyTransformX;
-    public Animator Animator;
 
     void Groundcheck()
     {
@@ -83,18 +82,18 @@ public class Movement_script : MonoBehaviour
         //SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
-            Animator.SetBool("IsRunning", true);
+           
             Move();
         }else
         {
-            Animator.SetBool("IsRunning", false);
+           
         }
         
     }
     void FaceDirection()
     {
         float direction = Mathf.Sign(xinput);
-        transform.localScale = new Vector3(direction * BodyTransformX, Body.transform.localScale.y, Body.transform.localScale.z);
+        transform.localScale = new Vector3(direction * Mathf.Abs(BodyTransformX), Body.transform.localScale.y, Body.transform.localScale.z);
     }
     bool JumpButton()
     {
@@ -116,7 +115,7 @@ public class Movement_script : MonoBehaviour
 
             //JumpCounter--;
         }
-   //     Animator.SetFloat("IsInAir", Body.velocity.y);
+
     }
     
     bool CrouchButtonPressed()
@@ -125,8 +124,8 @@ public class Movement_script : MonoBehaviour
     }
     void Crouch()
     {
-        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4938018f);
-        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4820718f);
+        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4782845f);
+        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, - 1.333374f);
         Speed = CrouchSpeed;
         CrouchState = true;
         
@@ -144,16 +143,16 @@ public class Movement_script : MonoBehaviour
         if (CrouchButtonPressed() && grounded)
         {
             Crouch();
-            Animator.SetBool("IsCrouching", true);
+           
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
-            Animator.SetBool("IsCrouching", false);
+           
         }
     }
     void HeadCollisionCheck()
     {
-        HeadCollision = Physics2D.OverlapAreaAll(ColliderHitBoxCheck.bounds.min, ColliderHitBoxCheck.bounds.max, HeadCollisionMask).Length > 0;
+        HeadCollision = Physics2D.OverlapAreaAll(ColliderStandUpCheck.bounds.min, ColliderStandUpCheck.bounds.max, HeadCollisionMask).Length > 0;
     }
     void ClimbingCheck()
     {
