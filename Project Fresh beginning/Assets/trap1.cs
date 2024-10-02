@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class trap1 : MonoBehaviour
 {
+    private const float V = 0.5f;
     public float tocdoxoay = 15f;
-    public float tododichuyen = 5f; 
+    public float tododichuyen = V;
     public Transform diemA;
     public Transform diemB; 
     private Vector3 diemmuctieu; 

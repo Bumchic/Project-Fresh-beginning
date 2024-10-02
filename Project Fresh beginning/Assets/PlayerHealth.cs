@@ -1,39 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100f; 
+    public float health; 
 
     void Start()
     {
-        // Set the current health to max health at the start
-        currentHealth = maxHealth;
+        health = maxHealth;
     }
 
-    // Call this function to deal damage to the player
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damage)
     {
-        currentHealth -= damageAmount;
+      
+        health -= damage;
+        Debug.Log("Player bị sát thương: " + damage + " máu còn lại: " + health);
 
-        // Check if health falls below or equals 0, then reload the scene
-        if (currentHealth <= 0)
+       
+        if (health <= 0f)
         {
-            Debug.Log("Player died!");
-            SceneManager.LoadScene("SampleScene"); // Replace with your actual scene name
+            Die();
         }
     }
 
-    // Optionally, add a method to heal the player
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
-        currentHealth += healAmount;
-        if (currentHealth > maxHealth)
+        health += healAmount;
+
+        // Đảm bảo máu không vượt quá giới hạn tối đa
+        if (health > maxHealth)
         {
-            currentHealth = maxHealth;
+            health = maxHealth;
         }
+
+        Debug.Log("Player được hồi máu: " + healAmount + " máu hiện tại: " + health);
+    }
+
+    void Die()
+    {
+        Debug.Log("Player đã chết!");
+     
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 }
