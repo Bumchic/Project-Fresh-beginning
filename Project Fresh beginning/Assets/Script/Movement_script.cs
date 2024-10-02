@@ -36,6 +36,7 @@ public class Movement_script : MonoBehaviour
     public bool Climbing;
     public LayerMask ClimbingMask;
     public float BodyTransformX;
+    public Animator animator;
 
     void Groundcheck()
     {
@@ -82,11 +83,11 @@ public class Movement_script : MonoBehaviour
         //SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
-           
-            Move();
+           Move();
+           animator.SetBool("IsRunning", true);
         }else
         {
-           
+            animator.SetBool("IsRunning", false);
         }
         
     }
@@ -143,11 +144,12 @@ public class Movement_script : MonoBehaviour
         if (CrouchButtonPressed() && grounded)
         {
             Crouch();
+            animator.SetBool("IsCrouching", true);
            
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
-           
+            animator.SetBool("IsCrouching", false);
         }
     }
     void HeadCollisionCheck()
@@ -185,6 +187,7 @@ public class Movement_script : MonoBehaviour
         MovementInput();
         CrouchMovement();
         ClimbingMovement();
+
     }
 
     void FixedUpdate()
