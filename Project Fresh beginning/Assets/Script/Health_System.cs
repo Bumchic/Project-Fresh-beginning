@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health_System
 {
-    private int _CurrentHealth;
+    [field: SerializeField]private int _CurrentHealth;
     private int _MaxHealth;
 
     public int currentHealth

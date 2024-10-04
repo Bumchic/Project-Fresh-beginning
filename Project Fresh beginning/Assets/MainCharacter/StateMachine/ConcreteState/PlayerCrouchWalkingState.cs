@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerState
+public class PlayerCrouchWalkingState : PlayerState
 {
-    public PlayerIdleState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    private float CrouchSpeed = 3f;
+    public PlayerCrouchWalkingState(Player player, PlayerStateMachine playerstatemachine) : base(player, playerstatemachine)
     {
 
     }
@@ -16,26 +17,28 @@ public class PlayerIdleState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
-        
+        player.animator.SetBool("IsCrouchWalking", true);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        player.animator.SetBool("IsCrouchWalking", false);
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        if(Mathf.Abs(player.xinput) > 0)
+        if (Mathf.Abs(player.xinput) > 0)
         {
-           player.playerStateMachine.ChangeState(player.runningState);
+            player.WalkMovement(CrouchSpeed);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Mathf.Abs(player.xinput) == 0)
         {
+            player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.crouchingState);
         }
-        }
+    }
 
     public override void PhysicUpdate()
     {

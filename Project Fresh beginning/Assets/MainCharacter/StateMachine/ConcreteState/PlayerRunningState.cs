@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerRunningState : PlayerState
 {
-
+    private float RunSpeed = 10f;
     public PlayerRunningState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -20,13 +20,14 @@ public class PlayerRunningState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
-        Debug.Log("Running");
+        player.animator.SetBool("IsRunning", true);
         
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        player.animator.SetBool("IsRunning", false);
     }
 
     public override void FrameUpdate()
@@ -34,10 +35,11 @@ public class PlayerRunningState : PlayerState
         base.FrameUpdate();
         if(Mathf.Abs(player.xinput) > 0)
         {
-            WalkMovement();
-        }           
+            player.WalkMovement(RunSpeed);
+        }        
         if(Mathf.Abs(player.xinput) == 0)
         {
+            player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.idleState);
         }
     }
@@ -47,14 +49,5 @@ public class PlayerRunningState : PlayerState
         base.PhysicUpdate();
     }
 
-    public void WalkMovement()
-    {      
-            player.Rigidbody2d.velocity = new Vector2(player.xinput, player.Rigidbody2d.velocity.y);
-            FaceDirection();
-    }
-    public void FaceDirection()
-    {
-        float Direction = Mathf.Sign(player.xinput);
-        player.transform.localScale = new Vector3(Direction * player.Transformx, player.transform.localScale.y, player.transform.localScale.z);
-    }
+
 }

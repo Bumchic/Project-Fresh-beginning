@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamagable, IMoveable
+public class Player : MonoBehaviour, IMoveable
 
 {
-    [field: SerializeField] public float CurrentHealth { get; set; } = 100f;
-    public float MaxHealth { get; set; }
+
+    public Animator animator;
     [field: SerializeField] public Rigidbody2D Rigidbody2d { get; set; }
     public float xinput { get; set; }
     public float yinput { get; set; }
+  
+
 
     public float Transformx {get; set;}
-
+    //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
     public PlayerCrouchingState crouchingState { get; set; }
     public PlayerIdleState idleState { get; set; }
+    public PlayerCrouchWalkingState CrouchWalkingState { get; set; }
 
     private void Awake()
     {
@@ -24,12 +27,13 @@ public class Player : MonoBehaviour, IDamagable, IMoveable
         idleState = new PlayerIdleState(this, playerStateMachine);
         runningState = new PlayerRunningState(this, playerStateMachine);
         crouchingState = new PlayerCrouchingState(this, playerStateMachine);
+        CrouchWalkingState = new PlayerCrouchWalkingState(this, playerStateMachine);
 
     }
 
     void Start()
     {
-        CurrentHealth = MaxHealth;
+
         Transformx = transform.localScale.x;
 
         playerStateMachine.intizialize(idleState);
@@ -49,22 +53,7 @@ public class Player : MonoBehaviour, IDamagable, IMoveable
         GameOver.LoadMainMenu();
     }
 
-    public void Heal(float HealAmount)
-    {
-        CurrentHealth += HealAmount;
-        if(CurrentHealth > MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
-    }
 
-    public void TakeDamage(float Damage)
-    {
-       if(CurrentHealth > 0)
-        {
-            CurrentHealth -= Damage;
-        }
-    }
 
     public void GetInput()
     {
@@ -72,7 +61,24 @@ public class Player : MonoBehaviour, IDamagable, IMoveable
         yinput = Input.GetAxis("Vertical");
     }
 
-    
+    public void WalkMovement(float speed)
+    {
+        
+            Rigidbody2d.velocity = new Vector2(speed * Mathf.Sign(xinput), Rigidbody2d.velocity.y);
+            FaceDirection();
+ 
+        
+    }
+    public void FaceDirection()
+    {
+        if(Mathf.Abs(xinput) != 0)
+        {
+            float Direction = Mathf.Sign(xinput);
+            transform.localScale = new Vector3(Direction * Transformx, transform.localScale.y, transform.localScale.z);
+        }
+        
+    }
+
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
        playerStateMachine.CurrentPlayerState.AnimationTriggerEvent(triggertype);
@@ -81,7 +87,8 @@ public class Player : MonoBehaviour, IDamagable, IMoveable
     {
         Idle,
         Running,
-        Crouching
+        Crouching,
+        CrouchWalking
     }
 }
 
