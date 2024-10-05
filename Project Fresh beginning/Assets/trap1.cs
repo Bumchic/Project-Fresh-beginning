@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class trap1 : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class trap1 : MonoBehaviour
     public Transform diemA; // Point A
     public Transform diemB; // Point B
     private Vector3 diemmuctieu; // Target position
+    public float damageAmount = 10f; // Damage dealt by the trap
 
     void Start()
     {
@@ -45,12 +44,15 @@ public class trap1 : MonoBehaviour
     // For 2D collisions, use OnCollisionEnter2D
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the collided object has a PlayerHealth script
-        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
+        // Check if the collided object has the tag "Player"
+        if (collision.gameObject.CompareTag("Player"))
         {
-            // Reduce health by 30
-            playerHealth.TakeDamage(30);
+            // Access the PlayerHealth component and apply damage
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damageAmount);
+            }
         }
     }
 }
