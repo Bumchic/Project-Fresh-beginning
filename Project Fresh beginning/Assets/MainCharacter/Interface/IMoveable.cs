@@ -8,6 +8,8 @@ public interface IMoveable
     float xinput { get; set; }
     float yinput { get; set; }
     float Transformx { get; set; }
+    BoxCollider2D FloorCheck { get; set; }
+    LayerMask FloorCheckMask { get; set; }
 
 
     void GetInput();

@@ -27,6 +27,7 @@ public class PlayerIdleState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        //Change State
         if(Mathf.Abs(player.xinput) > 0)
         {
            player.playerStateMachine.ChangeState(player.runningState);
@@ -34,6 +35,11 @@ public class PlayerIdleState : PlayerState
         if (Input.GetKeyDown(KeyCode.S))
         {
             player.playerStateMachine.ChangeState(player.crouchingState);
+        }
+
+        if(Mathf.Abs(player.yinput) > 0 && player.grounded)
+        {
+            player.playerStateMachine.ChangeState(player.jumpingState);
         }
         }
 

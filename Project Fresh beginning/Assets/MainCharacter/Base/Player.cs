@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,18 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public Rigidbody2D Rigidbody2d { get; set; }
     public float xinput { get; set; }
     public float yinput { get; set; }
-  
-
-
     public float Transformx {get; set;}
+    [field: SerializeField] public BoxCollider2D FloorCheck { get; set;}
+    [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
+    public Boolean grounded;
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
     public PlayerCrouchingState crouchingState { get; set; }
     public PlayerIdleState idleState { get; set; }
     public PlayerCrouchWalkingState CrouchWalkingState { get; set; }
+    public PlayerJumpingState jumpingState { get; set; }
+ 
 
     private void Awake()
     {
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour, IMoveable
         runningState = new PlayerRunningState(this, playerStateMachine);
         crouchingState = new PlayerCrouchingState(this, playerStateMachine);
         CrouchWalkingState = new PlayerCrouchWalkingState(this, playerStateMachine);
+        jumpingState = new PlayerJumpingState(this, playerStateMachine);
 
     }
 
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour, IMoveable
     }
     private void Update()
     {
+        Groundcheck();
         GetInput();
         playerStateMachine.CurrentPlayerState.FrameUpdate();
     }
@@ -78,6 +83,10 @@ public class Player : MonoBehaviour, IMoveable
         }
         
     }
+    void Groundcheck()
+    {      
+        grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
+    }
 
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
@@ -88,7 +97,8 @@ public class Player : MonoBehaviour, IMoveable
         Idle,
         Running,
         Crouching,
-        CrouchWalking
+        CrouchWalking,
+        Jumping
     }
 }
 
