@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public BoxCollider2D FloorCheck { get; set;}
     [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
     public Boolean grounded;
+    public float RunSpeed = 5f;
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour, IMoveable
     public PlayerIdleState idleState { get; set; }
     public PlayerCrouchWalkingState CrouchWalkingState { get; set; }
     public PlayerJumpingState jumpingState { get; set; }
+    public PlayerFallingState fallingState { get; set; }
  
 
     private void Awake()
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour, IMoveable
         crouchingState = new PlayerCrouchingState(this, playerStateMachine);
         CrouchWalkingState = new PlayerCrouchWalkingState(this, playerStateMachine);
         jumpingState = new PlayerJumpingState(this, playerStateMachine);
+        fallingState = new PlayerFallingState(this, playerStateMachine);
 
     }
 
@@ -87,18 +90,14 @@ public class Player : MonoBehaviour, IMoveable
     {      
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
     }
-
+    //The event in animation window will call this function
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
        playerStateMachine.CurrentPlayerState.AnimationTriggerEvent(triggertype);
     }
     public enum AnimationTriggerType
     {
-        Idle,
-        Running,
-        Crouching,
-        CrouchWalking,
-        Jumping
+        
     }
 }
 

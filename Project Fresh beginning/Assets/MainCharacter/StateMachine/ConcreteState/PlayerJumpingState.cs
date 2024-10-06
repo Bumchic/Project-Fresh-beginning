@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpingState : PlayerState
 {
-    private float jumpPower = 5f;
+    private float jumpPower = 10f;
     public PlayerJumpingState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -18,6 +18,7 @@ public class PlayerJumpingState : PlayerState
     {
         base.EnterState();
         player.animator.SetBool("IsJumping",true);
+        Debug.Log("jumping");
     }
 
     public override void ExitState()
@@ -29,15 +30,32 @@ public class PlayerJumpingState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        JumpMovement();
+        if (Mathf.Abs(player.yinput) > 0 && player.grounded == true)
+        {
+            JumpMovement(jumpPower);
+        }          
+
+        if (Mathf.Abs(player.xinput) > 0)
+        {
+            player.WalkMovement(player.RunSpeed);
+        }
+/////////
         if (Mathf.Abs(player.yinput) == 0 && player.grounded)
         {
+            player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.idleState);
         }
 
+        if(Mathf.Abs(player.yinput) == 0)
+        {
+            JumpMovement(0);
+            player.WalkMovement(0);
+            player.playerStateMachine.ChangeState(player.fallingState);
+        }
+
     }
-    private void JumpMovement()
-    {
+    private void JumpMovement(float jumpPower)
+    {       
         player.Rigidbody2d.velocity = new Vector2(player.Rigidbody2d.velocity.x, jumpPower);
     }
 

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerRunningState : PlayerState
 {
-    private float RunSpeed = 10f;
+    
     public PlayerRunningState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -35,12 +35,17 @@ public class PlayerRunningState : PlayerState
         base.FrameUpdate();
         if(Mathf.Abs(player.xinput) > 0)
         {
-            player.WalkMovement(RunSpeed);
+            player.WalkMovement(player.RunSpeed);
         }        
         if(Mathf.Abs(player.xinput) == 0)
         {
             player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.idleState);
+        }
+
+        if (Mathf.Abs(player.yinput) > 0 && player.grounded == true)
+        {
+            player.playerStateMachine.ChangeState(player.jumpingState);
         }
     }
 

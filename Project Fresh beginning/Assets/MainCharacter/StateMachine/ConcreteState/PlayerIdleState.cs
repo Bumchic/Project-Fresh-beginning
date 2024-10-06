@@ -37,7 +37,7 @@ public class PlayerIdleState : PlayerState
             player.playerStateMachine.ChangeState(player.crouchingState);
         }
 
-        if(Mathf.Abs(player.yinput) > 0 && player.grounded)
+        if(Mathf.Abs(player.yinput) > 0 && player.grounded == true)
         {
             player.playerStateMachine.ChangeState(player.jumpingState);
         }
