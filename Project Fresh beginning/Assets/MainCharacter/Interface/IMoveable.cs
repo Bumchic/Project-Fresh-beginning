@@ -10,11 +10,13 @@ public interface IMoveable
     float Transformx { get; set; }
     BoxCollider2D FloorCheck { get; set; }
     LayerMask FloorCheckMask { get; set; }
-
+    BoxCollider2D ColliderStandUpCheck { get; set; }
+    LayerMask HeadCollisionMask { get; set; }
 
     void GetInput();
     void WalkMovement(float speed);
     void FaceDirection();
+    void HeadCollision();
 
 
 }
