@@ -39,6 +39,8 @@ public class PlayerStat : MonoBehaviour
         GameManager.gameManager.PlayerHealth.TakeDamage(DamageAmount);       
     }
 
+    
+
     private void PlayerHeal(int HealAmount)
     {
         GameManager.gameManager.PlayerHealth.Heal(HealAmount);

@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemies
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - CanJump
   - Water
   - UI
   - Character
@@ -41,12 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 1
+  - name: Main Character
     uniqueID: 3852263585
     locked: 0
-  - name: New Layer 2
-    uniqueID: 3242354119
+  - name: Traps
+    uniqueID: 4096430033
     locked: 0
-  - name: New Layer 3
+  - name: Enemies
     uniqueID: 3352208393
+    locked: 0
+  - name: UI
+    uniqueID: 3242354119
     locked: 0
