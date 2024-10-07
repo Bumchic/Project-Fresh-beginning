@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using UnityEngine;
 
-public class Movement_script : MonoBehaviour
+public class Movement_script: MonoBehaviour
 {
     public Rigidbody2D Body;
     public float Speed;
@@ -186,6 +186,7 @@ public class Movement_script : MonoBehaviour
         MovementInput();
         CrouchMovement();
         ClimbingMovement();
+        Debug.Log(xinput);
     }
 
     void FixedUpdate()

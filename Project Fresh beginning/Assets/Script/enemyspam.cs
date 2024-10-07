@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemyToSpawn = enemyPrefabs[rand];
 
         // Set the spawn position to the right of the camera
-        Vector3 spawnPosition = new Vector3(lastSpawnX+5f, 0f, 0f);
+        Vector3 spawnPosition = new Vector3(lastSpawnX+5f, 0f+10f, 0f);
         Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
     }
 }
