@@ -16,7 +16,7 @@ public interface IMoveable
     void GetInput();
     void WalkMovement(float speed);
     void FaceDirection();
-    void HeadCollision();
+    
 
 
 }

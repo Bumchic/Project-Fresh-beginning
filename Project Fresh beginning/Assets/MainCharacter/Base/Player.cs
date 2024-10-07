@@ -16,6 +16,9 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
     public Boolean grounded;
     public float RunSpeed = 5f;
+    [field: SerializeField] public BoxCollider2D ColliderStandUpCheck { get; set; }
+    [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
+    public bool HeadCollision;
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
@@ -47,6 +50,7 @@ public class Player : MonoBehaviour, IMoveable
     }
     private void Update()
     {
+        HeadCollisionCheck();
         Groundcheck();
         GetInput();
         playerStateMachine.CurrentPlayerState.FrameUpdate();
@@ -90,11 +94,20 @@ public class Player : MonoBehaviour, IMoveable
     {      
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
     }
+
+    void HeadCollisionCheck()
+    {
+        HeadCollision = Physics2D.OverlapAreaAll(ColliderStandUpCheck.bounds.min, ColliderStandUpCheck.bounds.max, HeadCollisionMask).Length > 0;
+    }
+
     //The event in animation window will call this function
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
        playerStateMachine.CurrentPlayerState.AnimationTriggerEvent(triggertype);
     }
+
+
+
     public enum AnimationTriggerType
     {
         

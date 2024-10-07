@@ -34,7 +34,7 @@ public class PlayerCrouchingState : PlayerState
             player.playerStateMachine.ChangeState(player.CrouchWalkingState);
         }
 
-        if(Input.GetKeyDown(KeyCode.S))
+        if(Input.GetKeyDown(KeyCode.S) && player.HeadCollision == false)
         {
             player.playerStateMachine.ChangeState(player.idleState);
         }

@@ -602,6 +602,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 168.568
       objectReference: {fileID: 0}
+    - target: {fileID: 8376058105922183338, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+      propertyPath: <ColliderStandUpCheck>k__BackingField
+      value: 
+      objectReference: {fileID: 1848284521}
+    - target: {fileID: 8376058105922183338, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+      propertyPath: <HeadCollisionMask>k__BackingField.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 8618099140723986257, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.5605044
@@ -715,6 +723,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1848284521 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 9150790027167043372, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+  m_PrefabInstance: {fileID: 1632682121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2134547395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8191389645811154132, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
