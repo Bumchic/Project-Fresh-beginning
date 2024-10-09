@@ -52,6 +52,10 @@ public class PlayerJumpingState : PlayerState
             player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.fallingState);
         }
+        if (player.Rigidbody2d.velocity.y < 0)
+        {
+            player.playerStateMachine.ChangeState(player.fallingState);
+        }
 
     }
     private void JumpMovement(float jumpPower)

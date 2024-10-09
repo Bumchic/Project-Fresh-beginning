@@ -41,9 +41,14 @@ public class PlayerIdleState : PlayerState
         {
             player.playerStateMachine.ChangeState(player.jumpingState);
         }
+        if (player.Rigidbody2d.velocity.y < 0 && player.grounded == false)
+        {
+            player.playerStateMachine.ChangeState(player.fallingState);
         }
+    }
+    
 
-    public override void PhysicUpdate()
+public override void PhysicUpdate()
     {
         base.PhysicUpdate();
     }

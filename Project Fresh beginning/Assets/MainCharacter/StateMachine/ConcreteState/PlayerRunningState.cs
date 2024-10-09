@@ -43,9 +43,13 @@ public class PlayerRunningState : PlayerState
             player.playerStateMachine.ChangeState(player.idleState);
         }
 
-        if (player.yinput > 0 && player.grounded == true)
+        if (player.yinput > 0 && player.grounded == true && player.WallTouched == false)
         {
             player.playerStateMachine.ChangeState(player.jumpingState);
+        }
+        if(player.Rigidbody2d.velocity.y < 0 && player.grounded == false)
+        {
+            player.playerStateMachine.ChangeState(player.fallingState);
         }
     }
 

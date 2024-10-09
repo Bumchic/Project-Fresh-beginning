@@ -19,6 +19,8 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public BoxCollider2D ColliderStandUpCheck { get; set; }
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
+    public Boolean WallTouched;
+    [field: SerializeField] public BoxCollider2D Collider { get; set; }
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour, IMoveable
     {
         HeadCollisionCheck();
         Groundcheck();
+        WallTouchCheck();
         GetInput();
         playerStateMachine.CurrentPlayerState.FrameUpdate();
     }
@@ -93,6 +96,10 @@ public class Player : MonoBehaviour, IMoveable
     void Groundcheck()
     {      
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
+    }
+    void WallTouchCheck()
+    {
+        WallTouched = Physics2D.OverlapAreaAll(Collider.bounds.min, Collider.bounds.max, FloorCheckMask).Length > 0;
     }
 
     void HeadCollisionCheck()
