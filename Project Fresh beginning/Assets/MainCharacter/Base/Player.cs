@@ -15,11 +15,11 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public BoxCollider2D FloorCheck { get; set;}
     [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
     public Boolean grounded;
-    public float RunSpeed = 5f;
+    public float RunSpeed { get; set; }
     [field: SerializeField] public BoxCollider2D ColliderStandUpCheck { get; set; }
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
-    public Boolean WallTouched;
+
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IMoveable
 
     void Start()
     {
-
+        RunSpeed = 10f;
         Transformx = transform.localScale.x;
 
         playerStateMachine.intizialize(idleState);
@@ -54,9 +54,17 @@ public class Player : MonoBehaviour, IMoveable
     {
         HeadCollisionCheck();
         Groundcheck();
-        WallTouchCheck();
+        gameOver();
         GetInput();
         playerStateMachine.CurrentPlayerState.FrameUpdate();
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Shadow")
+        {
+            PlayerTakeDamage(9999);
+        }
+        
     }
     private void FixedUpdate()
     {
@@ -97,10 +105,7 @@ public class Player : MonoBehaviour, IMoveable
     {      
         grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
     }
-    void WallTouchCheck()
-    {
-        WallTouched = Physics2D.OverlapAreaAll(Collider.bounds.min, Collider.bounds.max, FloorCheckMask).Length > 0;
-    }
+
 
     void HeadCollisionCheck()
     {

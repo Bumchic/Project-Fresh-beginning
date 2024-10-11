@@ -39,12 +39,17 @@ public class PlayerJumpingState : PlayerState
         {
             player.WalkMovement(player.RunSpeed);
         }
-/////////
-        if (Mathf.Abs(player.yinput) == 0 && player.grounded)
+        if (Mathf.Abs(player.xinput) == 0)
         {
             player.WalkMovement(0);
+        }
+        /////////
+        if (Mathf.Abs(player.yinput) == 0 && player.grounded)
+        {
+            
             player.playerStateMachine.ChangeState(player.idleState);
         }
+
 
         if(Mathf.Abs(player.yinput) == 0)
         {
