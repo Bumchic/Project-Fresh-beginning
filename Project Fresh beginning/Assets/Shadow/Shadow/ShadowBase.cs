@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ShadowBase : IShadowMoveable, IShadowContactable
+public class ShadowBase :MonoBehaviour, IShadowMoveable, IShadowContactable
 {
     public float MoveSpeed { get; set; }
     [field:SerializeField]public Rigidbody2D rigidbody2D { get; set; }
@@ -13,6 +13,10 @@ public class ShadowBase : IShadowMoveable, IShadowContactable
     [field: SerializeField] public LayerMask ShadowlayerMask { get; set;}
     public bool shadowContacted { get; set; }
 
+    void Update()
+    {
+        Move(10f);
+    }
 
     public void Move(float Speed)
     {

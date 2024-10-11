@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public Health_System PlayerHealth = new Health_System(100, 100);
     public GameObject shadow;
+    public Shadow ShadowScript;
     void Awake()
     {
         if(gameManager != null && gameManager != this)
@@ -26,12 +27,13 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        ShadowScript = shadow.GetComponent<Shadow>();
         Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity);
 
     }
     private void Update()
     {
-       
+        ShadowScript.Move(10f);
     }
 
 }
