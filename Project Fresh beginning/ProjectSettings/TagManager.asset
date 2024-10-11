@@ -42,8 +42,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Main Character
+  - name: TestingMainCharacter
     uniqueID: 3852263585
+    locked: 0
+  - name: Items
+    uniqueID: 3829406517
     locked: 0
   - name: Traps
     uniqueID: 4096430033

@@ -24,7 +24,7 @@ public class PlayerStat : MonoBehaviour
             PlayerHeal(10);
             Debug.Log(GameManager.gameManager.PlayerHealth.currentHealth);
         }
-
+        Debug.Log(GameManager.gameManager.PlayerHealth.currentHealth);
         gameOver();
     }
     private void gameOver()

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 
     public Health_System PlayerHealth = new Health_System(100, 100);
+    public Health_System EnemyHealth = new Health_System(30, 30); 
     void Awake()
     {
         if(gameManager != null && gameManager != this)
