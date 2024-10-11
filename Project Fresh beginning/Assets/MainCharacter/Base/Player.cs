@@ -106,6 +106,24 @@ public class Player : MonoBehaviour, IMoveable
     {
         HeadCollision = Physics2D.OverlapAreaAll(ColliderStandUpCheck.bounds.min, ColliderStandUpCheck.bounds.max, HeadCollisionMask).Length > 0;
     }
+    //Health
+    private void gameOver()
+    {
+        if (GameManager.gameManager.PlayerHealth.currentHealth <= 0)
+        {
+            GameOver.LoadMainMenu();
+        }
+    }
+    private void PlayerTakeDamage(int DamageAmount)
+    {
+        GameManager.gameManager.PlayerHealth.TakeDamage(DamageAmount);
+    }
+
+    private void PlayerHeal(int HealAmount)
+    {
+        GameManager.gameManager.PlayerHealth.Heal(HealAmount);
+    }
+
 
     //The event in animation window will call this function
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
