@@ -8,8 +8,10 @@ public class CarDamage : MonoBehaviour
     void Update()
     {
      
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        transform.position = transform.position+ Vector3.left * speed * Time.deltaTime;
     }
+
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
