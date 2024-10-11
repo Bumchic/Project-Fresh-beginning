@@ -51,7 +51,7 @@ public class Health_System
         if(_CurrentHealth > _MaxHealth)
         {
             _CurrentHealth = _MaxHealth;
-        }   
+        }
     }
 
 }

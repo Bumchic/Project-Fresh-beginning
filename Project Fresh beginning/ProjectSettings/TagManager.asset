@@ -4,18 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemies
+  - Main Character
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - CanJump
+  - 
   - Water
   - UI
   - Character
   - Floor
   - Climbing Ledge
-  - 
+  - Shadow
   - 
   - 
   - 
@@ -42,15 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Main Character
+  - name: 1
     uniqueID: 3852263585
     locked: 0
-  - name: Traps
-    uniqueID: 4096430033
-    locked: 0
-  - name: Enemies
-    uniqueID: 3352208393
-    locked: 0
-  - name: UI
+  - name: New Layer 2
     uniqueID: 3242354119
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 3352208393
     locked: 0
