@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        ShadowScript.Move(10f);
     }
 
 }
