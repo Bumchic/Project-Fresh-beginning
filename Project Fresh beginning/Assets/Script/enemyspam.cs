@@ -7,10 +7,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private bool canSpawn = true;
 
+
     private Camera mainCamera;
     private float lastSpawnX = 0f; // Last spawn position in the x-axis
     private float spawnDistance = 30f; // Distance to spawn a new enemy
-
     private void Start()
     {
         mainCamera = Camera.main;
@@ -37,8 +37,9 @@ public class EnemySpawner : MonoBehaviour
         int rand = Random.Range(0, enemyPrefabs.Length);
         GameObject enemyToSpawn = enemyPrefabs[rand];
 
+
         // Set the spawn position to the right of the camera
-        Vector3 spawnPosition = new Vector3(lastSpawnX+5f, 0f, 0f);
+        Vector3 spawnPosition = new Vector3(lastSpawnX+7f, enemyToSpawn.transform.position.y, 0f);
         Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
     }
 }
