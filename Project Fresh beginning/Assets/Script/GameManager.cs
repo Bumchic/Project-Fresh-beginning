@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager { get; private set; }
 
     public Health_System PlayerHealth = new Health_System(100, 100);
-    public GameObject shadow;
+    //public GameObject shadow;
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-        Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity);
+        //Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity);
 
     }
     private void Update()

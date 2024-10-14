@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IMoveable
 
 {
-
+    //Attribute
     public Animator animator;
     [field: SerializeField] public Rigidbody2D Rigidbody2d { get; set; }
     public float xinput { get; set; }
@@ -19,8 +19,9 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public BoxCollider2D ColliderStandUpCheck { get; set; }
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
-
+    private float Max_acceleration = 2f;
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
+    //Attribute
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
@@ -86,8 +87,11 @@ public class Player : MonoBehaviour, IMoveable
 
     public void WalkMovement(float speed)
     {
-        
-            Rigidbody2d.velocity = new Vector2(speed * Mathf.Sign(xinput), Rigidbody2d.velocity.y);
+
+        float acceleration = xinput * Max_acceleration;
+        float CurrentSpeed = Mathf.Clamp(Rigidbody2d.velocity.x + acceleration, -speed, +speed);
+     
+            Rigidbody2d.velocity = new Vector2(CurrentSpeed, Rigidbody2d.velocity.y);
             FaceDirection();
  
         

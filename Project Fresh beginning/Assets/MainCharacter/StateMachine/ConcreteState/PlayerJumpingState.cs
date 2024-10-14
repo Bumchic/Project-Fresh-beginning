@@ -43,7 +43,7 @@ public class PlayerJumpingState : PlayerState
         {
             player.WalkMovement(0);
         }
-        /////////
+        /////////State Change
         if (Mathf.Abs(player.yinput) == 0 && player.grounded)
         {
             
@@ -53,7 +53,6 @@ public class PlayerJumpingState : PlayerState
 
         if(Mathf.Abs(player.yinput) == 0)
         {
-            JumpMovement(0);
             player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.fallingState);
         }
@@ -65,7 +64,9 @@ public class PlayerJumpingState : PlayerState
     }
     private void JumpMovement(float jumpPower)
     {       
-        player.Rigidbody2d.velocity = new Vector2(player.Rigidbody2d.velocity.x, jumpPower);
+        float JumpVelocity = Mathf.Clamp(player.Rigidbody2d.velocity.y + 5f, 0f, jumpPower);
+        Debug.Log(JumpVelocity);
+        player.Rigidbody2d.velocity = new Vector2(player.Rigidbody2d.velocity.x, JumpVelocity);
     }
 
     public override void PhysicUpdate()
