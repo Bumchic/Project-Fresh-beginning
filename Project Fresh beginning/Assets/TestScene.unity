@@ -214,6 +214,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5445411931450484161, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5967331541187275922, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -709,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 1992883437162059292, guid: c74c5f7c1e135924399ff9b053533625, type: 3}
       propertyPath: shadow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2149504415113276070, guid: 878399bb5bf1a074d801bc52f12d0b5c, type: 3}
     - target: {fileID: 4692883587431109117, guid: c74c5f7c1e135924399ff9b053533625, type: 3}
       propertyPath: m_Name
       value: GameManager

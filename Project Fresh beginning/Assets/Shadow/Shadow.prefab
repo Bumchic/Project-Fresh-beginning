@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1247037510088380787}
   - component: {fileID: 9143638402093717807}
   - component: {fileID: 6845811313139824927}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Shadow
-  m_TagString: Shadow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

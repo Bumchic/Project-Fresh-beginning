@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpingState : PlayerState
 {
-    private float jumpPower = 10f;
+    private float jumpPower = 11f;
     public PlayerJumpingState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -45,15 +45,12 @@ public class PlayerJumpingState : PlayerState
         }
         /////////State Change
         if (Mathf.Abs(player.yinput) == 0 && player.grounded)
-        {
-            
+        {          
             player.playerStateMachine.ChangeState(player.idleState);
         }
-
-
         if(Mathf.Abs(player.yinput) == 0)
         {
-            player.WalkMovement(0);
+            player.Rigidbody2d.gravityScale = player.Rigidbody2d.gravityScale * 3;
             player.playerStateMachine.ChangeState(player.fallingState);
         }
         if (player.Rigidbody2d.velocity.y < 0)
@@ -64,9 +61,7 @@ public class PlayerJumpingState : PlayerState
     }
     private void JumpMovement(float jumpPower)
     {       
-        float JumpVelocity = Mathf.Clamp(player.Rigidbody2d.velocity.y + 5f, 0f, jumpPower);
-        Debug.Log(JumpVelocity);
-        player.Rigidbody2d.velocity = new Vector2(player.Rigidbody2d.velocity.x, JumpVelocity);
+        player.Rigidbody2d.velocity = new Vector2(player.Rigidbody2d.velocity.x, jumpPower);
     }
 
     public override void PhysicUpdate()

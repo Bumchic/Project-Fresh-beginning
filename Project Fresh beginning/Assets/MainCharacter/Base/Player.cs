@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
     private float Max_acceleration = 2f;
+    public float GravScale {  get; set; }
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
     //Attribute
     //State Variable
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour, IMoveable
     {
         RunSpeed = 10f;
         Transformx = transform.localScale.x;
-
+        GravScale = Rigidbody2d.gravityScale;
         playerStateMachine.intizialize(idleState);
     }
     private void Update()
