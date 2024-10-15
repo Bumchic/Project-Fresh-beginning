@@ -50,7 +50,7 @@ public class PlayerJumpingState : PlayerState
         }
         if(Mathf.Abs(player.yinput) == 0)
         {
-            player.Rigidbody2d.gravityScale = player.Rigidbody2d.gravityScale * 3;
+            player.Rigidbody2d.gravityScale = player.Rigidbody2d.gravityScale * 4;
             player.playerStateMachine.ChangeState(player.fallingState);
         }
         if (player.Rigidbody2d.velocity.y < 0)

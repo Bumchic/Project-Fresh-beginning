@@ -12,7 +12,8 @@ public class Player : MonoBehaviour, IMoveable
     public float xinput { get; set; }
     public float yinput { get; set; }
     public float Transformx {get; set;}
-    [field: SerializeField] public BoxCollider2D FloorCheck { get; set;}
+    [field: SerializeField] public BoxCollider2D FloorCheckOuter { get; set;}
+    [field: SerializeField] public BoxCollider2D FloorCheckInner { get; set; }
     [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
     public Boolean grounded;
     public float RunSpeed { get; set; }
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour, IMoveable
     }
     void Groundcheck()
     {      
-        grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
+        grounded = Physics2D.OverlapAreaAll(FloorCheckOuter.bounds.min, FloorCheckOuter.bounds.max, FloorCheckMask).Length > 0 && Physics2D.OverlapAreaAll(FloorCheckInner.bounds.min, FloorCheckInner.bounds.max, FloorCheckMask).Length > 0;
     }
 
 
