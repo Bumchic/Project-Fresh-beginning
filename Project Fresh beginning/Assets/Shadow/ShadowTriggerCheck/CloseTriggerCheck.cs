@@ -13,6 +13,9 @@ public class CloseTriggerCheck : MonoBehaviour
         shadow = GetComponentInParent<Shadow>();
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
 
 }
