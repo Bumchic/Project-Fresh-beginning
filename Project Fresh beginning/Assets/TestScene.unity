@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!61 &31873838 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 410534386186139689, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+  m_PrefabInstance: {fileID: 356988014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356988014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,10 +175,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 2016979273485591137, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2033965890258698839, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -213,10 +214,6 @@ PrefabInstance:
     - target: {fileID: 5396032615232537129, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_Layer
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5445411931450484161, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
-      propertyPath: m_GravityScale
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5967331541187275922, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_Layer
@@ -294,9 +291,21 @@ PrefabInstance:
       propertyPath: <Collider>k__BackingField
       value: 
       objectReference: {fileID: 834291119}
+    - target: {fileID: 8376058105922183338, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+      propertyPath: <FloorCheckInner>k__BackingField
+      value: 
+      objectReference: {fileID: 833667468}
+    - target: {fileID: 8376058105922183338, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+      propertyPath: <FloorCheckOuter>k__BackingField
+      value: 
+      objectReference: {fileID: 31873838}
     - target: {fileID: 8436166588465860716, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576765454883104926, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+      propertyPath: m_Name
+      value: FloorCheckOuter
       objectReference: {fileID: 0}
     - target: {fileID: 9093037501480562449, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
       propertyPath: m_Layer
@@ -307,6 +316,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+--- !u!61 &833667468 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2153345295211791191, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}
+  m_PrefabInstance: {fileID: 356988014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &834291119 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 422630405461670799, guid: 617c06d785ede3d4493f19bdb60062df, type: 3}

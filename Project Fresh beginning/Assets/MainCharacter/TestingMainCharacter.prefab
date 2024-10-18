@@ -424,6 +424,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -7753167685415300501, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -442,11 +446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.74324775
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2424135
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
       propertyPath: m_LocalPosition.z
@@ -911,6 +915,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8581637825930076631}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5904709809442298262}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 3241810b542a64347a5a059a82f90f83, type: 3}
 --- !u!4 &7018209861937243319 stripped
 Transform:
@@ -1014,3 +1021,17 @@ MonoBehaviour:
   combotiming: 0
   combtempo: 0
   comboTransitionDelay: 0
+--- !u!114 &5904709809442298262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191389645811154132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 128562dcd71d2f5449b28419e282c821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
