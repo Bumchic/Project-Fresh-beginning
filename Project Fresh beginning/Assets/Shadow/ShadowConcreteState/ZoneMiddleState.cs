@@ -9,15 +9,33 @@ public class ZoneMiddleState : ShadowState
     {
 
     }
-   public override void enterState()
+
+    public override void enterState()
     {
         base.enterState();
-        MiddleMoveSpeed = shadow.MoveSpeed * 60 / 100;
+        MiddleMoveSpeed = shadow.MoveSpeed * 80 / 100;
+        Debug.Log("MiddleState");
+        shadow.Move(MiddleMoveSpeed);
     }
 
     public override void exitState()
     {
         base.exitState();
+        shadow.InZoneMiddle = false;
+    }
+
+    public override void UpdateFrame()
+    {
+        base.UpdateFrame();
+        if(shadow.InZoneFar)
+        {
+            shadow.stateMachine.ChangeState(shadow.zoneFarState);
+        }
+        if (shadow.InZoneClose)
+        {
+            shadow.stateMachine.ChangeState(shadow.zoneCloseState);
+        }
+
     }
 
     public override void FixedUpdateFrame()
@@ -26,8 +44,4 @@ public class ZoneMiddleState : ShadowState
         shadow.Move(MiddleMoveSpeed);
     }
 
-    public override void UpdateFrame()
-    {
-        base.UpdateFrame();
-    }
 }

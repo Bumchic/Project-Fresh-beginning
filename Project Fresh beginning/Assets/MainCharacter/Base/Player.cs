@@ -59,7 +59,7 @@ public class Player : MonoBehaviour, IMoveable
         Groundcheck();
         gameOver();
         GetInput();
-        playerStateMachine.CurrentPlayerState.FrameUpdate();
+        playerStateMachine.CurrentState.FrameUpdate();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour, IMoveable
     }
     private void FixedUpdate()
     {
-        playerStateMachine.CurrentPlayerState.PhysicUpdate();
+        playerStateMachine.CurrentState.PhysicUpdate();
     }
 
     public void Die()
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour, IMoveable
     //The event in animation window will call this function
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
-       playerStateMachine.CurrentPlayerState.AnimationTriggerEvent(triggertype);
+       playerStateMachine.CurrentState.AnimationTriggerEvent(triggertype);
     }
 
 

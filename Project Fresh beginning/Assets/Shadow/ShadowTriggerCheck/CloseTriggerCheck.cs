@@ -5,17 +5,22 @@ using UnityEngine;
 public class CloseTriggerCheck : MonoBehaviour
 {
     public GameObject MainCharacter { get; set; }
-    public Shadow shadow { get; set; }
+    public BoxCollider2D Collider { get; set; }
+    public ShadowBase shadow { get; set; }
 
     void Awake()
     {
         MainCharacter = GameObject.FindGameObjectWithTag("Player");
+        Collider = MainCharacter.GetComponentInChildren<BoxCollider2D>();
         shadow = GetComponentInParent<Shadow>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other == Collider)
+        {
+            shadow.InZoneClose = true;
+        }
+    }
 }

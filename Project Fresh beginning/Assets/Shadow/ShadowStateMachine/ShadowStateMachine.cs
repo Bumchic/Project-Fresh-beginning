@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShadowStateMachine
 {
     public ShadowState CurrentState { get; set; }
-    public void intialize(ShadowState startingState)
+    public void initialize(ShadowState startingState)
     {
         CurrentState = startingState;
         CurrentState.enterState();

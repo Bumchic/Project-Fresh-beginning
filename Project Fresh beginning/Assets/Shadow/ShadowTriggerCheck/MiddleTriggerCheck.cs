@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class MiddleTriggerCheck : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject MainCharacter { get; set; }
+    public BoxCollider2D Collider { get; set; }
+    public ShadowBase shadow { get; set; }
+
+    void Awake()
     {
-        
+        MainCharacter = GameObject.FindGameObjectWithTag("Player");
+        Collider = MainCharacter.GetComponentInChildren<BoxCollider2D>();
+        shadow = GetComponentInParent<Shadow>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other == Collider)
+        {
+            shadow.InZoneMiddle = true;
+        }
     }
 }

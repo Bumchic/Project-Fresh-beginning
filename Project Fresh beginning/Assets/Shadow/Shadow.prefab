@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5704910203833141944}
   - component: {fileID: 8078878805972999315}
+  - component: {fileID: 2956353882752736139}
   m_Layer: 9
   m_Name: ZoneClose
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1754941615404669104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.56, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,6 +78,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2956353882752736139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754941615404669104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd326224cdb1394b8636a9ef51ae93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2149504415113276070
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,11 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a888c367b4d19694abc020783ae1b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 0
+  <MoveSpeed>k__BackingField: 10
   <rigidbody2D>k__BackingField: {fileID: 9143638402093717807}
-  ZoneClose: {fileID: 8078878805972999315}
-  ZoneMiddle: {fileID: 3502748436190785533}
-  ZoneFar: {fileID: 5189785015815029981}
 --- !u!1 &7095520600231324929
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4257808677375712758}
   - component: {fileID: 5189785015815029981}
+  - component: {fileID: 7821428304378163011}
   m_Layer: 9
   m_Name: ZoneFar
   m_TagString: Untagged
@@ -282,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 7095520600231324929}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -333,6 +344,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7821428304378163011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7095520600231324929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7433006f333084a95b1bff47ca38de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8432021211698439820
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932468094924308979}
   - component: {fileID: 3502748436190785533}
+  - component: {fileID: 1077971728900957509}
   m_Layer: 9
   m_Name: ZoneMiddle
   m_TagString: Untagged
@@ -359,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 8432021211698439820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -410,3 +434,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1077971728900957509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432021211698439820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00dbd29d6d7ba284ca32b8a403a4dbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
