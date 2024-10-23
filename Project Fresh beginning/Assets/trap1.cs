@@ -48,11 +48,12 @@ public class trap1 : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Access the PlayerHealth component and apply damage
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damageAmount);
-            }
+            //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            //if (playerHealth != null)
+            //{
+            //    playerHealth.TakeDamage(damageAmount);
+            //}
+            GameManager.gameManager.PlayerHealth.TakeDamage(5);
         }
     }
 }
