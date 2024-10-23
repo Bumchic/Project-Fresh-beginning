@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpingState : PlayerState
 {
-    private float jumpPower = 10f;
+    private float jumpPower = 11f;
     public PlayerJumpingState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -39,17 +39,18 @@ public class PlayerJumpingState : PlayerState
         {
             player.WalkMovement(player.RunSpeed);
         }
-/////////
-        if (Mathf.Abs(player.yinput) == 0 && player.grounded)
+        if (Mathf.Abs(player.xinput) == 0)
         {
             player.WalkMovement(0);
+        }
+        /////////State Change
+        if (Mathf.Abs(player.yinput) == 0 && player.grounded)
+        {          
             player.playerStateMachine.ChangeState(player.idleState);
         }
-
         if(Mathf.Abs(player.yinput) == 0)
         {
-            JumpMovement(0);
-            player.WalkMovement(0);
+            player.Rigidbody2d.gravityScale = player.Rigidbody2d.gravityScale * 4;
             player.playerStateMachine.ChangeState(player.fallingState);
         }
         if (player.Rigidbody2d.velocity.y < 0)

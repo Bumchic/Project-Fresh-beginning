@@ -16,7 +16,7 @@ public class PlayerIdleState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
-        
+        player.Rigidbody2d.gravityScale = player.GravScale;
     }
 
     public override void ExitState()

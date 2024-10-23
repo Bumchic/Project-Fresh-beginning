@@ -38,7 +38,7 @@ public class PlayerCrouchWalkingState : PlayerState
             player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.crouchingState);
         }
-        if (player.Rigidbody2d.velocity.y < 0 && player.grounded == false)
+        if (player.Rigidbody2d.velocity.y < 0)
         {
             player.playerStateMachine.ChangeState(player.fallingState);
         }

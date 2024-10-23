@@ -8,7 +8,7 @@ public interface IMoveable
     float xinput { get; set; }
     float yinput { get; set; }
     float Transformx { get; set; }
-    BoxCollider2D FloorCheck { get; set; }
+    BoxCollider2D FloorCheckOuter { get; set; }
     LayerMask FloorCheckMask { get; set; }
     BoxCollider2D ColliderStandUpCheck { get; set; }
     LayerMask HeadCollisionMask { get; set; }
