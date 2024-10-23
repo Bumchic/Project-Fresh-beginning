@@ -1,0 +1,58 @@
+﻿using UnityEngine;
+
+public class trap1 : MonoBehaviour
+{
+    public int tocdoxoay = 15; // Rotation speed
+    public int tododichuyen = 5; // Movement speed
+    public Transform diemA; // Point A
+    public Transform diemB; // Point B
+    private Vector3 diemmuctieu; // Target position
+    public int damageAmount = 10; // Damage dealt by the trap
+
+    void Start()
+    {
+        // Set initial target to diemA
+        diemmuctieu = diemA.position;
+    }
+
+    void Update()
+    {
+        // Move towards the current target (diemmuctieu) at the specified speed
+        transform.position = Vector3.MoveTowards(transform.position, diemmuctieu, tododichuyen * Time.deltaTime);
+
+        // Check if the object is near the target, then switch target
+        if (Vector3.Distance(transform.position, diemmuctieu) < 0.1)
+        {
+            // Switch target between diemA and diemB
+            if (diemmuctieu == diemA.position)
+            {
+                diemmuctieu = diemB.position;
+            }
+            else
+            {
+                diemmuctieu = diemA.position;
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        // Rotate the object around the Z-axis
+        transform.Rotate(0, 0, tocdoxoay * Time.fixedDeltaTime);
+    }
+
+    // For 2D collisions, use OnCollisionEnter2D
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if the collided object has the tag "Player"
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Access the PlayerHealth component and apply damage
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damageAmount);
+            }
+        }
+    }
+}
