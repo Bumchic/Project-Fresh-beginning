@@ -2,12 +2,12 @@
 
 public class trap1 : MonoBehaviour
 {
-    public int tocdoxoay = 15; // Rotation speed
-    public int tododichuyen = 5; // Movement speed
+    public float tocdoxoay = 15f; // Rotation speed
+    public float tododichuyen = 5f; // Movement speed
     public Transform diemA; // Point A
     public Transform diemB; // Point B
     private Vector3 diemmuctieu; // Target position
-    public int damageAmount = 10; // Damage dealt by the trap
+    public float damageAmount = 10f; // Damage dealt by the trap
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class trap1 : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, diemmuctieu, tododichuyen * Time.deltaTime);
 
         // Check if the object is near the target, then switch target
-        if (Vector3.Distance(transform.position, diemmuctieu) < 0.1)
+        if (Vector3.Distance(transform.position, diemmuctieu) < 0.1f)
         {
             // Switch target between diemA and diemB
             if (diemmuctieu == diemA.position)
