@@ -6,21 +6,24 @@ using UnityEngine;
 public class Player : MonoBehaviour, IMoveable
 
 {
-
+    //Attribute
     public Animator animator;
     [field: SerializeField] public Rigidbody2D Rigidbody2d { get; set; }
     public float xinput { get; set; }
     public float yinput { get; set; }
     public float Transformx {get; set;}
-    [field: SerializeField] public BoxCollider2D FloorCheck { get; set;}
+    [field: SerializeField] public BoxCollider2D FloorCheckOuter { get; set;}
+    [field: SerializeField] public BoxCollider2D FloorCheckInner { get; set; }
     [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
     public Boolean grounded;
-    public float RunSpeed = 5f;
+    public float RunSpeed { get; set; }
     [field: SerializeField] public BoxCollider2D ColliderStandUpCheck { get; set; }
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
-    public Boolean WallTouched;
+    private float Max_acceleration = 2f;
+    public float GravScale {  get; set; }
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
+    //Attribute
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
     public PlayerRunningState runningState { get; set; }
@@ -45,22 +48,30 @@ public class Player : MonoBehaviour, IMoveable
 
     void Start()
     {
-
+        RunSpeed = 10f;
         Transformx = transform.localScale.x;
-
+        GravScale = Rigidbody2d.gravityScale;
         playerStateMachine.intizialize(idleState);
     }
     private void Update()
     {
         HeadCollisionCheck();
         Groundcheck();
-        WallTouchCheck();
+        gameOver();
         GetInput();
-        playerStateMachine.CurrentPlayerState.FrameUpdate();
+        playerStateMachine.CurrentState.FrameUpdate();
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Shadow")
+        {
+            PlayerTakeDamage(9999);
+        }
+        
     }
     private void FixedUpdate()
     {
-        playerStateMachine.CurrentPlayerState.PhysicUpdate();
+        playerStateMachine.CurrentState.PhysicUpdate();
     }
 
     public void Die()
@@ -78,8 +89,11 @@ public class Player : MonoBehaviour, IMoveable
 
     public void WalkMovement(float speed)
     {
-        
-            Rigidbody2d.velocity = new Vector2(speed * Mathf.Sign(xinput), Rigidbody2d.velocity.y);
+
+        float acceleration = xinput * Max_acceleration;
+        float CurrentSpeed = Mathf.Clamp(Rigidbody2d.velocity.x + acceleration, -speed, +speed);
+     
+            Rigidbody2d.velocity = new Vector2(CurrentSpeed, Rigidbody2d.velocity.y);
             FaceDirection();
  
         
@@ -95,22 +109,37 @@ public class Player : MonoBehaviour, IMoveable
     }
     void Groundcheck()
     {      
-        grounded = Physics2D.OverlapAreaAll(FloorCheck.bounds.min, FloorCheck.bounds.max, FloorCheckMask).Length > 0;
+        grounded = Physics2D.OverlapAreaAll(FloorCheckOuter.bounds.min, FloorCheckOuter.bounds.max, FloorCheckMask).Length > 0 && Physics2D.OverlapAreaAll(FloorCheckInner.bounds.min, FloorCheckInner.bounds.max, FloorCheckMask).Length > 0;
     }
-    void WallTouchCheck()
-    {
-        WallTouched = Physics2D.OverlapAreaAll(Collider.bounds.min, Collider.bounds.max, FloorCheckMask).Length > 0;
-    }
+
 
     void HeadCollisionCheck()
     {
         HeadCollision = Physics2D.OverlapAreaAll(ColliderStandUpCheck.bounds.min, ColliderStandUpCheck.bounds.max, HeadCollisionMask).Length > 0;
     }
+    //Health
+    private void gameOver()
+    {
+        if (GameManager.gameManager.PlayerHealth.currentHealth <= 0)
+        {
+            GameOver.LoadMainMenu();
+        }
+    }
+    private void PlayerTakeDamage(int DamageAmount)
+    {
+        GameManager.gameManager.PlayerHealth.TakeDamage(DamageAmount);
+    }
+
+    private void PlayerHeal(int HealAmount)
+    {
+        GameManager.gameManager.PlayerHealth.Heal(HealAmount);
+    }
+
 
     //The event in animation window will call this function
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
-       playerStateMachine.CurrentPlayerState.AnimationTriggerEvent(triggertype);
+       playerStateMachine.CurrentState.AnimationTriggerEvent(triggertype);
     }
 
 

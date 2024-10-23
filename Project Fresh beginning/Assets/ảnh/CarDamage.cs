@@ -17,14 +17,8 @@ public class CarDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-          
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
 
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damage);
-            }
-
+            GameManager.gameManager.PlayerHealth.TakeDamage(10);
             Destroy(gameObject);
         }
     }

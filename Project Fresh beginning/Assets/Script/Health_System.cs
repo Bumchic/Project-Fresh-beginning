@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Health_System 
 {
-    [field: SerializeField]private int _CurrentHealth;
-    private int _MaxHealth;
+    [field: SerializeField]private float _CurrentHealth;
+    private float _MaxHealth;
 
-    public int currentHealth
+    public float currentHealth
     {
         get
         {
@@ -19,7 +19,7 @@ public class Health_System
         }
     }
 
-    public int MaxHealth
+    public float MaxHealth
     {
         get
         {
@@ -31,13 +31,13 @@ public class Health_System
         }
     }
 
-    public Health_System(int CurrentHealth, int MaxHealth)
+    public Health_System(float CurrentHealth, float MaxHealth)
     {
         _CurrentHealth = CurrentHealth;
         _MaxHealth = MaxHealth;
     }
     
-    public void TakeDamage(int DamageAmount)
+    public void TakeDamage(float DamageAmount)
     {
         if(_CurrentHealth > 0)
         {
@@ -45,13 +45,13 @@ public class Health_System
         }
     }
 
-    public void Heal(int HealAmount)
+    public void Heal(float HealAmount)
     {
         _CurrentHealth += HealAmount;
         if(_CurrentHealth > _MaxHealth)
         {
             _CurrentHealth = _MaxHealth;
-        }   
+        }
     }
 
 }

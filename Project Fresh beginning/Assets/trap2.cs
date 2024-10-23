@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class trap2 : MonoBehaviour
 {
-    public int damageAmount = 1; 
+    public float damageAmount = 1f; 
     private bool isPlayerInTrap = false; 
     private Coroutine damageCoroutine; 
 
@@ -12,11 +12,11 @@ public class trap2 : MonoBehaviour
        
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null && !isPlayerInTrap)
+            //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (!isPlayerInTrap)
             {
                 isPlayerInTrap = true;
-                damageCoroutine = StartCoroutine(DamageOverTime(playerHealth));
+                damageCoroutine = StartCoroutine(DamageOverTime());
             }
         }
     }
@@ -33,12 +33,12 @@ public class trap2 : MonoBehaviour
         }
     }
 
-    IEnumerator DamageOverTime(PlayerHealth playerHealth)
+    IEnumerator DamageOverTime()
     {
         while (isPlayerInTrap)
         {
-            playerHealth.TakeDamage(damageAmount);
-            yield return new WaitForSeconds(1); 
+            GameManager.gameManager.PlayerHealth.TakeDamage(damageAmount);
+            yield return new WaitForSeconds(1f); 
         }
     }
 }
