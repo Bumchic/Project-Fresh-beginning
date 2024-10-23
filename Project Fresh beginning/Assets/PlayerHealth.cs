@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     private int _CurrentHealth;
-    private int _MaxHealth;
+    private int _MaxHealth = 100;
 
+    void Start()
+    {
+        _CurrentHealth = _MaxHealth;
+    }
     public int currentHealth
     {
         get
@@ -37,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
         _MaxHealth = MaxHealth;
     }
 
-    public void TakeDamage(int DamageAmount)
+    public void TakeDamage(int DamageAmount) // damageAmount = how much dame the player takes
     {
         if (_CurrentHealth > 0)
         {
