@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class trap2 : MonoBehaviour
 {
-    public float damageAmount = 1f; 
+    public int damageAmount = 1; 
     private bool isPlayerInTrap = false; 
     private Coroutine damageCoroutine; 
 
@@ -38,7 +38,7 @@ public class trap2 : MonoBehaviour
         while (isPlayerInTrap)
         {
             playerHealth.TakeDamage(damageAmount);
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(1); 
         }
     }
 }

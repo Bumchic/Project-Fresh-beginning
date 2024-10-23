@@ -7,7 +7,7 @@ public class trap1 : MonoBehaviour
     public Transform diemA; // Point A
     public Transform diemB; // Point B
     private Vector3 diemmuctieu; // Target position
-    public float damageAmount = 10f; // Damage dealt by the trap
+    public int damageAmount = 10; // Damage dealt by the trap
 
     void Start()
     {
