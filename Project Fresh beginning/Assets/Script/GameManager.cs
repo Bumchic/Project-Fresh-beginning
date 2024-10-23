@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     
     public static GameManager gameManager { get; private set; }
-
+    public EnemyHealth enemyHealth = new EnemyHealth();
     public Health_System PlayerHealth = new Health_System(100, 100);
     public GameObject shadow;
 
