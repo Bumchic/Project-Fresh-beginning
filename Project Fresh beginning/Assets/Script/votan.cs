@@ -8,8 +8,8 @@ public class Votan : MonoBehaviour
     public Transform map1;
     public Transform map2;
     public float length;
-
    
+
     void Update()
     {
         // Check if MainCam is to the right of map1

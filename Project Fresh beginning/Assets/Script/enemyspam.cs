@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Camera mainCamera;
     private float lastSpawnX = 0f; // Last spawn position in the x-axis
-    private float spawnDistance = 30f; // Distance to spawn a new enemy
+    private float spawnDistance = 15f; // Distance to spawn a new enemys
     private void Start()
     {
         mainCamera = Camera.main;
@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
                 SpawnEnemy();
                 lastSpawnX += spawnDistance; // Update the last spawn position for the next enemy
             }
+          
         }
     }
 
