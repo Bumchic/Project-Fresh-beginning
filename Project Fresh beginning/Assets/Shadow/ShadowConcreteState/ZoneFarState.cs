@@ -15,14 +15,14 @@ public class ZoneFarState : ShadowState
     {
         base.enterState();
         FarMoveSpeed = shadow.MoveSpeed;
-        shadow.Move(FarMoveSpeed);
+        Debug.Log(FarMoveSpeed);
     }
 
     public override void exitState()
     {
         base.exitState();
         shadow.InZoneFar = false;
-        Debug.Log("FarState");
+        
     }
 
     public override void UpdateFrame()

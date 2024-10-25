@@ -26,6 +26,8 @@ public class ShadowBase :MonoBehaviour, IShadowMoveable
 
     void Awake()
     {
+        MoveSpeed = 50f;
+        FrictionPercent = 0.95f;
         stateMachine = new ShadowStateMachine();
         zoneCloseState = new ZoneCloseState(this, stateMachine);
         zoneMiddleState = new ZoneMiddleState(this, stateMachine);
@@ -35,8 +37,7 @@ public class ShadowBase :MonoBehaviour, IShadowMoveable
     void Start()
     {
         stateMachine.initialize(zoneFarState);
-        MoveSpeed = 50f;
-        FrictionPercent = 0.95f;
+       
         
     }
     void Update()

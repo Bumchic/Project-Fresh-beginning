@@ -17,7 +17,7 @@ public class PlayerFallingState : PlayerState
     {
         base.EnterState();
         player.animator.SetBool("IsFalling", true);
-        Debug.Log("fallings");
+        //Debug.Log("fallings");
     }
 
     public override void ExitState()
@@ -40,7 +40,6 @@ public class PlayerFallingState : PlayerState
 
         if (player.grounded == true)
         {
-            player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.idleState);
         }
     }

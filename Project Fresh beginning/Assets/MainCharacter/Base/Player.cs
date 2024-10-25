@@ -61,6 +61,8 @@ public class Player : MonoBehaviour, IMoveable
         GetInput();
         playerStateMachine.CurrentState.FrameUpdate();
     }
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Shadow")
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour, IMoveable
         xinput = Input.GetAxis("Horizontal");
         yinput = Input.GetAxis("Vertical");
     }
-
+    //Handle walk movement of user
     public void WalkMovement(float speed)
     {
 
@@ -98,6 +100,8 @@ public class Player : MonoBehaviour, IMoveable
  
         
     }
+
+    //Change the x transform of character to direction
     public void FaceDirection()
     {
         if(Mathf.Abs(xinput) != 0)
@@ -107,12 +111,13 @@ public class Player : MonoBehaviour, IMoveable
         }
         
     }
+    //grounded turn true when player is on the ground
     void Groundcheck()
     {      
         grounded = Physics2D.OverlapAreaAll(FloorCheckOuter.bounds.min, FloorCheckOuter.bounds.max, FloorCheckMask).Length > 0 && Physics2D.OverlapAreaAll(FloorCheckInner.bounds.min, FloorCheckInner.bounds.max, FloorCheckMask).Length > 0;
     }
 
-
+    //Prevent stand up when HeadCollision if true
     void HeadCollisionCheck()
     {
         HeadCollision = Physics2D.OverlapAreaAll(ColliderStandUpCheck.bounds.min, ColliderStandUpCheck.bounds.max, HeadCollisionMask).Length > 0;

@@ -12,9 +12,8 @@ public class ZoneCloseState : ShadowState
     public override void enterState()
     {
         base.enterState();
-        Debug.Log("CloseState");
-        CloseMoveSpeed = shadow.MoveSpeed * 50 / 100; 
-        shadow.Move(CloseMoveSpeed);
+        CloseMoveSpeed = shadow.MoveSpeed * (55f / 100f);
+        Debug.Log(CloseMoveSpeed);
     }
 
     public override void exitState()

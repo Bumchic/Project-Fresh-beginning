@@ -13,9 +13,8 @@ public class ZoneMiddleState : ShadowState
     public override void enterState()
     {
         base.enterState();
-        MiddleMoveSpeed = shadow.MoveSpeed * 80 / 100;
-        Debug.Log("MiddleState");
-        shadow.Move(MiddleMoveSpeed);
+        MiddleMoveSpeed = shadow.MoveSpeed * (80f / 100f);
+        Debug.Log(MiddleMoveSpeed);
     }
 
     public override void exitState()
