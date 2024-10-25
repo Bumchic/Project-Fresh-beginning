@@ -326,7 +326,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1029899580943642951, guid: 9dea5c4783354774dbc886d96aef0724, type: 3}
       propertyPath: m_Name
-      value: MageEnemy
+      value: Grunt
       objectReference: {fileID: 0}
     - target: {fileID: 1352460147379766893, guid: 9dea5c4783354774dbc886d96aef0724, type: 3}
       propertyPath: m_LocalPosition.x
