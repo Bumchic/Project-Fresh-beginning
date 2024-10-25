@@ -9,6 +9,7 @@ public class EnemyBaseScript : MonoBehaviour
     public EnemyStateMachine stateMachine { get; set; }
     public PatrolState patrolState { get; set; }
     public float acceleration { get; set; } = 1f;
+    [field: SerializeField] public Transform HeadTransform { get; set; }
     void Awake()
     {
         stateMachine = new EnemyStateMachine();
