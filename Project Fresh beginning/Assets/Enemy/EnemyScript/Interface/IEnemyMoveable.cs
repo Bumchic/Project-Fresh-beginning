@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IEnemyMoveable
 {
-    Rigidbody2D rigidbody { get; set; }
+    public Rigidbody2D rigidbody { get; set; }
     void Move();
     void PathFind();
     void FaceDirection();
