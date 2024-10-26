@@ -7,7 +7,8 @@ public class PatrolState : EnemyState
 {
     
     Ray ray;
-    public PatrolState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
+    
+    public PatrolState(Grunt enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
     }
@@ -26,19 +27,21 @@ public class PatrolState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        RayCastTest();
+        RayCast();
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+        
     }
-    public void RayCastTest()
+    public void RayCast()
     {
+
         RaycastHit2D hit = Physics2D.Raycast(enemy.HeadTransform.transform.position, enemy.HeadTransform.transform.right);
         if(hit)
         {
-            Debug.Log(hit);
+            Debug.Log("Hit");
         }
         
     }
