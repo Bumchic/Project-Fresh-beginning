@@ -8,7 +8,7 @@ public class PatrolState : EnemyState
     
     Ray ray;
     
-    public PatrolState(Grunt enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
+    public PatrolState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
     }
@@ -38,7 +38,7 @@ public class PatrolState : EnemyState
     public void RayCast()
     {
 
-        RaycastHit2D hit = Physics2D.Raycast(enemy.HeadTransform.transform.position, enemy.HeadTransform.transform.right);
+        RaycastHit2D hit = Physics2D.Raycast(enemy.HeadTransform.transform.position, enemy.HeadTransform.transform.right, enemy.RayLayerMask);
         if(hit)
         {
             Debug.Log("Hit");

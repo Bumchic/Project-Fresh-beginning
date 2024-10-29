@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if(SpawnShadow)
-        { Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity); }
+        {
+            Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity); 
+        }
 
     }
     private void Update()
