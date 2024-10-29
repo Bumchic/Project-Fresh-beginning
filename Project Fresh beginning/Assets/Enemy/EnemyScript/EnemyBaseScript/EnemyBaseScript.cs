@@ -7,13 +7,33 @@ public class EnemyBaseScript : MonoBehaviour
 {
     [field:SerializeField]public Rigidbody2D rigidbody { get; set ; }
     public EnemyStateMachine stateMachine { get; set; }
+    public PatrolState patrolState { get; set; }
+    public float num = 3f;
+    public LayerMask RayLayerMask;
 
     public float acceleration { get; set; } = 1f;
     [field: SerializeField] public Transform HeadTransform { get; set; }
     void Awake()
     {
         stateMachine = new EnemyStateMachine();
+        patrolState = new PatrolState(this, stateMachine);
     }
+
+    void Start()
+    {
+        stateMachine.Initialize(patrolState);
+    }
+
+    void Update()
+    {
+        stateMachine.enemyState.FrameUpdate();
+    }
+
+    void FixedUpdate()
+    {
+        stateMachine.enemyState.PhysicUpdate();
+    }
+
     public void Move(float speed)
     {
 
