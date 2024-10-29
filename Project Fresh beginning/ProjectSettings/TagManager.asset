@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Main Character
   - Shadow
+  - Enemies
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Floor
   - Climbing Ledge
   - Shadow
-  - 
+  - Enemy
   - 
   - 
   - 
