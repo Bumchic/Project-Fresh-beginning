@@ -380,7 +380,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.31853372, y: 0.46793133}
+  m_Offset: {x: 0.5194118, y: 0.46793133}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -391,7 +391,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17911088, y: 0.51725113}
+  m_Size: {x: 0.14258763, y: 0.51725113}
   m_EdgeRadius: 0
 --- !u!4 &672729074 stripped
 Transform:
@@ -724,6 +724,14 @@ PrefabInstance:
       propertyPath: <HeadTransform>k__BackingField
       value: 
       objectReference: {fileID: 2103362996}
+    - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+      propertyPath: <isFacingRight>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+      propertyPath: <WalkingIntoWall>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
       propertyPath: <FloorMask>k__BackingField.m_Bits
       value: 128
@@ -1171,7 +1179,7 @@ Transform:
   m_GameObject: {fileID: 1359915185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.39, y: 2.953, z: 0}
+  m_LocalPosition: {x: -7.28, y: 2.953, z: 0}
   m_LocalScale: {x: 4.9091444, y: 8.658401, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

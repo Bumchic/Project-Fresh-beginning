@@ -28,7 +28,10 @@ public class PatrolState : EnemyState
     {
         base.FrameUpdate();
         enemy.Move(5);
+        enemy.HitWallCheck();
         FaceOtherWay();
+        
+
     }
 
     public override void PhysicUpdate()
@@ -39,10 +42,10 @@ public class PatrolState : EnemyState
 
     public void FaceOtherWay()
     {
-        if(enemy.WalkingIntoWall)
+        if (enemy.WalkingIntoWall == true)
         {
             enemy.isFacingRight = 1 - enemy.isFacingRight;
         }
     }
-    
+
 }

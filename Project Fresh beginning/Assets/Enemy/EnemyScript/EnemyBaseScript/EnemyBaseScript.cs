@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBaseScript : MonoBehaviour
 {
@@ -28,17 +29,21 @@ public class EnemyBaseScript : MonoBehaviour
     void Start()
     {
         stateMachine.Initialize(patrolState);
+        FaceDirection();
     }
 
     void Update()
     {
         stateMachine.enemyState.FrameUpdate();
-        HitWallCheck();
+        FaceDirection();
+       
+     
     }
 
     void FixedUpdate()
     {
         stateMachine.enemyState.PhysicUpdate();
+        
     }
 
     public void Move(float speed)
@@ -46,26 +51,29 @@ public class EnemyBaseScript : MonoBehaviour
         //float CurrentSpeed = Mathf.Clamp(((rigidbody.velocity.x + acceleration)*NumFaceDirection())*Time.deltaTime, -speed, +speed);
 
         //rigidbody.velocity = new Vector2(NumFaceDirection(), rigidbody.velocity.y);
-        FaceDirection();
+
     }
     public void FaceDirection()
     {
         //float Direction = Mathf.Sign(rigidbody.velocity.x);
+
         transform.localScale = new Vector3(NumFaceDirection() * Transformx, transform.localScale.y, transform.localScale.z);
     }
 
     public void HitWallCheck()
     {
+
         WalkingIntoWall = Physics2D.OverlapAreaAll(WalkIntoWallCheck.bounds.min, WalkIntoWallCheck.bounds.max, FloorMask).Length > 0;
     }
 
-    public int NumFaceDirection()
+    public float NumFaceDirection()
     {
         if(isFacingRight == 0)
         {
-            return -1;
+            return -1f;
         }
-        return 1;
+            return 1f;
     }
-    
+
+
 }
