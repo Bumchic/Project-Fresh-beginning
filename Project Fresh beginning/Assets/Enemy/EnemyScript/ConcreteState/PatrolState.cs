@@ -6,7 +6,7 @@ using UnityEngine;
 public class PatrolState : EnemyState
 {
     
-    Ray ray;
+
     
     public PatrolState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
@@ -27,7 +27,8 @@ public class PatrolState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        RayCast();
+        enemy.Move(5);
+        FaceOtherWay();
     }
 
     public override void PhysicUpdate()
@@ -35,14 +36,13 @@ public class PatrolState : EnemyState
         base.PhysicUpdate();
         
     }
-    public void RayCast()
-    {
 
-        RaycastHit2D hit = Physics2D.Raycast(enemy.HeadTransform.transform.position, enemy.HeadTransform.transform.right, enemy.RayLayerMask);
-        if(hit)
+    public void FaceOtherWay()
+    {
+        if(enemy.WalkingIntoWall)
         {
-            Debug.Log("Hit");
+            enemy.isFacingRight = 1 - enemy.isFacingRight;
         }
-        
     }
+    
 }
