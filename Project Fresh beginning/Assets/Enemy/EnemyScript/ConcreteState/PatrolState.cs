@@ -27,7 +27,7 @@ public class PatrolState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        enemy.Move(5);
+        enemy.Move(2);
         enemy.HitWallCheck();
         FaceOtherWay();
         

@@ -12,12 +12,12 @@ public class EnemyBaseScript : MonoBehaviour
     public PatrolState patrolState { get; set; }
 
     [field: SerializeField] public BoxCollider2D WalkIntoWallCheck {  get; set; }
-    [field: SerializeField] public float acceleration { get; set; } = 3f;
     [field: SerializeField] public Transform HeadTransform { get; set; }
     [field: SerializeField] public Boolean WalkingIntoWall {  get; set; }
     [field: SerializeField] public LayerMask FloorMask { get; set; }
     [field: SerializeField] public int isFacingRight { get; set; } 
     public float Transformx { get; set; }
+    public float maxSpeed { get; set; } = 5f;
     void Awake()
     {
         stateMachine = new EnemyStateMachine();
@@ -48,9 +48,7 @@ public class EnemyBaseScript : MonoBehaviour
 
     public void Move(float speed)
     {
-        //float CurrentSpeed = Mathf.Clamp(((rigidbody.velocity.x + acceleration)*NumFaceDirection())*Time.deltaTime, -speed, +speed);
-
-        //rigidbody.velocity = new Vector2(NumFaceDirection(), rigidbody.velocity.y);
+        rigidbody.velocity = new Vector2(speed * NumFaceDirection(), rigidbody.velocity.y);
 
     }
     public void FaceDirection()
