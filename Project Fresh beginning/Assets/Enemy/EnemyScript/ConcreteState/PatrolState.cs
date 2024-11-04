@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PatrolState : EnemyState
 {
-    
-
-    
     public PatrolState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
@@ -30,8 +27,6 @@ public class PatrolState : EnemyState
         enemy.Move(2);
         enemy.HitWallCheck();
         FaceOtherWay();
-        
-
     }
 
     public override void PhysicUpdate()

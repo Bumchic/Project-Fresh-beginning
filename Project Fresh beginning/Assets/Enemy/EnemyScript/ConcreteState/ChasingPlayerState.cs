@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChasingPlayerState : MonoBehaviour
+public class ChasingPlayerState : EnemyState
 {
-    // Start is called before the first frame update
-    void Start()
+    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
-        
+
+    }
+    public override void EnterState()
+    {
+        base.EnterState();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ExitState()
     {
-        
+        base.ExitState();
+    }
+
+    public override void FrameUpdate()
+    {
+        base.FrameUpdate();
+    }
+
+    public override void PhysicUpdate()
+    {
+        base.PhysicUpdate();
     }
 }

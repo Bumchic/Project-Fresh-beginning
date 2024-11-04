@@ -10,14 +10,13 @@ public class EnemyBaseScript : MonoBehaviour
     [field:SerializeField]public Rigidbody2D rigidbody { get; set ; }
     public EnemyStateMachine stateMachine { get; set; }
     public PatrolState patrolState { get; set; }
-
     [field: SerializeField] public BoxCollider2D WalkIntoWallCheck {  get; set; }
-    [field: SerializeField] public Transform HeadTransform { get; set; }
     [field: SerializeField] public Boolean WalkingIntoWall {  get; set; }
     [field: SerializeField] public LayerMask FloorMask { get; set; }
     [field: SerializeField] public int isFacingRight { get; set; } 
     public float Transformx { get; set; }
     public float maxSpeed { get; set; } = 5f;
+    [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
     void Awake()
     {
         stateMachine = new EnemyStateMachine();
@@ -49,7 +48,6 @@ public class EnemyBaseScript : MonoBehaviour
     public void Move(float speed)
     {
         rigidbody.velocity = new Vector2(speed * NumFaceDirection(), rigidbody.velocity.y);
-
     }
     public void FaceDirection()
     {
@@ -60,7 +58,6 @@ public class EnemyBaseScript : MonoBehaviour
 
     public void HitWallCheck()
     {
-
         WalkingIntoWall = Physics2D.OverlapAreaAll(WalkIntoWallCheck.bounds.min, WalkIntoWallCheck.bounds.max, FloorMask).Length > 0;
     }
 
