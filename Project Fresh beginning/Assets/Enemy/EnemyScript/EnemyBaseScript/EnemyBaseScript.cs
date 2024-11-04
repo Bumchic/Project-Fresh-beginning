@@ -10,13 +10,14 @@ public class EnemyBaseScript : MonoBehaviour
     public PatrolState patrolState { get; set; }
     public float num = 3f;
     public LayerMask RayLayerMask;
-
+    public ChasingPlayerState chasingPlayerState { get; set; }
     public float acceleration { get; set; } = 1f;
     [field: SerializeField] public Transform HeadTransform { get; set; }
     void Awake()
     {
         stateMachine = new EnemyStateMachine();
         patrolState = new PatrolState(this, stateMachine);
+        chasingPlayerState = new ChasingPlayerState(this, stateMachine);
     }
 
     void Start()
@@ -36,8 +37,6 @@ public class EnemyBaseScript : MonoBehaviour
 
     public void Move(float speed)
     {
-
-
         float CurrentSpeed = Mathf.Clamp(rigidbody.velocity.x + acceleration, -speed, +speed);
 
         rigidbody.velocity = new Vector2(CurrentSpeed, rigidbody.velocity.y);
