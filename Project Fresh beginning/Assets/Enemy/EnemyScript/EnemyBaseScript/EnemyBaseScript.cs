@@ -42,7 +42,6 @@ public class EnemyBaseScript : MonoBehaviour
     void FixedUpdate()
     {
         stateMachine.enemyState.PhysicUpdate();
-        
     }
 
     public void Move(float speed)
