@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public int attackDamage; // dame by enemies
-    public Player_Health playerHealth;
+    public int DamageAmount; // dame by enemies
+    public PlayerHealth playerHealth;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.tag == "Player")
         {
-            //dame to player
-            GameManager.gameManager.enemyHealth.takeDamage(attackDamage);
+            playerHealth.TakeDamage(DamageAmount);
         }
     }
 }

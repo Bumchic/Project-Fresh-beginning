@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 50; 
+    public int maxHealth = 10; 
     public int currentHealth;
     public Sprite portrait; // Create a box to store the enemy's portrait
                             // Start is called before the first frame update
