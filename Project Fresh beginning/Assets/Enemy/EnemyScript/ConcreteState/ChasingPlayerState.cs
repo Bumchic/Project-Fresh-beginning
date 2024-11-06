@@ -1,31 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class ChasingPlayerState : EnemyState
 {
-    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) { }
-/*    enemy.stateMachine.ChangeState(//StateName);
-*/
+    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
+    {
+
+    }
     public override void EnterState()
     {
-        base.EnterState(); // like void start
+        base.EnterState();
     }
 
     public override void ExitState()
     {
-        base.ExitState(); // stop state and change new state
+        base.ExitState();
     }
 
     public override void FrameUpdate()
     {
-        base.FrameUpdate(); // like void update
-        enemy.stateMachine.ChangeState(enemy.patrolState);
+        base.FrameUpdate();
     }
 
     public override void PhysicUpdate()
     {
-        base.PhysicUpdate(); // like fix update 
+        base.PhysicUpdate();
     }
 }
