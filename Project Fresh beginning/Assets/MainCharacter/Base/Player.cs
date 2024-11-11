@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +21,13 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
     private float Max_acceleration = 2f;
+
+
+
+    public float knockBackForce; // how powerfull the knockback will be (luc day lui se manh nhu the nao)
+    public float knockBackCounter; // counts down how much time is left on the effect (dem nguoc thoi gian con lai cua hieu ung)
+    public float knockBackTotalTime; // how long the knockback will last altogether (su day lui se keo dai bao lau)
+    public bool knockFromRight; // keeps track of which direction the player has been hit from(theo dõi hướng player bị tấn công)
     public float GravScale {  get; set; }
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
     //Attribute

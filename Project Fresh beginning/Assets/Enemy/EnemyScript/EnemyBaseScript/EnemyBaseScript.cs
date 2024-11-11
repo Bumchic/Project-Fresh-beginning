@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +7,10 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBaseScript : MonoBehaviour
 {
-    [field:SerializeField]public Rigidbody2D rigidbody { get; set ; }
     public EnemyStateMachine stateMachine { get; set; }
     public PatrolState patrolState { get; set; }
+    public ChasingPlayerState chasingPlayerState { get; set; } // Lộc add 
+    [field: SerializeField] public Rigidbody2D rigidbody { get; set; }
     [field: SerializeField] public BoxCollider2D WalkIntoWallCheck {  get; set; }
     [field: SerializeField] public Boolean WalkingIntoWall {  get; set; }
     [field: SerializeField] public LayerMask FloorMask { get; set; }
@@ -23,6 +24,9 @@ public class EnemyBaseScript : MonoBehaviour
         patrolState = new PatrolState(this, stateMachine);
         Transformx = transform.localScale.x;
         isFacingRight = 0;
+
+        rigidbody = GetComponent<Rigidbody2D>(); // Loc add
+        chasingPlayerState = new ChasingPlayerState(this, stateMachine); // Loc add
     }
 
     void Start()
@@ -35,8 +39,6 @@ public class EnemyBaseScript : MonoBehaviour
     {
         stateMachine.enemyState.FrameUpdate();
         FaceDirection();
-       
-     
     }
 
     void FixedUpdate()

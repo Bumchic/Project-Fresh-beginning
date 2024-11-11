@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,6 +24,14 @@ public class PatrolState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        // Check if player detected, switch to chase state
+        if (enemy.isChasingPlayer)  // Lộc add
+        {
+            stateMachine.ChangeState(enemy.chasingPlayerState);
+            return;
+        }
+
+        // Patrol move
         enemy.Move(2);
         enemy.HitWallCheck();
         FaceOtherWay();

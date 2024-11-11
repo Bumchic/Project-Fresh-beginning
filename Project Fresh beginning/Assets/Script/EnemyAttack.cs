@@ -6,6 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     public int DamageAmount; // dame by enemies
     public PlayerHealth playerHealth;
+ 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
