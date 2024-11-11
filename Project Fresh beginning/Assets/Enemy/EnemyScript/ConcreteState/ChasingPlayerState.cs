@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ChasingPlayerState : EnemyState
 {
-    [field:SerializeField]public Transform PlayerPosition { get; set; }
+    public GameObject Player { get; set; }
+    public Transform PlayerTransform { get; set; }
     public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
@@ -12,6 +13,8 @@ public class ChasingPlayerState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        Player = GameObject.Find("Player");
+        PlayerTransform = Player.GetComponent<Transform>();
 
     }
 
@@ -23,6 +26,7 @@ public class ChasingPlayerState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        Debug.Log(PlayerTransform.localPosition.x);
     }
 
     public override void PhysicUpdate()

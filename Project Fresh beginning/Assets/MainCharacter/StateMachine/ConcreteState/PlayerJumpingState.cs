@@ -18,7 +18,7 @@ public class PlayerJumpingState : PlayerState
     {
         base.EnterState();
         player.animator.SetBool("IsJumping",true);
-        Debug.Log("jumping");
+
     }
 
     public override void ExitState()
