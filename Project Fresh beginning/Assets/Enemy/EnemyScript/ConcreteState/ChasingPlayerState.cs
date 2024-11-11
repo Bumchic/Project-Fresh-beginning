@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChasingPlayerState : EnemyState
 {
+    [field:SerializeField]public Transform PlayerPosition { get; set; }
     public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
 
@@ -11,6 +12,7 @@ public class ChasingPlayerState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+
     }
 
     public override void ExitState()
