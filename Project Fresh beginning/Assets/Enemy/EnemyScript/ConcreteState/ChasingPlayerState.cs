@@ -25,6 +25,7 @@ public class ChasingPlayerState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        // * Loc add
         if (playerTransform == null || !enemy.isChasingPlayer)
         {
             stateMachine.ChangeState(enemy.patrolState);
@@ -45,6 +46,8 @@ public class ChasingPlayerState : EnemyState
         // Di chuyển về phía người chơi
         Vector2 direction = (playerTransform.position - enemy.transform.position).normalized;
         enemy.Move(direction.x * chaseSpeed);
+
+        // Loc add *
     }
 
     public override void PhysicUpdate()

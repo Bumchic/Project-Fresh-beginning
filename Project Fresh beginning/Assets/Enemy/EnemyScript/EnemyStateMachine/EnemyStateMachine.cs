@@ -6,7 +6,7 @@ using static Unity.Collections.Unicode;
 public class EnemyStateMachine
 {
     public EnemyState enemyState { get; set; }
-
+   
     public void Initialize(EnemyState InitState)
     {
         enemyState = InitState;
