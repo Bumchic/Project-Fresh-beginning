@@ -13,10 +13,8 @@ public class EnemyVision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Chase");
             Grunt.isChasingPlayer = true;
         }
     }
