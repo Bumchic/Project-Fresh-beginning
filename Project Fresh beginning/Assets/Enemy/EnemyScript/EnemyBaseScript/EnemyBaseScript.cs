@@ -10,6 +10,7 @@ public class EnemyBaseScript : MonoBehaviour
     [field:SerializeField]public Rigidbody2D rigidbody { get; set ; }
     public EnemyStateMachine stateMachine { get; set; }
     public PatrolState patrolState { get; set; }
+    public ChasingPlayerState chasingPlayerState { get; set; }  
     [field: SerializeField] public BoxCollider2D WalkIntoWallCheck {  get; set; }
     [field: SerializeField] public Boolean WalkingIntoWall {  get; set; }
     [field: SerializeField] public LayerMask FloorMask { get; set; }
@@ -21,6 +22,7 @@ public class EnemyBaseScript : MonoBehaviour
     {
         stateMachine = new EnemyStateMachine();
         patrolState = new PatrolState(this, stateMachine);
+        chasingPlayerState = new ChasingPlayerState(this, stateMachine);
         Transformx = transform.localScale.x;
         isFacingRight = 0;
     }

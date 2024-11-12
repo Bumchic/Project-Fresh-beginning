@@ -27,6 +27,10 @@ public class PatrolState : EnemyState
         enemy.Move(2);
         enemy.HitWallCheck();
         FaceOtherWay();
+        if(enemy.isChasingPlayer)
+        {
+            enemy.stateMachine.ChangeState(enemy.chasingPlayerState);
+        }
     }
 
     public override void PhysicUpdate()

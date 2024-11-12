@@ -13,8 +13,13 @@ public class ChasingPlayerState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
-        Player = GameObject.Find("Player");
-        PlayerTransform = Player.GetComponent<Transform>();
+        
+        Player = GameObject.Find("TestingMainCharacter");
+        if(Player != null)
+        {
+            PlayerTransform = Player.GetComponent<Transform>();
+        }
+
 
     }
 
@@ -26,11 +31,27 @@ public class ChasingPlayerState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        Debug.Log(PlayerTransform.localPosition.x);
+        TurnAround();
+        enemy.Move(4);
+        Debug.Log(PlayerTransform.localPosition.x - enemy.gameObject.transform.localPosition.x);
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+    }
+
+    public void TurnAround()
+    {
+        if(PlayerTransform.localPosition.x - enemy.gameObject.transform.localPosition.x > 0f)
+        {
+            Debug.Log("right");
+            enemy.isFacingRight = 1;
+        }
+        else
+        {
+            Debug.Log("left");
+            enemy.isFacingRight = 0;
+        }
     }
 }
