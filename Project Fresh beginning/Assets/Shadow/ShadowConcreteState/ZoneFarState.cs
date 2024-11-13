@@ -15,7 +15,7 @@ public class ZoneFarState : ShadowState
     {
         base.enterState();
         FarMoveSpeed = shadow.MoveSpeed;
-        shadow.Move(FarMoveSpeed);
+        
     }
 
     public override void exitState()
@@ -28,7 +28,8 @@ public class ZoneFarState : ShadowState
     public override void UpdateFrame()
     {
         base.UpdateFrame();
-        if(shadow.InZoneMiddle)
+        shadow.Move(FarMoveSpeed);
+        if (shadow.InZoneMiddle)
         {
             shadow.stateMachine.ChangeState(shadow.zoneMiddleState);
         }

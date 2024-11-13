@@ -53,10 +53,7 @@ public class ShadowBase :MonoBehaviour, IShadowMoveable
     {
             rigidbody2D.AddForce(new Vector2(Speed, rigidbody2D.velocity.y) * rigidbody2D.mass); 
     }
-    public void MoveDebug(float Speed)
-    {
-        rigidbody2D.velocity = new Vector2(Speed, rigidbody2D.velocity.y);
-    }
+
 
     public void Friction(float friction)
     {

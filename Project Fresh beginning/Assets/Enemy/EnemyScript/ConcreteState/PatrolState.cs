@@ -11,8 +11,7 @@ public class PatrolState : EnemyState
     }
     public override void EnterState()
     {
-        base.EnterState();
-        
+        base.EnterState();       
         Debug.Log("Patrol");
     }
 

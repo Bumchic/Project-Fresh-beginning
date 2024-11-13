@@ -146,10 +146,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestingMainCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 943956665716533079, guid: 1f28ca572b739da44b547972c520f418, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1126036485415077772, guid: 1f28ca572b739da44b547972c520f418, type: 3}
       propertyPath: m_TagString
       value: Player
