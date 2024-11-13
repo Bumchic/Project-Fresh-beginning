@@ -4,54 +4,24 @@ using UnityEngine;
 
 public class ChasingPlayerState : EnemyState
 {
-    private Transform playerTransform; // Loc add
-    private float chaseSpeed = 4f; // Loc add
-    private float stopChaseDistance = 10f; // Loc add
-    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
+    private Transform playerTransform;
+
+    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine, Transform playerTransform)
+        : base(enemy, stateMachine)
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Loc add 
-    }
-    public override void EnterState()
-    {
-        base.EnterState();
-        Debug.Log("Chasing Player");
+        this.playerTransform = playerTransform;
     }
 
-    public override void ExitState()
+    public override void EnterState()
     {
-        base.ExitState();
+        Debug.Log("Chasing Player");
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        // * Loc add
-        if (playerTransform == null || !enemy.isChasingPlayer)
-        {
-            stateMachine.ChangeState(enemy.patrolState);
-            return;
-        }
-
-        // Tính toán khoảng cách tới người chơi
-        float distanceToPlayer = Vector2.Distance(enemy.transform.position, playerTransform.position);
-
-        // Nếu người chơi ra khỏi phạm vi đuổi bắt, quay về tuần tra
-        if (distanceToPlayer > stopChaseDistance)
-        {
-            enemy.isChasingPlayer = false;
-            stateMachine.ChangeState(enemy.patrolState);
-            return;
-        }
-
-        // Di chuyển về phía người chơi
+        // Logic để đuổi theo player
         Vector2 direction = (playerTransform.position - enemy.transform.position).normalized;
-        enemy.Move(direction.x * chaseSpeed);
-
-        // Loc add *
-    }
-
-    public override void PhysicUpdate()
-    {
-        base.PhysicUpdate();
+        enemy.Move(direction.x * enemy.maxSpeed);
     }
 }

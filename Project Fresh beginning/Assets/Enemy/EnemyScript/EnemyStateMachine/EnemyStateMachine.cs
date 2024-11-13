@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Collections.Unicode;
 
 public class EnemyStateMachine
 {
-    public EnemyState enemyState { get; set; }
-   
-    public void Initialize(EnemyState InitState)
+    public EnemyState enemyState { get; private set; }
+    public IdleState idleState;
+    public KnockBackState knockbackState;
+
+    private EnemyBaseScript enemy;
+
+
+    public EnemyStateMachine(EnemyBaseScript enemy, Rigidbody2D rb)
     {
-        enemyState = InitState;
-        InitState.EnterState();
+        this.enemy = enemy;
+        idleState = new IdleState(enemy, this);
+        knockbackState = new KnockBackState(enemy, this, rb);
+    }
+
+    public void Initialize(EnemyState initialState)
+    {
+        enemyState = initialState;
+        enemyState.EnterState();
     }
 
     public void ChangeState(EnemyState newState)
@@ -18,5 +29,10 @@ public class EnemyStateMachine
         enemyState.ExitState();
         enemyState = newState;
         enemyState.EnterState();
+    }
+
+    public void Update()
+    {
+        enemyState.FrameUpdate();
     }
 }
