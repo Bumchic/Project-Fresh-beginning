@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 
 public class PlayerRunningState : PlayerState
 {
-    
+    private bool isSpeedBoosted = false; //
+    private float speedBoostMultiplier = 1.5f; //
     public PlayerRunningState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -33,7 +34,8 @@ public class PlayerRunningState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        if(Mathf.Abs(player.xinput) > 0)
+        float currentSpeed = isSpeedBoosted ? player.RunSpeed * speedBoostMultiplier : player.RunSpeed;//
+        if (Mathf.Abs(player.xinput) > 0)
         {
             player.WalkMovement(player.RunSpeed);
         }        
@@ -57,6 +59,16 @@ public class PlayerRunningState : PlayerState
     {
         base.PhysicUpdate();
     }
+   
+    public void ActivateSpeedBoost()//
+    {
+        isSpeedBoosted = true;
+    }
 
+   
+    public void DeactivateSpeedBoost()//
+    {
+        isSpeedBoosted = false;
+    }
 
 }

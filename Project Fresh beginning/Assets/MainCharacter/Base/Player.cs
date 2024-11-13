@@ -11,8 +11,8 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public Rigidbody2D Rigidbody2d { get; set; }
     public float xinput { get; set; }
     public float yinput { get; set; }
-    public float Transformx {get; set;}
-    [field: SerializeField] public BoxCollider2D FloorCheckOuter { get; set;}
+    public float Transformx { get; set; }
+    [field: SerializeField] public BoxCollider2D FloorCheckOuter { get; set; }
     [field: SerializeField] public BoxCollider2D FloorCheckInner { get; set; }
     [field: SerializeField] public LayerMask FloorCheckMask { get; set; }
     public Boolean grounded;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IMoveable
     [field: SerializeField] public LayerMask HeadCollisionMask { get; set; }
     public bool HeadCollision;
     private float Max_acceleration = 2f;
-    public float GravScale {  get; set; }
+    public float GravScale { get; set; }
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
     //Attribute
     //State Variable
@@ -32,11 +32,13 @@ public class Player : MonoBehaviour, IMoveable
     public PlayerCrouchWalkingState CrouchWalkingState { get; set; }
     public PlayerJumpingState jumpingState { get; set; }
     public PlayerFallingState fallingState { get; set; }
- 
+
 
     private void Awake()
     {
-        playerStateMachine = new PlayerStateMachine();
+       
+        playerStateMachine = new PlayerStateMachine();//
+ 
         idleState = new PlayerIdleState(this, playerStateMachine);
         runningState = new PlayerRunningState(this, playerStateMachine);
         crouchingState = new PlayerCrouchingState(this, playerStateMachine);
@@ -45,13 +47,14 @@ public class Player : MonoBehaviour, IMoveable
         fallingState = new PlayerFallingState(this, playerStateMachine);
 
     }
-
+    
     void Start()
     {
         RunSpeed = 10f;
         Transformx = transform.localScale.x;
         GravScale = Rigidbody2d.gravityScale;
         playerStateMachine.intizialize(idleState);
+
     }
     private void Update()
     {
@@ -63,11 +66,11 @@ public class Player : MonoBehaviour, IMoveable
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Shadow")
+        if (other.gameObject.tag == "Shadow")
         {
             PlayerTakeDamage(9999);
         }
-        
+
     }
     private void FixedUpdate()
     {
@@ -79,8 +82,7 @@ public class Player : MonoBehaviour, IMoveable
         GameOver.LoadMainMenu();
     }
 
-
-
+    
     public void GetInput()
     {
         xinput = Input.GetAxis("Horizontal");
@@ -92,23 +94,23 @@ public class Player : MonoBehaviour, IMoveable
 
         float acceleration = xinput * Max_acceleration;
         float CurrentSpeed = Mathf.Clamp(Rigidbody2d.velocity.x + acceleration, -speed, +speed);
-     
-            Rigidbody2d.velocity = new Vector2(CurrentSpeed, Rigidbody2d.velocity.y);
-            FaceDirection();
- 
-        
+
+        Rigidbody2d.velocity = new Vector2(CurrentSpeed, Rigidbody2d.velocity.y);
+        FaceDirection();
+
+
     }
     public void FaceDirection()
     {
-        if(Mathf.Abs(xinput) != 0)
+        if (Mathf.Abs(xinput) != 0)
         {
             float Direction = Mathf.Sign(xinput);
             transform.localScale = new Vector3(Direction * Transformx, transform.localScale.y, transform.localScale.z);
         }
-        
+
     }
     void Groundcheck()
-    {      
+    {
         grounded = Physics2D.OverlapAreaAll(FloorCheckOuter.bounds.min, FloorCheckOuter.bounds.max, FloorCheckMask).Length > 0 && Physics2D.OverlapAreaAll(FloorCheckInner.bounds.min, FloorCheckInner.bounds.max, FloorCheckMask).Length > 0;
     }
 
@@ -139,14 +141,14 @@ public class Player : MonoBehaviour, IMoveable
     //The event in animation window will call this function
     private void AnimationTriggerEvent(AnimationTriggerType triggertype)
     {
-       playerStateMachine.CurrentState.AnimationTriggerEvent(triggertype);
+        playerStateMachine.CurrentState.AnimationTriggerEvent(triggertype);
     }
 
 
 
     public enum AnimationTriggerType
     {
-        
+
     }
 }
 
