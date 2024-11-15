@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestingMainCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 943956665716533079, guid: 1f28ca572b739da44b547972c520f418, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1126036485415077772, guid: 1f28ca572b739da44b547972c520f418, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -561,6 +565,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1044345874}
+    - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
       propertyPath: <WalkIntoWallCheck>k__BackingField
       value: 
       objectReference: {fileID: 547461523}
@@ -581,6 +589,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+--- !u!95 &1044345874 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 286061291672574475, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+  m_PrefabInstance: {fileID: 982556285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1111052256
 GameObject:
   m_ObjectHideFlags: 0

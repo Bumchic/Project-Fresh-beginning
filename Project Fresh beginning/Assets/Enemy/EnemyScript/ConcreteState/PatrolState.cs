@@ -13,11 +13,13 @@ public class PatrolState : EnemyState
     {
         base.EnterState();       
         Debug.Log("Patrol");
+        enemy.animator.SetBool("isWalking", true);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        enemy.animator.SetBool("isWalking", false);
     }
 
     public override void FrameUpdate()

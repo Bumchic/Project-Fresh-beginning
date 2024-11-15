@@ -18,6 +18,7 @@ public class EnemyBaseScript : MonoBehaviour
     public float Transformx { get; set; }
     public float maxSpeed { get; set; } = 5f;
     [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
+    public Animator animator;
     void Awake()
     {
         stateMachine = new EnemyStateMachine();
