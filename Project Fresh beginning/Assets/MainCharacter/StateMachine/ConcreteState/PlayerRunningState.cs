@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
-using UnityEngine.Windows;
 using UnityEngine.UIElements;
 
 public class PlayerRunningState : PlayerState
@@ -50,6 +49,10 @@ public class PlayerRunningState : PlayerState
         if(player.Rigidbody2d.velocity.y < 0 && player.grounded == false)
         {
             player.playerStateMachine.ChangeState(player.fallingState);
+        }
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            player.playerStateMachine.ChangeState(player.crouchingState);
         }
     }
 

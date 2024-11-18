@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
     }
     public void Update()
     {
-        if (GameManager.gameManager.PlayerHealth.currentHealth < CurrentHealth)
+        if (GameManager.gameManager.PlayerHealth.currentHealth != CurrentHealth)
         {
             UpdateBar(GameManager.gameManager.PlayerHealth.currentHealth, GameManager.gameManager.PlayerHealth.MaxHealth);
             CurrentHealth = GameManager.gameManager.PlayerHealth.currentHealth;

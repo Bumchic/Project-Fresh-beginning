@@ -14,10 +14,14 @@ public class ChasingPlayerState : EnemyState
     {
         base.EnterState();
         enemy.animator.SetBool("isRunning", true);
-        Player = GameObject.Find("TestingMainCharacter");
+        Player = GameObject.Find("MainCharacter");
         if(Player != null)
         {
             PlayerTransform = Player.GetComponent<Transform>();
+        }
+        else
+        {
+            enemy.stateMachine.ChangeState(enemy.patrolState);
         }
 
 
