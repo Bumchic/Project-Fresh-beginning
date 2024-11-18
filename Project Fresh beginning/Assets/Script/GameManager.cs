@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Health_System PlayerHealth = new Health_System(100, 100);
     public GameObject shadow;
     public Boolean SpawnShadow;
+    public GameObject HealthBarUI;
 
     void Awake()
     {
@@ -30,7 +31,8 @@ public class GameManager : MonoBehaviour
     {
         if(SpawnShadow)
         {
-            Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity); 
+            Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity);
+            
         }
 
     }
