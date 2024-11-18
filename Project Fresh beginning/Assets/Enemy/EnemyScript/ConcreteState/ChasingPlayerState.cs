@@ -13,7 +13,7 @@ public class ChasingPlayerState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
-        
+        enemy.animator.SetBool("isRunning", true);
         Player = GameObject.Find("TestingMainCharacter");
         if(Player != null)
         {
@@ -26,6 +26,7 @@ public class ChasingPlayerState : EnemyState
     public override void ExitState()
     {
         base.ExitState();
+        enemy.animator.SetBool("isRunning", false);
     }
 
     public override void FrameUpdate()

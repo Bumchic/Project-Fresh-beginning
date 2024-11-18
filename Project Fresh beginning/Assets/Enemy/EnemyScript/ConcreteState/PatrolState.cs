@@ -36,10 +36,8 @@ public class PatrolState : EnemyState
 
     public override void PhysicUpdate()
     {
-        base.PhysicUpdate();
-        
+        base.PhysicUpdate();       
     }
-
     public void FaceOtherWay()
     {
         if (enemy.WalkingIntoWall == true)
