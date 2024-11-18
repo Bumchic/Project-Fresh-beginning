@@ -20,6 +20,7 @@ public class MiddleTriggerCheck : MonoBehaviour
     {
         if (other == Collider)
         {
+            Debug.Log("Middle");
             shadow.InZoneMiddle = true;
         }
     }
