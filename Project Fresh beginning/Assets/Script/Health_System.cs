@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health_System
+public class Health_System 
 {
     [field: SerializeField]private float _CurrentHealth;
     private float _MaxHealth;
