@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("level");
     }
     public void BackMenu()
     {
