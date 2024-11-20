@@ -5,18 +5,18 @@ using UnityEngine;
 public class EnemyStateMachine
 {
     public EnemyState enemyState { get; private set; }
-    public IdleState idleState;
-    public KnockBackState knockbackState;
+    //public IdleState idleState;
+    //public KnockBackState knockbackState;
 
-    private EnemyBaseScript enemy;
+    //private EnemyBaseScript enemy;
 
 
-    public EnemyStateMachine(EnemyBaseScript enemy, Rigidbody2D rb)
-    {
-        this.enemy = enemy;
-        idleState = new IdleState(enemy, this);
-        knockbackState = new KnockBackState(enemy, this, rb);
-    }
+    //public EnemyStateMachine(EnemyBaseScript enemy, Rigidbody2D rb)
+    //{
+    //    this.enemy = enemy;
+    //   /* idleState = new IdleState(enemy, this); // LOC ADD*/
+    //    //knockbackState = new KnockBackState(enemy, this);
+    //}
 
     public void Initialize(EnemyState initialState)
     {
@@ -31,8 +31,8 @@ public class EnemyStateMachine
         enemyState.EnterState();
     }
 
-    public void Update()
-    {
-        enemyState.FrameUpdate();
-    }
+    //public void Update()
+    //{
+    //    enemyState.FrameUpdate();
+    //}
 }

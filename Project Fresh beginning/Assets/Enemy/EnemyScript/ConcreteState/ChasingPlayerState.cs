@@ -6,10 +6,10 @@ public class ChasingPlayerState : EnemyState
 {
     private Transform playerTransform;
 
-    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine, Transform playerTransform)
+    public ChasingPlayerState(EnemyBaseScript enemy, EnemyStateMachine stateMachine)
         : base(enemy, stateMachine)
     {
-        this.playerTransform = playerTransform;
+       
     }
 
     public override void EnterState()

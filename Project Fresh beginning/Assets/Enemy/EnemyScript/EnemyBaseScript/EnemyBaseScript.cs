@@ -7,6 +7,9 @@ public class EnemyBaseScript : MonoBehaviour
     public EnemyStateMachine stateMachine { get; private set; }
     public PatrolState patrolState { get; private set; }
     public ChasingPlayerState chasingPlayerState { get; private set; }
+    public KnockBackState knockBackState { get; private set; }
+
+    public Transform player_Transform;
 
     [field: SerializeField] public Rigidbody2D rigidbody { get; private set; }
     [field: SerializeField] public BoxCollider2D WalkIntoWallCheck { get; private set; }
@@ -19,6 +22,8 @@ public class EnemyBaseScript : MonoBehaviour
     public float Transformx { get; private set; }
     public float maxSpeed { get; private set; } = 5f;
 
+
+
     private void Awake()
     {
         // Lấy Rigidbody và Player Transform
@@ -26,11 +31,13 @@ public class EnemyBaseScript : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         // Khởi tạo State Machine
-        stateMachine = new EnemyStateMachine(this, rigidbody);
+        stateMachine = new EnemyStateMachine();
+
+        knockBackState = new KnockBackState(this, stateMachine);
 
         // Tạo các trạng thái
         patrolState = new PatrolState(this, stateMachine);
-        chasingPlayerState = new ChasingPlayerState(this, stateMachine, playerTransform);
+        chasingPlayerState = new ChasingPlayerState(this, stateMachine);
 
         // Khởi tạo các biến khác
         Transformx = transform.localScale.x;
@@ -75,4 +82,5 @@ public class EnemyBaseScript : MonoBehaviour
     {
         return isFacingRight == 0 ? -1f : 1f;
     }
+
 }
