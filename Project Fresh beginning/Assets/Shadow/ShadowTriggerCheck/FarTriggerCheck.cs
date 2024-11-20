@@ -21,7 +21,6 @@ public class FarTriggerCheck : MonoBehaviour
     {
         if (other == Collider)
         {
-            Debug.Log("far");
             shadow.InZoneFar = true;
         }
     }

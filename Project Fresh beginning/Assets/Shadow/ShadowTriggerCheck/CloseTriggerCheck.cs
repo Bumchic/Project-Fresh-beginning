@@ -20,7 +20,6 @@ public class CloseTriggerCheck : MonoBehaviour
     {
         if (other == Collider)
         {
-            Debug.Log("Close");
             shadow.InZoneClose = true;
         }
     }

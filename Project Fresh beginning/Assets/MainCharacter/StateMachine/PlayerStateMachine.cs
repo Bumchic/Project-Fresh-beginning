@@ -6,7 +6,7 @@ public class PlayerStateMachine
 {
     public PlayerState CurrentState { get; set; }
 
-    public void initialize(PlayerState startingState)
+    public void intizialize(PlayerState startingState)
     {
         CurrentState = startingState;
         CurrentState.EnterState();   

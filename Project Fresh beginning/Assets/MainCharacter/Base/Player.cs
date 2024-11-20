@@ -51,7 +51,7 @@ public class Player : MonoBehaviour, IMoveable
         RunSpeed = 10f;
         Transformx = transform.localScale.x;
         GravScale = Rigidbody2d.gravityScale;
-        playerStateMachine.initialize(idleState);
+        playerStateMachine.intizialize(idleState);
     }
     private void Update()
     {
