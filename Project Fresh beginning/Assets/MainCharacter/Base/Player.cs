@@ -36,9 +36,7 @@ public class Player : MonoBehaviour, IMoveable
 
     private void Awake()
     {
-       
-        playerStateMachine = new PlayerStateMachine();//
- 
+        playerStateMachine = new PlayerStateMachine();
         idleState = new PlayerIdleState(this, playerStateMachine);
         runningState = new PlayerRunningState(this, playerStateMachine);
         crouchingState = new PlayerCrouchingState(this, playerStateMachine);
@@ -47,14 +45,13 @@ public class Player : MonoBehaviour, IMoveable
         fallingState = new PlayerFallingState(this, playerStateMachine);
 
     }
-    
+
     void Start()
     {
         RunSpeed = 10f;
         Transformx = transform.localScale.x;
         GravScale = Rigidbody2d.gravityScale;
         playerStateMachine.intizialize(idleState);
-
     }
     private void Update()
     {
@@ -82,7 +79,8 @@ public class Player : MonoBehaviour, IMoveable
         GameOver.LoadMainMenu();
     }
 
-    
+
+
     public void GetInput()
     {
         xinput = Input.GetAxis("Horizontal");
