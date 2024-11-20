@@ -1467,6 +1467,7 @@ MonoBehaviour:
   - {fileID: 1177342567}
   - {fileID: 431739144}
   canSpawn: 1
+  spawnDistance: 20
 --- !u!4 &508775750
 Transform:
   m_ObjectHideFlags: 0
@@ -4058,7 +4059,7 @@ Transform:
   m_GameObject: {fileID: 1507031210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.9447072, y: 0.6641405, z: -10.043804}
+  m_LocalPosition: {x: -3.9289184, y: 0.6641405, z: -10.043804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4439,7 +4440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  characterTransform: {fileID: 227589485}
+  characterTransform: {fileID: 1507031214}
 --- !u!1 &1728983708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4478,6 +4479,7 @@ MonoBehaviour:
   - {fileID: 555008227}
   - {fileID: 1382950290}
   canSpawn: 1
+  spawnDistance: 7
 --- !u!4 &1728983710
 Transform:
   m_ObjectHideFlags: 0

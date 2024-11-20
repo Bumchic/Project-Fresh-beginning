@@ -18,11 +18,11 @@ public class MoveBackAndForth : MonoBehaviour
         if (characterTransform.position.x != lastCharacterPosition.x)
         {
             // Kiểm tra xem nhân vật có di chuyển không
-            if (characterTransform.position.x - lastCharacterPosition.x>0.01f)
+            if (characterTransform.position.x - lastCharacterPosition.x>0.001f)
             {
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
             }
-            else if (characterTransform.position.x - lastCharacterPosition.x < -0.01f)
+            else if (characterTransform.position.x - lastCharacterPosition.x < 0.001f)
             {
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
             }
