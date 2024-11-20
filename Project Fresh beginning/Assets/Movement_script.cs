@@ -1,9 +1,8 @@
-/*
-using System;
+
 using System.Drawing;
 using UnityEngine;
 
-public class Movement_script: MonoBehaviour
+public class Movement_script : MonoBehaviour
 {
     public Rigidbody2D Body;
     public float Speed;
@@ -30,13 +29,10 @@ public class Movement_script: MonoBehaviour
     public BoxCollider2D ColliderHitBoxCheck;
     public bool HeadCollision;
     public LayerMask HeadCollisionMask;
+
     public float CrouchSpeed;
     private float StandSpeed;
-    public BoxCollider2D ClimbBoxCheck;
-    public bool Climbing;
-    public LayerMask ClimbingMask;
-    public float BodyTransformX;
-    public Animator Animator;
+
 
     void Groundcheck()
     {
@@ -47,6 +43,9 @@ public class Movement_script: MonoBehaviour
         xinput = Input.GetAxis("Horizontal");
         yinput = Input.GetAxis("Vertical");
     }
+
+ 
+
     void ApplyGroundFriction()
     {
         if (grounded && xinput == 0 && Body.velocity.y <= 0)
@@ -59,7 +58,6 @@ public class Movement_script: MonoBehaviour
         float Increment = xinput * (accelaration + SprintAccelaration);
         float RealSpeed = Mathf.Clamp(Body.velocity.x + Increment, -(Speed+SprintSpeed), Speed + SprintSpeed);
         Body.velocity = new Vector2(RealSpeed, Body.velocity.y);
-        
         FaceDirection();
     }
     
@@ -79,104 +77,82 @@ public class Movement_script: MonoBehaviour
     }
     void MovementInput()
     {
-        
-        //SprintModifier();
+ 
+        SprintModifier();
         if (Mathf.Abs(xinput) > 0)
         {
-            Animator.SetBool("IsRunning", true);
             Move();
-        }else
-        {
-            Animator.SetBool("IsRunning", false);
-        }
-        
+        }  
     }
     void FaceDirection()
     {
         float direction = Mathf.Sign(xinput);
-        transform.localScale = new Vector3(direction * BodyTransformX, Body.transform.localScale.y, Body.transform.localScale.z);
+        transform.localScale = new Vector3(direction, 1, 1);
     }
     bool JumpButton()
     {
-        return Input.GetKeyDown(KeyCode.W);
+        return Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
     }
     void Jump()
     {
             Body.velocity = new Vector2(Body.velocity.x, JumpPower);
     }
+
     void JumpMovement()
     { 
-      *//*  if (grounded)
+        if (grounded)
         {
-            JumpCounter = 1; //This is the code for double jump :/
-        }*//*
-        if ((JumpButton()) && grounded)
+            JumpCounter = 1;
+        }
+        if ((JumpButton()) && JumpCounter > 0)
         {
             Jump();
-
-            //JumpCounter--;
+            JumpCounter--;
         }
-   //     Animator.SetFloat("IsInAir", Body.velocity.y);
     }
-    
+
     bool CrouchButtonPressed()
     {
         return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
     }
     void Crouch()
     {
-        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.4938018f);
-        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4820718f);
-        Speed = CrouchSpeed;
+        BodyHitBox.size = new Vector2(BodyHitBox.size.x, 0.3710684f);
+        BodyHitBox.offset = new Vector2(BodyHitBox.offset.x, -0.4061485f);
         CrouchState = true;
-        
     }
     void Stand()
     {
         BodyHitBox.size = StandColliderSize;
         BodyHitBox.offset = StandColliderOffSet;
-        Speed = StandSpeed;
         CrouchState = false;      
     }
     void CrouchMovement()
     {    
-          HeadCollisionCheck();
-        if (CrouchButtonPressed() && grounded)
+              HeadCollisionCheck();
+        if (CrouchButtonPressed())
         {
             Crouch();
-            Animator.SetBool("IsCrouching", true);
         } else if(!CrouchButtonPressed() && !HeadCollision)
         {
             Stand();
-            Animator.SetBool("IsCrouching", false);
-        }
+        }       
     }
     void HeadCollisionCheck()
     {
         HeadCollision = Physics2D.OverlapAreaAll(ColliderHitBoxCheck.bounds.min, ColliderHitBoxCheck.bounds.max, HeadCollisionMask).Length > 0;
     }
-    void ClimbingCheck()
-    {
-        Climbing = Physics2D.OverlapAreaAll(ClimbBoxCheck.bounds.min, ClimbBoxCheck.bounds.max, ClimbingMask).Length > 0;
-    }
 
-    void ClimbingMovement()
+    void AirDrag()
     {
-        ClimbingCheck();
-        if(!grounded && Climbing && Input.GetKeyDown(KeyCode.Space))
-        {
-           
-        }
-    }
 
-   
+    }
     void Start()
     {
         CrouchState = false;
         StandColliderSize = BodyHitBox.size;
         StandColliderOffSet = BodyHitBox.offset;
         StandSpeed = Speed;
-        BodyTransformX = Body.transform.localScale.x;
     }
   
     void Update() 
@@ -185,14 +161,12 @@ public class Movement_script: MonoBehaviour
         JumpMovement();
         MovementInput();
         CrouchMovement();
-        ClimbingMovement();
-        Debug.Log(xinput);
     }
 
     void FixedUpdate()
     {      
         Groundcheck();
         ApplyGroundFriction();
+
     }
 }
-*/
