@@ -20,7 +20,6 @@ public class CloseTriggerCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Close");
             shadow.InZoneClose = true;
         }
     }

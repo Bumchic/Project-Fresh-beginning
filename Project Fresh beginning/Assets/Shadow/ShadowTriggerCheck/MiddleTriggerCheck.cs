@@ -20,7 +20,6 @@ public class MiddleTriggerCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Middle");
             shadow.InZoneMiddle = true;
         }
     }

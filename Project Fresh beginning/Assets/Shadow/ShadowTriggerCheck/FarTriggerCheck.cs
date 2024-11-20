@@ -21,7 +21,6 @@ public class FarTriggerCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("far");
             shadow.InZoneFar = true;
         }
     }

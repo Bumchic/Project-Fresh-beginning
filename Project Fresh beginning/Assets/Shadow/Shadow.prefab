@@ -264,9 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a888c367b4d19694abc020783ae1b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 9.8
+  <MoveSpeed>k__BackingField: 10
   <rigidbody2D>k__BackingField: {fileID: 9143638402093717807}
-  <FrictionPercent>k__BackingField: 0
 --- !u!1 &7095520600231324929
 GameObject:
   m_ObjectHideFlags: 0

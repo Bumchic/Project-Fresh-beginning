@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IMoveable
@@ -33,7 +32,7 @@ public class Player : MonoBehaviour, IMoveable
     public PlayerCrouchWalkingState CrouchWalkingState { get; set; }
     public PlayerJumpingState jumpingState { get; set; }
     public PlayerFallingState fallingState { get; set; }
-    public PlayerNormalPunchState normalPunchState { get; set; }
+ 
 
     private void Awake()
     {
@@ -44,7 +43,7 @@ public class Player : MonoBehaviour, IMoveable
         CrouchWalkingState = new PlayerCrouchWalkingState(this, playerStateMachine);
         jumpingState = new PlayerJumpingState(this, playerStateMachine);
         fallingState = new PlayerFallingState(this, playerStateMachine);
-        normalPunchState = new PlayerNormalPunchState(this, playerStateMachine);
+
     }
 
     void Start()
@@ -52,7 +51,7 @@ public class Player : MonoBehaviour, IMoveable
         RunSpeed = 10f;
         Transformx = transform.localScale.x;
         GravScale = Rigidbody2d.gravityScale;
-        playerStateMachine.initialize(idleState);    
+        playerStateMachine.intizialize(idleState);
     }
     private void Update()
     {
@@ -60,7 +59,6 @@ public class Player : MonoBehaviour, IMoveable
         Groundcheck();
         gameOver();
         GetInput();
-        CheckPunch();
         playerStateMachine.CurrentState.FrameUpdate();
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -81,13 +79,7 @@ public class Player : MonoBehaviour, IMoveable
         GameOver.LoadMainMenu();
     }
 
-    private void CheckPunch()
-    {
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            this.playerStateMachine.ChangeState(normalPunchState);
-        }
-    }
+
 
     public void GetInput()
     {
@@ -152,10 +144,9 @@ public class Player : MonoBehaviour, IMoveable
 
 
 
-
     public enum AnimationTriggerType
     {
-        PunchToIdle
+        
     }
 }
 

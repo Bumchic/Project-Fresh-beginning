@@ -17,7 +17,7 @@ public class PlayerFallingState : PlayerState
     {
         base.EnterState();
         player.animator.SetBool("IsFalling", true);
-
+        Debug.Log("fallings");
     }
 
     public override void ExitState()
