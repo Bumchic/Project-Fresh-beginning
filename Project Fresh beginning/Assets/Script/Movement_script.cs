@@ -1,4 +1,4 @@
-/*
+
 using System;
 using System.Drawing;
 using UnityEngine;
@@ -106,10 +106,10 @@ public class Movement_script: MonoBehaviour
     }
     void JumpMovement()
     { 
-      *//*  if (grounded)
+      /*  if (grounded)
         {
             JumpCounter = 1; //This is the code for double jump :/
-        }*//*
+        }*/
         if ((JumpButton()) && grounded)
         {
             Jump();
@@ -195,4 +195,3 @@ public class Movement_script: MonoBehaviour
         ApplyGroundFriction();
     }
 }
-*/
