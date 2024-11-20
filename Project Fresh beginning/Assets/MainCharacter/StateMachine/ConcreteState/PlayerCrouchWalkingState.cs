@@ -42,6 +42,10 @@ public class PlayerCrouchWalkingState : PlayerState
         {
             player.playerStateMachine.ChangeState(player.fallingState);
         }
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            player.playerStateMachine.ChangeState(player.idleState);
+        }
     }
 
     public override void PhysicUpdate()

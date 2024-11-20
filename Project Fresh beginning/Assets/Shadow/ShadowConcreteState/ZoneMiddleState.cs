@@ -27,7 +27,9 @@ public class ZoneMiddleState : ShadowState
     public override void UpdateFrame()
     {
         base.UpdateFrame();
-        if(shadow.InZoneFar)
+        
+
+        if (shadow.InZoneFar)
         {
             shadow.stateMachine.ChangeState(shadow.zoneFarState);
         }

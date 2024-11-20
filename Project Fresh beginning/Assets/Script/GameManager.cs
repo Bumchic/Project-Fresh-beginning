@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject shadow;
     public Boolean SpawnShadow;
 
+
     void Awake()
     {
         if(gameManager != null && gameManager != this)
@@ -23,14 +21,12 @@ public class GameManager : MonoBehaviour
         {
         gameManager = this; 
         }
-
-       
     }
     void Start()
     {
         if(SpawnShadow)
         {
-            Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity); 
+            Instantiate(shadow, new Vector3(-5.44119978f, 0.633400023f, -0.0356026478f), Quaternion.identity);          
         }
 
     }

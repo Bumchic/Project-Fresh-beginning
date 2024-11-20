@@ -11,14 +11,15 @@ public class PatrolState : EnemyState
     }
     public override void EnterState()
     {
-        base.EnterState();
-        
+        base.EnterState();       
         Debug.Log("Patrol");
+        enemy.animator.SetBool("isWalking", true);
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        enemy.animator.SetBool("isWalking", false);
     }
 
     public override void FrameUpdate()
@@ -35,14 +36,16 @@ public class PatrolState : EnemyState
         enemy.Move(2);
         enemy.HitWallCheck();
         FaceOtherWay();
+        if(enemy.isChasingPlayer)
+        {
+            enemy.stateMachine.ChangeState(enemy.chasingPlayerState);
+        }
     }
 
     public override void PhysicUpdate()
     {
-        base.PhysicUpdate();
-        
+        base.PhysicUpdate();       
     }
-
     public void FaceOtherWay()
     {
         if (enemy.WalkingIntoWall == true)

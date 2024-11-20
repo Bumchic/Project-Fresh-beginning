@@ -1,64 +1,48 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBaseScript : MonoBehaviour
 {
-    public EnemyStateMachine stateMachine { get; private set; }
-    public PatrolState patrolState { get; private set; }
-    public ChasingPlayerState chasingPlayerState { get; private set; }
-    public KnockBackState knockBackState { get; private set; }
-
-    public Transform player_Transform;
-
-    [field: SerializeField] public Rigidbody2D rigidbody { get; private set; }
-    [field: SerializeField] public BoxCollider2D WalkIntoWallCheck { get; private set; }
-    [field: SerializeField] public LayerMask FloorMask { get; private set; }
-    [field: SerializeField] public Transform playerTransform { get; private set; }
-    [field: SerializeField] public bool WalkingIntoWall { get; set; }
-    [field: SerializeField] public bool isChasingPlayer { get; set; }
-    [field: SerializeField] public int isFacingRight { get;  set; }
-
-    public float Transformx { get; private set; }
-    public float maxSpeed { get; private set; } = 5f;
-
-
-
-    private void Awake()
+    [field:SerializeField]public Rigidbody2D rigidbody { get; set ; }
+    public EnemyStateMachine stateMachine { get; set; }
+    public PatrolState patrolState { get; set; }
+    public ChasingPlayerState chasingPlayerState { get; set; }  
+    [field: SerializeField] public BoxCollider2D WalkIntoWallCheck {  get; set; }
+    [field: SerializeField] public Boolean WalkingIntoWall {  get; set; }
+    [field: SerializeField] public LayerMask FloorMask { get; set; }
+    [field: SerializeField] public int isFacingRight { get; set; } 
+    public float Transformx { get; set; }
+    public float maxSpeed { get; set; } = 5f;
+    [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
+    public Animator animator;
+    void Awake()
     {
-        // Lấy Rigidbody và Player Transform
-        rigidbody = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Khởi tạo State Machine
         stateMachine = new EnemyStateMachine();
-
-        knockBackState = new KnockBackState(this, stateMachine);
-
-        // Tạo các trạng thái
         patrolState = new PatrolState(this, stateMachine);
         chasingPlayerState = new ChasingPlayerState(this, stateMachine);
-
-        // Khởi tạo các biến khác
         Transformx = transform.localScale.x;
         isFacingRight = 0;
-        isChasingPlayer = false;
     }
 
-    private void Start()
+    void Start()
     {
-        // Khởi tạo state đầu tiên
         stateMachine.Initialize(patrolState);
         FaceDirection();
     }
 
-    private void Update()
+    void Update()
     {
         stateMachine.enemyState.FrameUpdate();
         FaceDirection();
+       
+     
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         stateMachine.enemyState.PhysicUpdate();
     }
@@ -67,9 +51,10 @@ public class EnemyBaseScript : MonoBehaviour
     {
         rigidbody.velocity = new Vector2(speed * NumFaceDirection(), rigidbody.velocity.y);
     }
-
     public void FaceDirection()
     {
+        //float Direction = Mathf.Sign(rigidbody.velocity.x);
+
         transform.localScale = new Vector3(NumFaceDirection() * Transformx, transform.localScale.y, transform.localScale.z);
     }
 
@@ -80,7 +65,12 @@ public class EnemyBaseScript : MonoBehaviour
 
     public float NumFaceDirection()
     {
-        return isFacingRight == 0 ? -1f : 1f;
+        if(isFacingRight == 0)
+        {
+            return -1f;
+        }
+            return 1f;
     }
+
 
 }

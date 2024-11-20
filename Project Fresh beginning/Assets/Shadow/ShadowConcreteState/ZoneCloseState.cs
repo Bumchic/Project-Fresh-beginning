@@ -13,7 +13,7 @@ public class ZoneCloseState : ShadowState
     {
         base.enterState();
         Debug.Log("CloseState");
-        CloseMoveSpeed = shadow.MoveSpeed * 50 / 100; 
+        CloseMoveSpeed = shadow.MoveSpeed * 50 / 100;
         shadow.Move(CloseMoveSpeed);
     }
 
@@ -28,7 +28,8 @@ public class ZoneCloseState : ShadowState
     public override void UpdateFrame()
     {
         base.UpdateFrame();
-        if(shadow.InZoneMiddle)
+        
+        if (shadow.InZoneMiddle)
         {
             shadow.stateMachine.ChangeState(shadow.zoneMiddleState);
         }
