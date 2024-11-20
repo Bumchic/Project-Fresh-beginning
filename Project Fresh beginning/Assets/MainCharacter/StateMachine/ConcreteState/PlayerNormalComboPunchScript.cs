@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerNormalComboPunchScript : PlayerState
 {
+    public float Combo1Time { get; set; }
+    public float Combo2Time { get; set; }
+    public float Combo3Time { get; set; }
     public PlayerNormalComboPunchScript(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
