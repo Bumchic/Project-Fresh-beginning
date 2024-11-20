@@ -25,7 +25,6 @@ public class HealthBar : MonoBehaviour
         {
             UpdateBar(GameManager.gameManager.PlayerHealth.currentHealth, GameManager.gameManager.PlayerHealth.MaxHealth);
             CurrentHealth = GameManager.gameManager.PlayerHealth.currentHealth;
-            Debug.Log("Health");
         }
         Cur = GameManager.gameManager.PlayerHealth.currentHealth;
     }

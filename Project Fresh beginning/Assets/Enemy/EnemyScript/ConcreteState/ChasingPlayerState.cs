@@ -38,7 +38,6 @@ public class ChasingPlayerState : EnemyState
         base.FrameUpdate();
         TurnAround();
         enemy.Move(4);
-        Debug.Log(PlayerTransform.localPosition.x - enemy.gameObject.transform.localPosition.x);
     }
 
     public override void PhysicUpdate()
@@ -50,12 +49,10 @@ public class ChasingPlayerState : EnemyState
     {
         if(PlayerTransform.localPosition.x - enemy.gameObject.transform.localPosition.x > 0f)
         {
-            Debug.Log("right");
             enemy.isFacingRight = 1;
         }
         else
         {
-            Debug.Log("left");
             enemy.isFacingRight = 0;
         }
     }
