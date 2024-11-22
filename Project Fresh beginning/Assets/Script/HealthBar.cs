@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
         fillBar.fillAmount = (float)currentValue / (float)maxValue;
         valueText.text = currentValue.ToString() + " / " + maxValue.ToString();
     }
-    void Awake()
+    void Start()
     {
         CurrentHealth = GameManager.gameManager.PlayerHealth.currentHealth;
     }

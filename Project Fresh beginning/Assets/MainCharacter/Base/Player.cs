@@ -32,7 +32,7 @@ public class Player : MonoBehaviour, IMoveable
     public PlayerCrouchWalkingState CrouchWalkingState { get; set; }
     public PlayerJumpingState jumpingState { get; set; }
     public PlayerFallingState fallingState { get; set; }
- 
+    public PlayerNormalPunchState normalPunchState { get; set; } 
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour, IMoveable
         CrouchWalkingState = new PlayerCrouchWalkingState(this, playerStateMachine);
         jumpingState = new PlayerJumpingState(this, playerStateMachine);
         fallingState = new PlayerFallingState(this, playerStateMachine);
-
+        normalPunchState = new PlayerNormalPunchState(this, playerStateMachine);
     }
 
     void Start()
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour, IMoveable
 
     public enum AnimationTriggerType
     {
-        
+        PunchToIdle
     }
 }
 

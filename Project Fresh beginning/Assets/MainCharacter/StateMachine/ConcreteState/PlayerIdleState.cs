@@ -45,6 +45,10 @@ public class PlayerIdleState : PlayerState
         {
             player.playerStateMachine.ChangeState(player.fallingState);
         }
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            player.playerStateMachine.ChangeState(player.normalPunchState);
+        }
     }
     
 
