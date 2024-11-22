@@ -29,4 +29,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+        GameManager.gameManager.HandleDeath(gameObject);
+    }
+
+
+
 }

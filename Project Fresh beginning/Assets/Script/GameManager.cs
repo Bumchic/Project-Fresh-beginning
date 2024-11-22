@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,25 @@ public class GameManager : MonoBehaviour
     public GameObject shadow;
     public Boolean SpawnShadow;
 
+    public void HandleDeath(GameObject gameObject)
+    {
+        if(gameObject.CompareTag("Player"))
+        {
+            OnPlayerDeath();
+        }
+    }
 
+    public void OnPlayerDeath()
+    {
+        Debug.Log("Player died! Game Over!");
+        // Dừng thời gian trong game
+        Time.timeScale = 0;
+
+     
+    }
+
+
+  
     void Awake()
     {
         if(gameManager != null && gameManager != this)
