@@ -36,6 +36,7 @@ public class PlayerNormalPunchState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
     }
 
     public override void PhysicUpdate()
@@ -51,5 +52,9 @@ public class PlayerNormalPunchState : PlayerState
             Timer -= Time.deltaTime;
         }
         return true;
+    }
+    public void Combo2Attack()
+    {
+
     }
 }
