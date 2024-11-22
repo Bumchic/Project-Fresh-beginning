@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerRunningState : PlayerState
 {
-    
+
     public PlayerRunningState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
 
@@ -21,7 +21,7 @@ public class PlayerRunningState : PlayerState
     {
         base.EnterState();
         player.animator.SetBool("IsRunning", true);
-        
+
     }
 
     public override void ExitState()
@@ -33,11 +33,11 @@ public class PlayerRunningState : PlayerState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        if(Mathf.Abs(player.xinput) > 0)
+        if (Mathf.Abs(player.xinput) > 0)
         {
             player.WalkMovement(player.RunSpeed);
-        }        
-        if(Mathf.Abs(player.xinput) == 0)
+        }
+        if (Mathf.Abs(player.xinput) == 0)
         {
             player.WalkMovement(0);
             player.playerStateMachine.ChangeState(player.idleState);
