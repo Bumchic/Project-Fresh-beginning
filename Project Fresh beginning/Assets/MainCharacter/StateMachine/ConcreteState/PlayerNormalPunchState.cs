@@ -65,6 +65,10 @@ public class PlayerNormalPunchState : PlayerState
     }
     public void Combo2Attack()
     {
+        if (ComboTimeCounter(Combo2Time))
+        {
+            
+        }
 
     }
 }
