@@ -25,12 +25,22 @@ public class PlayerNormalPunchState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
-        player.animator.SetTrigger("Attack1");
+        switch(player.Combo)
+        {
+            case 0: player.animator.SetTrigger("runningAttack");
+                break;
+            case 1: player.animator.SetTrigger("Attack1");
+                break;
+            default: player.Combo = 1;
+                player.animator.SetTrigger("Attack1");
+                break;
+        }
     }
 
     public override void ExitState()
     {
         base.ExitState();
+        player.Combo = -1;
     }
 
     public override void FrameUpdate()

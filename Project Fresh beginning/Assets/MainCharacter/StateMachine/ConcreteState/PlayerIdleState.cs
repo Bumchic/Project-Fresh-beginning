@@ -47,6 +47,7 @@ public class PlayerIdleState : PlayerState
         }
         if(Input.GetKeyDown(KeyCode.J))
         {
+            player.Combo = 1;
             player.playerStateMachine.ChangeState(player.normalPunchState);
         }
     }

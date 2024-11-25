@@ -23,6 +23,7 @@ public class Player : MonoBehaviour, IMoveable
     private float Max_acceleration = 2f;
     public float GravScale {  get; set; }
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
+    public int Combo { get; set; } = -1;
     //Attribute
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour, IMoveable
     public PlayerJumpingState jumpingState { get; set; }
     public PlayerFallingState fallingState { get; set; }
     public PlayerNormalPunchState normalPunchState { get; set; } 
+
 
     private void Awake()
     {
