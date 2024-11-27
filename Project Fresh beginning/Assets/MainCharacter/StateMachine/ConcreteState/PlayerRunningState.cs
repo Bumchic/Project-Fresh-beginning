@@ -54,6 +54,11 @@ public class PlayerRunningState : PlayerState
         {
             player.playerStateMachine.ChangeState(player.crouchingState);
         }
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            player.Combo = 0;
+            player.playerStateMachine.ChangeState(player.normalPunchState);
+        }
     }
 
     public override void PhysicUpdate()

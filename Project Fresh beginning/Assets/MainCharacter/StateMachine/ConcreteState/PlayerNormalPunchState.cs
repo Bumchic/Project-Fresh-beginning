@@ -28,6 +28,7 @@ public class PlayerNormalPunchState : PlayerState
         switch(player.Combo)
         {
             case 0: player.animator.SetTrigger("runningAttack");
+                Debug.Log("RunningAttk");
                 break;
             case 1: player.animator.SetTrigger("Attack1");
                 break;
