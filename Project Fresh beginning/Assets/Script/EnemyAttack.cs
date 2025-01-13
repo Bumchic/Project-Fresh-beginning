@@ -10,8 +10,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //dame to player
-            GameManager.gameManager.enemyHealth.takeDamage(attackDamage);
+            
         }
     }
 }

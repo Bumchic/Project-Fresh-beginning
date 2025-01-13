@@ -19,8 +19,10 @@ public class EnemyBaseScript : MonoBehaviour
     public float maxSpeed { get; set; } = 5f;
     [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
     public Animator animator;
+    public Health_System health { get; set; }
     void Awake()
     {
+        health = new Health_System(100, 100);
         stateMachine = new EnemyStateMachine();
         patrolState = new PatrolState(this, stateMachine);
         chasingPlayerState = new ChasingPlayerState(this, stateMachine);
