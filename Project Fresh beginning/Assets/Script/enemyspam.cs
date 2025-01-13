@@ -6,11 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private bool canSpawn = true;
-
-
     private Camera mainCamera;
     private float lastSpawnX = 0f; // Last spawn position in the x-axis
-    private float spawnDistance = 15f; // Distance to spawn a new enemys
+    public float spawnDistance = 15f; // Distance to spawn a new enemys
     private void Start()
     {
         mainCamera = Camera.main;

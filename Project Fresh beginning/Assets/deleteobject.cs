@@ -2,16 +2,19 @@
 
 public class DestroyObjectOnCameraMove : MonoBehaviour
 {
-    public Camera mainCamera; 
-    public float destroyThreshold = 40f; 
+    public Camera mainCamera;
+    public float destroyThreshold = 40f;
 
     void Update()
     {
         // Kiểm tra vị trí của camera trên trục X
-        if (mainCamera.transform.position.x > destroyThreshold)
+        if (mainCamera.transform.position.x - transform.position.x > destroyThreshold)
         {
-            // Xóa vật thể 
-            Destroy(gameObject);
+            // Kiểm tra tên của đối tượng
+            if (gameObject.name.Contains("(Clone)"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
