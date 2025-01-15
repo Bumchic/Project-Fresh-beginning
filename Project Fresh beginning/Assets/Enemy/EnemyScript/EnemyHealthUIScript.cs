@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class EnemyHealthUIScript : MonoBehaviour
+public class EnemyHealthUIScript
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Slider sliderUI;
+    public Image FillBackGround;
+    public Text HealthText;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateHealth(float health)
     {
-        
+        sliderUI.value = health;
+        HealthText.text = $"{health}/100";
     }
+    
 }

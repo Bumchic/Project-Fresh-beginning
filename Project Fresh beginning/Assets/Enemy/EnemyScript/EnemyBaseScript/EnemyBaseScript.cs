@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Windows;
 using static UnityEngine.EventSystems.EventTrigger;
 
+
 public class EnemyBaseScript : MonoBehaviour
 {
     [field:SerializeField]public Rigidbody2D rigidbody { get; set ; }
@@ -20,6 +21,7 @@ public class EnemyBaseScript : MonoBehaviour
     [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
     public Animator animator;
     public Health_System health { get; set; }
+    [field: SerializeField] public EnemyHealthUIScript enemyHealthUIScript;
     void Awake()
     {
         health = new Health_System(100, 100);
