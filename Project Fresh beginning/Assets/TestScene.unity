@@ -418,6 +418,14 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 865583879}
+    - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+      propertyPath: sliderUI
+      value: 
+      objectReference: {fileID: 1370513138}
+    - target: {fileID: 8161422526447588877, guid: aaaaa9733bb57094ea7c39323b8a82b7, type: 3}
+      propertyPath: FillBackGround
+      value: 
+      objectReference: {fileID: 1580948092}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

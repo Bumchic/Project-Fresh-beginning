@@ -7,12 +7,17 @@ public class EnemyHealthUIScript
 {
     public Slider sliderUI;
     public Image FillBackGround;
-    public Text HealthText;
-
+    public Transform Target;
+    public EnemyHealthUIScript(Slider slider, Image FillBackGround, Transform Target)
+    {
+        sliderUI = slider;
+        this.FillBackGround = FillBackGround;
+        this.Target = Target;
+        
+    }
     public void UpdateHealth(float health)
     {
         sliderUI.value = health;
-        HealthText.text = $"{health}/100";
     }
     
 }
