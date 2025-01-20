@@ -1,22 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthUIScript
+public class EnemyHealthUIScript: MonoBehaviour
 {
     public Slider sliderUI;
     public Image FillBackGround;
     public Transform Target;
-    public EnemyHealthUIScript(Slider slider, Image FillBackGround, Transform Target)
+    public UnityEngine.Object grunt;
+    private Grunt gruntScript;
+    public Vector3 Offset;
+
+    public void Awake()
     {
-        sliderUI = slider;
-        this.FillBackGround = FillBackGround;
-        this.Target = Target;
-        
+        gruntScript = grunt.GetComponent<Grunt>();
+        Target = grunt.GetComponent<Transform>();
+        transform.position = Target.position + Offset;
+    }
+
+    public void Update()
+    {
+        UpdateHealth(gruntScript.health.currentHealth);
     }
     public void UpdateHealth(float health)
-    {
+    {   
         sliderUI.value = health;
     }
     

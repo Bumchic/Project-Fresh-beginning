@@ -22,16 +22,11 @@ public class EnemyBaseScript : MonoBehaviour
     [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
     public Animator animator;
     public Health_System health { get; set; }
-    public EnemyHealthUIScript healthUI;
-    public Slider sliderUI;
-    public Image FillBG;
-    public Vector3 Offset;
-    public object Canvas;
+
     
     void Awake()
     {
         health = new Health_System(100, 100);
-        healthUI = new EnemyHealthUIScript(sliderUI, FillBG, rigidbody.transform);
         stateMachine = new EnemyStateMachine();
         patrolState = new PatrolState(this, stateMachine);
         chasingPlayerState = new ChasingPlayerState(this, stateMachine);
@@ -50,7 +45,6 @@ public class EnemyBaseScript : MonoBehaviour
     {
         stateMachine.enemyState.FrameUpdate();
         FaceDirection();
-        healthUI.UpdateHealth(health.currentHealth / 100);
     }
 
     void FixedUpdate()
