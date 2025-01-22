@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +47,10 @@ public class EnemyBaseScript : MonoBehaviour
         stateMachine.enemyState.FrameUpdate();
         FaceDirection();
         OnDeath();
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            health.TakeDamage(9999);
+        }
     }
 
     void FixedUpdate()
@@ -82,8 +87,12 @@ public class EnemyBaseScript : MonoBehaviour
     {
         if(health.currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            animator.SetBool("isDead", true);
         }
+    }
+    public void DestroyGameObject()
+    {
+        Destroy(this.gameObject);
     }
     
 
