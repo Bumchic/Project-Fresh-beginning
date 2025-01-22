@@ -45,6 +45,7 @@ public class EnemyBaseScript : MonoBehaviour
     {
         stateMachine.enemyState.FrameUpdate();
         FaceDirection();
+        OnDeath();
     }
 
     void FixedUpdate()
@@ -77,5 +78,13 @@ public class EnemyBaseScript : MonoBehaviour
             return 1f;
     }
 
+    public void OnDeath()
+    {
+        if(health.currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    
 
 }

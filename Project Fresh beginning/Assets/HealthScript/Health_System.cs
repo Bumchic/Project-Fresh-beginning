@@ -7,6 +7,7 @@ public class Health_System
     [field: SerializeField]private float _CurrentHealth;
     private float _MaxHealth;
 
+
     public float currentHealth
     {
         get
