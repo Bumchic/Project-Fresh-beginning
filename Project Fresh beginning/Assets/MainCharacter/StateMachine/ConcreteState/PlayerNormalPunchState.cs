@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerNormalPunchState : PlayerState
 {
 
-
+    private int CurrentCombo { get; set; }
     public float Combo2Time { get; set; } = 0.4f;
     public float Combo3Time { get; set; } = 0.6f;
     public PlayerNormalPunchState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
@@ -30,7 +30,6 @@ public class PlayerNormalPunchState : PlayerState
     public override void ExitState()
     {
         base.ExitState();
-        player.Combo = -1;
     }
 
     public override void FrameUpdate()
@@ -43,6 +42,13 @@ public class PlayerNormalPunchState : PlayerState
     {
         base.PhysicUpdate();
     }
+    private void ComboPunch1()
+    {
+        if(CurrentCombo != 1)
+        {
+            return;
+        }
 
+    }
 
 }
