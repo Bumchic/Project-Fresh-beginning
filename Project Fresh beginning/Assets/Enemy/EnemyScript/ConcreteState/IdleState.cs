@@ -9,40 +9,14 @@ using UnityEngine;
 
 public class IdleState : EnemyState
 {
-    private CancellationTokenSource cts;
-    private CancellationToken ct;
-    private bool finishedWaiting;
-    Thread thread;
+    public float TimeToPatrol { get; set; } = 2f;
     public IdleState(EnemyBaseScript enemy, EnemyStateMachine stateMachine): base(enemy, stateMachine)
     {
-        cts = new CancellationTokenSource();
-        finishedWaiting = false;
-        thread = Thread.CurrentThread;
+
     }
     public override void EnterState()
     {
         base.EnterState();
-        
-        CancellationToken ct = cts.Token;
-        try
-        {
-            Task.Run(() =>
-            {
-                Task.Delay(2000).Wait(ct);
-                Debug.Log(ct.IsCancellationRequested);
-                if (ct.IsCancellationRequested)
-                {
-                    ct.ThrowIfCancellationRequested();
-                }
-                Dispatcher.Enqueue(() =>
-                {
-                    enemy.stateMachine.ChangeState(enemy.patrolState);
-                }); 
-            }, ct);
-        } catch(OperationCanceledException)
-        {
-
-        }
     }
 
     public override void ExitState()
@@ -53,9 +27,9 @@ public class IdleState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        TimeToPatrolTimer();
         if(enemy.isChasingPlayer)
         {
-            cts.Cancel();
             enemy.stateMachine.ChangeState(enemy.chasingPlayerState);
         }
     }
@@ -63,5 +37,13 @@ public class IdleState : EnemyState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+    }
+    public void TimeToPatrolTimer()
+    {
+        if(TimeToPatrol <= 0)
+        {
+            enemy.stateMachine.ChangeState(enemy.patrolState);
+        }
+        TimeToPatrol -= Time.deltaTime;
     }
 }
