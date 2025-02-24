@@ -42,7 +42,7 @@ public class PlayerRunningState : PlayerState
             player.playerStateMachine.ChangeState(player.idleState);
         }
 
-        if (player.yinput > 0 && player.grounded == true )
+        if (player.yinput > 0 && player.grounded == true)
         {
             player.playerStateMachine.ChangeState(player.jumpingState);
         }

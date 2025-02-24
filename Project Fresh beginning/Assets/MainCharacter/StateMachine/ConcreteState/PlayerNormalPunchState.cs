@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerNormalPunchState : PlayerState
 {
-
+    Animator ani;
     private int CurrentCombo { get; set; }
     public float Combo2Time { get; set; } = 0.4f;
     public float Combo3Time { get; set; } = 0.6f;
     public PlayerNormalPunchState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
-
+        ani = player.animator;
     }
     public override void AnimationTriggerEvent(Player.AnimationTriggerType triggertype)
     {
@@ -19,7 +19,6 @@ public class PlayerNormalPunchState : PlayerState
         {
             player.playerStateMachine.ChangeState(player.idleState);
         }
-
     }
 
     public override void EnterState()
