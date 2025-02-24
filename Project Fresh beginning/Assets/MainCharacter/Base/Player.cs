@@ -23,7 +23,6 @@ public class Player : MonoBehaviour, IMoveable
     private float Max_acceleration = 2f;
     public float GravScale {  get; set; }
     [field: SerializeField] public BoxCollider2D Collider { get; set; }
-    public int Combo { get; set; } = -1;
     //Attribute
     //State Variable
     public PlayerStateMachine playerStateMachine { get; set; }
@@ -61,6 +60,7 @@ public class Player : MonoBehaviour, IMoveable
         Groundcheck();
         gameOver();
         GetInput();
+        CheckPunch();
         playerStateMachine.CurrentState.FrameUpdate();
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -81,7 +81,13 @@ public class Player : MonoBehaviour, IMoveable
         GameOver.LoadMainMenu();
     }
 
-
+    private void CheckPunch()
+    {
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            this.playerStateMachine.ChangeState(normalPunchState);
+        }
+    }
 
     public void GetInput()
     {
@@ -143,6 +149,7 @@ public class Player : MonoBehaviour, IMoveable
     {
        playerStateMachine.CurrentState.AnimationTriggerEvent(triggertype);
     }
+
 
 
 

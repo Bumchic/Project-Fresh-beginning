@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerNormalPunchState : PlayerState
 {
 
-
+    private int CurrentCombo { get; set; }
     public float Combo2Time { get; set; } = 0.4f;
     public float Combo3Time { get; set; } = 0.6f;
     public PlayerNormalPunchState(Player player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
@@ -25,23 +25,11 @@ public class PlayerNormalPunchState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
-        switch(player.Combo)
-        {
-            case 0: player.animator.SetTrigger("runningAttack");
-                Debug.Log("RunningAttk");
-                break;
-            case 1: player.animator.SetTrigger("Attack1");
-                break;
-            default: player.Combo = 1;
-                player.animator.SetTrigger("Attack1");
-                break;
-        }
     }
 
     public override void ExitState()
     {
         base.ExitState();
-        player.Combo = -1;
     }
 
     public override void FrameUpdate()
@@ -54,22 +42,13 @@ public class PlayerNormalPunchState : PlayerState
     {
         base.PhysicUpdate();
     }
-
-    public bool ComboTimeCounter(float ComboTime)
+    private void ComboPunch1()
     {
-        float Timer = ComboTime;
-        while(Timer >= 0)
+        if(CurrentCombo != 1)
         {
-            Timer -= Time.deltaTime;
-        }
-        return true;
-    }
-    public void Combo2Attack()
-    {
-        if (ComboTimeCounter(Combo2Time))
-        {
-            
+            return;
         }
 
     }
+
 }

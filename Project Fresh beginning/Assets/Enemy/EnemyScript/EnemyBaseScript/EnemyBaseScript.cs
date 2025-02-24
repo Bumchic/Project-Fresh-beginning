@@ -12,6 +12,7 @@ public class EnemyBaseScript : MonoBehaviour
 {
     [field:SerializeField]public Rigidbody2D rigidbody { get; set; }
     public EnemyStateMachine stateMachine { get; set; }
+    public IdleState idleState { get; set; }
     public PatrolState patrolState { get; set; }
     public ChasingPlayerState chasingPlayerState { get; set; }  
     [field: SerializeField] public BoxCollider2D WalkIntoWallCheck {  get; set; }
@@ -23,12 +24,14 @@ public class EnemyBaseScript : MonoBehaviour
     [field: SerializeField] public Boolean isChasingPlayer {  get; set; }
     public Animator animator;
     public Health_System health { get; set; }
+    public bool isDebug;
 
     
     void Awake()
     {
         health = new Health_System(100, 100);
         stateMachine = new EnemyStateMachine();
+        idleState = new IdleState(this, stateMachine);
         patrolState = new PatrolState(this, stateMachine);
         chasingPlayerState = new ChasingPlayerState(this, stateMachine);
         Transformx = transform.localScale.x;
@@ -38,7 +41,7 @@ public class EnemyBaseScript : MonoBehaviour
 
     void Start()
     {
-        stateMachine.Initialize(patrolState);
+        stateMachine.Initialize(idleState);
         FaceDirection();
     }
 
@@ -47,10 +50,7 @@ public class EnemyBaseScript : MonoBehaviour
         stateMachine.enemyState.FrameUpdate();
         FaceDirection();
         OnDeath();
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            health.TakeDamage(9999);
-        }
+        DebugCommand();
     }
 
     void FixedUpdate()
@@ -95,5 +95,15 @@ public class EnemyBaseScript : MonoBehaviour
         Destroy(this.gameObject);
     }
     
-
+    public void DebugCommand()
+    {
+        if(!isDebug)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            health.TakeDamage(9999);
+        }
+    }
 }

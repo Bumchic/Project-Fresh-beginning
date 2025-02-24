@@ -56,7 +56,6 @@ public class PlayerRunningState : PlayerState
         }
         if(Input.GetKeyDown(KeyCode.J))
         {
-            player.Combo = 0;
             player.playerStateMachine.ChangeState(player.normalPunchState);
         }
     }
