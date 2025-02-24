@@ -4,7 +4,7 @@ public class FollowPlayer : MonoBehaviour
 {
     public Transform player;  // Tham chiếu đến nhân vật
     public Vector3 offset;    // Khoảng cách giữa object và nhân vật
-    public float speed = 10f; // Tốc độ di chuyển
+    public float speed = 1f; // Tốc độ di chuyển
 
     void Update()
     {

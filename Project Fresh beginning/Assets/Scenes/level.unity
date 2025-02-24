@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1674613cdf2871c44914bf932c86527d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 2
   characterTransform: {fileID: 227589485}
 --- !u!483693784 &106177056
 TilemapRenderer:
@@ -4436,12 +4436,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717305098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d56c431a20b2f94fa10a4b883ef10ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 1674613cdf2871c44914bf932c86527d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 227589485}
-  offset: {x: 0, y: 0, z: 0}
   speed: 2
+  characterTransform: {fileID: 227589485}
 --- !u!1 &1728983708
 GameObject:
   m_ObjectHideFlags: 0
