@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Health_System PlayerHealth = new Health_System(100, 100);
     public GameObject shadow;
     public Boolean SpawnShadow;
+  
 
 
     void Awake()
