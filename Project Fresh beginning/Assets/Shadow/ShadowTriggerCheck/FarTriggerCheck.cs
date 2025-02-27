@@ -11,15 +11,15 @@ public class FarTriggerCheck : MonoBehaviour
 
     void Awake()
     {
-        //MainCharacter = GameObject.FindWithTag("Player");
-        //Collider = MainCharacter.GetComponentInChildren<BoxCollider2D>();
+        MainCharacter = GameObject.FindGameObjectWithTag("Player");
+        Collider = MainCharacter.GetComponentInChildren<BoxCollider2D>();
         shadow = GetComponentInParent<Shadow>();
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other == Collider)
         {
             shadow.InZoneFar = true;
         }
